@@ -23,8 +23,8 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonFindAMovie = (Button)findViewById(R.id.buttonFindAMovie);
-        buttonMyMovies = (Button)findViewById(R.id.buttonMyMovies);
+        buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);
+        buttonMyMovies = (Button) findViewById(R.id.buttonMyMovies);
         System.out.println("BREAAKPOIINT");
     }
 
@@ -54,14 +54,17 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     }
 
     @Override
-    public void onClick(View v) {
-        if(v == buttonFindAMovie) {
-                Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
+    public void onClick(View v)
+    {
+        if (v == buttonFindAMovie)
+        {
+            Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
 
     }
 }
