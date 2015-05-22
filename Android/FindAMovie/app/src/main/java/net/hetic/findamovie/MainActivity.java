@@ -1,19 +1,31 @@
 package net.hetic.findamovie;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener
 {
+
+    private Button buttonFindAMovie;
+    private Button buttonMyMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        buttonFindAMovie = (Button)findViewById(R.id.buttonFindAMovie);
+        buttonMyMovies = (Button)findViewById(R.id.buttonMyMovies);
+        System.out.println("BREAAKPOIINT");
     }
 
     @Override
@@ -39,5 +51,17 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == buttonFindAMovie) {
+                Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
