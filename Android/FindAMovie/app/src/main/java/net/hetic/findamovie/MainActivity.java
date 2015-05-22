@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
 
         buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);
         buttonMyMovies = (Button) findViewById(R.id.buttonMyMovies);
-<<<<<<< HEAD
     }
 
     @Override
@@ -34,10 +33,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         super.onStart();
 
         buttonFindAMovie.setOnClickListener(this);
-
-=======
-        System.out.println("BREAAKPOIINT");
->>>>>>> 44d43e2c8055217bfa94fd31e6ad18f7118a15d4
     }
 
     @Override
@@ -66,16 +61,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     }
 
     @Override
-<<<<<<< HEAD
-    public void onClick(View v) {
-        if(v == buttonFindAMovie) {
-            System.out.println("BREAAKPOIINT");
-=======
     public void onClick(View v)
     {
         if (v == buttonFindAMovie)
         {
->>>>>>> 44d43e2c8055217bfa94fd31e6ad18f7118a15d4
             Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
         }
     }
