@@ -6,11 +6,29 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity">
+                tools:context=".MainActivity"
+                android:background="@drawable/background"
+    android:id="@+id/container">
 
-    <TextView
-        android:text="@string/hello_world"
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Trouver un film"
+        android:id="@+id/buttonFindAMovie"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff"
+        android:textSize="30px" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mes films"
+        android:id="@+id/buttonMyMovies"
+        android:layout_below="@+id/buttonFindAMovie"
+        android:layout_marginTop="40dp"
+        android:textColor="#ffffffff"
+        android:textSize="30px"
+        android:layout_alignEnd="@+id/buttonFindAMovie"
+        android:layout_alignStart="@+id/buttonFindAMovie" />
 </RelativeLayout>
