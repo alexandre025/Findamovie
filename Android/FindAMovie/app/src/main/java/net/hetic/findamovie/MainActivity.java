@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     protected void onStart(){
 
         super.onStart();
-
+        buttonMyMovies.setOnClickListener(this);
         buttonFindAMovie.setOnClickListener(this);
     }
 
@@ -63,10 +63,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     @Override
     public void onClick(View v)
     {
-        if (v == buttonFindAMovie)
-        {
-            Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
-        }
+        if(v == buttonFindAMovie)
+                Toast.makeText(getApplicationContext(),"Push", Toast.LENGTH_LONG).show();
+        if(v == buttonMyMovies)
+                Toast.makeText(getApplicationContext(),"Push 2",Toast.LENGTH_LONG).show();
     }
 
     @Override
