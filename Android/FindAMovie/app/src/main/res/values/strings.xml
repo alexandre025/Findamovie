@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">FindAMovie</string>
 
+    <string name="button_FindMovie">Trouver un film</string>
+    <string name="button_MyMovies">Mes films</string>
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_find_movie">FindMovie</string>
