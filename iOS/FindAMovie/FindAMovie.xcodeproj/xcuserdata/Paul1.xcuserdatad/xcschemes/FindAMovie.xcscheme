@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B4A095E1B0E0A270028E747"
+               BlueprintIdentifier = "6B6912711B1719E6006311BA"
                BuildableName = "FindAMovie.app"
                BlueprintName = "FindAMovie"
                ReferencedContainer = "container:FindAMovie.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B4A09771B0E0A270028E747"
+               BlueprintIdentifier = "6B6912861B1719E7006311BA"
                BuildableName = "FindAMovieTests.xctest"
                BlueprintName = "FindAMovieTests"
                ReferencedContainer = "container:FindAMovie.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B4A09771B0E0A270028E747"
+               BlueprintIdentifier = "6B6912861B1719E7006311BA"
                BuildableName = "FindAMovieTests.xctest"
                BlueprintName = "FindAMovieTests"
                ReferencedContainer = "container:FindAMovie.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6B4A095E1B0E0A270028E747"
+            BlueprintIdentifier = "6B6912711B1719E6006311BA"
             BuildableName = "FindAMovie.app"
             BlueprintName = "FindAMovie"
             ReferencedContainer = "container:FindAMovie.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6B4A095E1B0E0A270028E747"
+            BlueprintIdentifier = "6B6912711B1719E6006311BA"
             BuildableName = "FindAMovie.app"
             BlueprintName = "FindAMovie"
             ReferencedContainer = "container:FindAMovie.xcodeproj">
@@ -95,7 +95,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6B4A095E1B0E0A270028E747"
+            BlueprintIdentifier = "6B6912711B1719E6006311BA"
             BuildableName = "FindAMovie.app"
             BlueprintName = "FindAMovie"
             ReferencedContainer = "container:FindAMovie.xcodeproj">
