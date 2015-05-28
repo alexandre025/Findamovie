@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="net.hetic.findamovie.MyMovies">
-    <item android:id="@+id/action_FindMovie" android:title="@string/button_FindMovie"
+    <item android:id="@+id/action_FindMovie" android:title="@string/title_activity_find_movie"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_MyMovies" android:title="@string/button_MyMovies"
+    <item android:id="@+id/action_MyMovies" android:title="@string/title_activity_my_movies"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
