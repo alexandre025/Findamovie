@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Intent;
+import android.content.IntentFilter;
 
 
 public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener
@@ -31,7 +33,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     protected void onStart(){
 
         super.onStart();
-
+        buttonMyMovies.setOnClickListener(this);
         buttonFindAMovie.setOnClickListener(this);
     }
 
@@ -63,10 +65,16 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     @Override
     public void onClick(View v)
     {
-        if (v == buttonFindAMovie)
-        {
-            Toast.makeText(getApplicationContext(), "Push", Toast.LENGTH_LONG).show();
+        if(v == buttonFindAMovie) {
+            Intent FindMovie = new Intent(this, FindMovie.class);
+            startActivity(FindMovie);
         }
+        //Toast.makeText(getApplicationContext(),"Push", Toast.LENGTH_LONG).show();
+        if(v == buttonMyMovies) {
+            Intent MyMovies = new Intent(this, MyMovies.class);
+            startActivity(MyMovies);
+        }
+        //Toast.makeText(getApplicationContext(),"Push 2",Toast.LENGTH_LONG).show();
     }
 
     @Override
