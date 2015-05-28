@@ -1,6 +1,7 @@
 package net.hetic.findamovie;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +28,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
 
         buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);
         buttonMyMovies = (Button) findViewById(R.id.buttonMyMovies);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
+        buttonFindAMovie.setTypeface(font);
+        buttonMyMovies.setTypeface(font);
     }
 
     @Override

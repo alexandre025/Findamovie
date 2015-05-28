@@ -3,4 +3,5 @@
     <string name="title_activity_find_movie">Trouver un film</string>
     <string name="title_activity_my_movies">Mes films</string>
     <string name="logo_description">Logo Find a movie</string>
+    <string name="step1_comment">quel genre de film souhaitez vous regarder ?</string>
 </resources>

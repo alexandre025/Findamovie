@@ -1,19 +1,29 @@
 package net.hetic.findamovie;
 
 import android.app.ActionBar;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class FindMovie extends ActionBarActivity {
 
+    private TextView step1Comment;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_movie);
+        getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
+
+        step1Comment = (TextView) findViewById(R.id.step1_comment);
+        Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
+        step1Comment.setTypeface(font);
+
 
     }
 
