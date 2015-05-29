@@ -9,11 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import net.hetic.findamovie.model.Category;
+
+import java.util.ArrayList;
+
 
 public class FindMovie extends ActionBarActivity {
 
     private TextView step1Comment;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,15 @@ public class FindMovie extends ActionBarActivity {
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
         step1Comment.setTypeface(font);
 
+        ArrayList<Category> categories = new ArrayList<Category>();
+        Category category = new Category("Horreur","horror");
+        categories.add(category);
+        category = new Category("Romance","romance");
+        categories.add(category);
+        category = new Category("Action","action");
+        categories.add(category);
+        category = new Category("Western","western");
+        categories.add(category);
 
     }
 

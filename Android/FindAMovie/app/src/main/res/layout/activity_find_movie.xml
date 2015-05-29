@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,8 +24,45 @@
             android:textAllCaps="true"
             android:textSize="20sp"
             android:gravity="center"
+            android:padding="30dp" />
 
-            android:padding="30dp"/>
+        <CheckBox style="@style/SelectCategories"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Horreur"
+            android:id="@+id/SelectHorreur"
+            android:layout_below="@id/step1_comment" />
+
+        <CheckBox style="@style/SelectCategories"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Romance"
+            android:id="@+id/SelectRomance"
+            android:layout_below="@id/SelectHorreur" />
+
+        <CheckBox style="@style/SelectCategories"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Action"
+            android:id="@+id/SelectAction"
+            android:layout_below="@+id/SelectRomance" />
+
+        <CheckBox style="@style/SelectCategories"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Western"
+            android:id="@+id/SelectWestern"
+            android:layout_below="@id/SelectAction"/>
+
+        <Button style="@style/DefaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUIVANT"
+            android:id="@+id/ButtonCategories"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/SelectWestern" />
     </RelativeLayout>
 
 </ScrollView>
