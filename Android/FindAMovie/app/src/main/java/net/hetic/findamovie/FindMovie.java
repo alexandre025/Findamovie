@@ -1,6 +1,7 @@
 package net.hetic.findamovie;
 
 import android.app.ActionBar;
+import android.app.ListActivity;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,12 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import net.hetic.findamovie.apaters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
 
 import java.util.ArrayList;
 
 
-public class FindMovie extends ActionBarActivity {
+public class FindMovie extends ListActivity {
 
     private TextView step1Comment;
 
@@ -22,7 +24,7 @@ public class FindMovie extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_movie);
-        getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
+        //getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
 
         step1Comment = (TextView) findViewById(R.id.step1_comment);
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
@@ -37,6 +39,9 @@ public class FindMovie extends ActionBarActivity {
         categories.add(category);
         category = new Category("Western","western");
         categories.add(category);
+
+        CategoryAdapter adapter = new CategoryAdapter(this, categories);
+        setListAdapter(adapter);
 
     }
 

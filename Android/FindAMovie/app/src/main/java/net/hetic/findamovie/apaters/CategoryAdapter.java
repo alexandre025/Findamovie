@@ -11,27 +11,29 @@ import android.widget.TextView;
 import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Category;
 
+import java.util.ArrayList;
+
 /**
  * Created by alexandre on 30/05/15.
  */
 public class CategoryAdapter extends BaseAdapter{
 
     private Context mContext;
-    private Category[] mCategory;
+    private ArrayList<Category> mCategory;
 
-    public CategoryAdapter(Context context, Category[] category){
+    public CategoryAdapter(Context context, ArrayList<Category> category){
         mCategory = category;
         mContext = context;
     }
 
     @Override
     public int getCount() {
-        return mCategory.length;
+        return mCategory.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mCategory[position];
+        return mCategory.get(position);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class CategoryAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Category category = mCategory[position];
+        Category category = mCategory.get(position);
         holder.categoryCheckBox.setText(category.getName());
         holder.apiNameTextView.setText(category.getApi_name());
 
