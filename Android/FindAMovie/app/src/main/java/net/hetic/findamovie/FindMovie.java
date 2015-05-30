@@ -39,6 +39,10 @@ public class FindMovie extends ListActivity {
         categories.add(category);
         category = new Category("Western","western");
         categories.add(category);
+        category = new Category("Western","western");
+        categories.add(category);
+        category = new Category("Western","western");
+        categories.add(category);
 
         CategoryAdapter adapter = new CategoryAdapter(this, categories);
         setListAdapter(adapter);
