@@ -26,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B143E171B1B8648002D0C72 /* Sratchpad.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Sratchpad.playground; path = FindAMovie/Sratchpad.playground; sourceTree = "<group>"; };
 		6B6912721B1719E6006311BA /* FindAMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindAMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6912761B1719E6006311BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B6912771B1719E6006311BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,12 +57,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B143E181B1B8655002D0C72 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				6B143E171B1B8648002D0C72 /* Sratchpad.playground */,
+			);
+			name = Playground;
+			sourceTree = "<group>";
+		};
+		6B143E191B1B87BF002D0C72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6B143E1A1B1B87E2002D0C72 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B6912791B1719E6006311BA /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		6B6912691B1719E6006311BA = {
 			isa = PBXGroup;
 			children = (
 				6B6912741B1719E6006311BA /* FindAMovie */,
 				6B69128A1B1719E7006311BA /* FindAMovieTests */,
 				6B6912731B1719E6006311BA /* Products */,
+				6B143E181B1B8655002D0C72 /* Playground */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +102,9 @@
 		6B6912741B1719E6006311BA /* FindAMovie */ = {
 			isa = PBXGroup;
 			children = (
+				6B143E1A1B1B87E2002D0C72 /* Controller */,
+				6B143E191B1B87BF002D0C72 /* Model */,
 				6B6912771B1719E6006311BA /* AppDelegate.swift */,
-				6B6912791B1719E6006311BA /* ViewController.swift */,
 				6B69127B1B1719E6006311BA /* Main.storyboard */,
 				6B69127E1B1719E6006311BA /* Images.xcassets */,
 				6B6912801B1719E6006311BA /* LaunchScreen.xib */,
@@ -409,6 +435,7 @@
 				6B6912931B1719E7006311BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B6912941B1719E7006311BA /* Build configuration list for PBXNativeTarget "FindAMovieTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +444,7 @@
 				6B6912961B1719E7006311BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
