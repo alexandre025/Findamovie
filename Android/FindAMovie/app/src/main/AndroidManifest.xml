@@ -26,6 +26,10 @@
             android:name=".MyMovies"
             android:label="@string/title_activity_my_movies" >
         </activity>
+        <activity
+            android:name=".DisplayResults"
+            android:label="@string/title_activity_display_results" >
+        </activity>
     </application>
 
 </manifest>

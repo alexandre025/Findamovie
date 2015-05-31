@@ -1,16 +1,13 @@
 package net.hetic.findamovie;
 
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-import net.hetic.findamovie.apaters.CategoryAdapter;
+import net.hetic.findamovie.adapters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
 
 import java.util.ArrayList;
@@ -37,11 +34,35 @@ public class FindMovie extends ListActivity {
         categories.add(category);
         category = new Category("Action","action");
         categories.add(category);
-        category = new Category("Western","western");
+        category = new Category("Thriller","thriller");
+        categories.add(category);
+        category = new Category("Aventure","adventure");
         categories.add(category);
         category = new Category("Western","western");
         categories.add(category);
-        category = new Category("Western","western");
+        category = new Category("Crime","crime");
+        categories.add(category);
+        category = new Category("Drame","drama");
+        categories.add(category);
+        category = new Category("Histoire","history");
+        categories.add(category);
+        category = new Category("Musique","music");
+        categories.add(category);
+        category = new Category("Animation","animate");
+        categories.add(category);
+        category = new Category("Comédie","comedie");
+        categories.add(category);
+        category = new Category("Documentaire","docu");
+        categories.add(category);
+        category = new Category("Familial","Guerre");
+        categories.add(category);
+        category = new Category("Mystère","mystery");
+        categories.add(category);
+        category = new Category("Science-Fiction","scify");
+        categories.add(category);
+        category = new Category("Téléfilm","tv");
+        categories.add(category);
+        category = new Category("Etranger","foreigner");
         categories.add(category);
 
         CategoryAdapter adapter = new CategoryAdapter(this, categories);
