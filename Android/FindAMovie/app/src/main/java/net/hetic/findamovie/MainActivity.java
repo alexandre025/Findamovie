@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+import net.hetic.findamovie.fragments.AlertDialogFragment;
+
 
 public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener
 {
