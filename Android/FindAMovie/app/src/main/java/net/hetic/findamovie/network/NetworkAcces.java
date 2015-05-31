@@ -1,5 +1,14 @@
 package net.hetic.findamovie.network;
 
+import android.util.Log;
+
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -7,32 +16,43 @@ import java.util.ArrayList;
  */
 public class NetworkAcces {
 
-    public static void requestMovies(ArrayList<String> params) {
+    public static final String TAG = NetworkAcces.class.getSimpleName();
 
-        String url = "http://api.themoviedb.org/3/discover/movie?api_key=c1ac741d5dd740f9861e794c5363b0c2&";
+    public static void requestMovies() {
 
-        // ICI GENERER LA QUERY AVEC params
+        String apiUrl = "http://api.themoviedb.org/3/discover/movie";
+        String apiKey = "c1ac741d5dd740f9861e794c5363b0c2";
 
-//        JacksonRequest<RequestedMovies> request = new
-//                JacksonRequest<RequestedMovies>(Request.Method.GET, url, RequestedMovies.class,
-//                new Response.Listener<RequestedMovies>() {
-//                    @Override
-//                    public void onResponse(RequestedMovies mRequestedMovies) {
-//                        Intent intent = new Intent("DisplayResults");
-//                        intent.putExtra("mRequestedMovies", (Serializable) mRequestedMovies);
-//
-//                        LocalBroadcastManager.getInstance(MyApp.getInstance().getApplicationContext().sendBroadcast(intent));
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError volleyError) {
-//
-//                    }
-//                });
-//
-//                request.setTag("getUserSessionTag");
-//
-//                MyApp.getInstance().getRequestQueue().add(request);
+        String url = apiUrl+"?api_key="+apiKey;
+
+        System.out.println(url);
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request
+                .Builder()
+                .url(url)
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                try{
+
+                    if (response.isSuccessful()){
+                        Log.v(TAG, response.body().string());
+                    }
+                } catch (IOException e){
+                    Log.e(TAG, "Exception caught: ", e);
+                }
+            }
+        });
+
+
     }
 }

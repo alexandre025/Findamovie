@@ -5,17 +5,22 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import net.hetic.findamovie.adapters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
+import net.hetic.findamovie.network.NetworkAcces;
 
 import java.util.ArrayList;
 
 
-public class FindMovie extends ListActivity {
+public class FindMovie extends ListActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private TextView step1Comment;
+    private Button step1Next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,8 @@ public class FindMovie extends ListActivity {
         step1Comment = (TextView) findViewById(R.id.step1_comment);
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
         step1Comment.setTypeface(font);
+
+        step1Next = (Button) findViewById(R.id.step1_next);
 
         ArrayList<Category> categories = new ArrayList<Category>();
         Category category = new Category("Horreur","horror");
@@ -70,6 +77,11 @@ public class FindMovie extends ListActivity {
 
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        step1Next.setOnClickListener(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,5 +103,18 @@ public class FindMovie extends ListActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == step1Next){
+            NetworkAcces.requestMovies();
+        }
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }
