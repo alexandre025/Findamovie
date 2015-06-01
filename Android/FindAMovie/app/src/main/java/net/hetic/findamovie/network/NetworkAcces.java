@@ -1,10 +1,8 @@
 package net.hetic.findamovie.network;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,10 +12,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import net.hetic.findamovie.MainActivity;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
-import net.hetic.findamovie.fragments.AlertDialogFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +26,7 @@ public class NetworkAcces {
     public static final String TAG = NetworkAcces.class.getSimpleName();
     public static Context mContext = MyApp.getContext();
 
-    public static void requestMovies() {
+    public static void requestMovies(ArrayList<String> genres) {
 
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
         String apiKey = "c1ac741d5dd740f9861e794c5363b0c2";
@@ -58,9 +54,9 @@ public class NetworkAcces {
                     try {
                         Log.v(TAG, response.body().string());
                         if (response.isSuccessful()) {
-
+                            //TRAITEMENT
                         } else {
-
+                            //FAIL
                         }
                     } catch (IOException e) {
                         Log.e(TAG, "Exception caught: ", e);

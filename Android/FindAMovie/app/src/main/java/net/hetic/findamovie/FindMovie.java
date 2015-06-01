@@ -3,11 +3,15 @@ package net.hetic.findamovie;
 import android.app.ListActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.hetic.findamovie.adapters.CategoryAdapter;
@@ -21,12 +25,16 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
     private TextView step1Comment;
     private Button step1Next;
+    private ListView listGenres;
+    private CategoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_movie);
         //getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
+
+        listGenres = getListView();
 
         step1Comment = (TextView) findViewById(R.id.step1_comment);
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
@@ -72,7 +80,7 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         category = new Category("Etranger","foreigner");
         categories.add(category);
 
-        CategoryAdapter adapter = new CategoryAdapter(this, categories);
+        adapter = new CategoryAdapter(this, categories);
         setListAdapter(adapter);
 
     }
@@ -108,9 +116,17 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
     @Override
     public void onClick(View v) {
         if (v == step1Next){
-            NetworkAcces.requestMovies();
+            NetworkAcces.requestMovies(getGenresSelected());
         }
 
+    }
+
+    private ArrayList<String> getGenresSelected() {
+        ArrayList<String> genres = new ArrayList<>();
+        for (int i = 0; i < listGenres.getCount(); i++) {
+            System.out.println(adapter.getView(i, null, listGenres));
+        }
+        return genres;
     }
 
     @Override
