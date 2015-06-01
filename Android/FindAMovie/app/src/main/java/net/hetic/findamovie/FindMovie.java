@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,16 +27,14 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
     private TextView step1Comment;
     private Button step1Next;
-    private ListView listGenres;
     private CategoryAdapter adapter;
+    ArrayList<String> selectedGenres = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_movie);
         //getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
-
-        listGenres = getListView();
 
         step1Comment = (TextView) findViewById(R.id.step1_comment);
         Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
@@ -82,7 +82,6 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
         adapter = new CategoryAdapter(this, categories);
         setListAdapter(adapter);
-
     }
 
     @Override
@@ -113,20 +112,32 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         return super.onOptionsItemSelected(item);
     }
 
+    public void toggleGenres(View v){
+        CheckBox mCheckBox = (CheckBox) v;
+        LinearLayout mParent = (LinearLayout) mCheckBox.getParent();
+        TextView mTextView = (TextView) mParent.getChildAt(1);
+        if(mCheckBox.isChecked()){
+            selectedGenres.add(mTextView.getText().toString());
+        }
+        else{
+            selectedGenres.remove(mTextView.getText().toString());
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v == step1Next){
-            NetworkAcces.requestMovies(getGenresSelected());
+            String mApiRequest = "with_genres=";
+            for (int i = 0; i < selectedGenres.size(); i++){
+                if(i!=(selectedGenres.size()-1)) {
+                    mApiRequest = mApiRequest + selectedGenres.get(i)+",";
+                }
+                else {
+                    mApiRequest = mApiRequest + selectedGenres.get(i);
+                }
+            }
+            NetworkAcces.requestMovies(mApiRequest);
         }
-
-    }
-
-    private ArrayList<String> getGenresSelected() {
-        ArrayList<String> genres = new ArrayList<>();
-        for (int i = 0; i < listGenres.getCount(); i++) {
-            System.out.println(adapter.getView(i, null, listGenres));
-        }
-        return genres;
     }
 
     @Override

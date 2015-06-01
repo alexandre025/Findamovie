@@ -26,12 +26,12 @@ public class NetworkAcces {
     public static final String TAG = NetworkAcces.class.getSimpleName();
     public static Context mContext = MyApp.getContext();
 
-    public static void requestMovies(ArrayList<String> genres) {
+    public static void requestMovies(String genres) {
 
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
         String apiKey = "c1ac741d5dd740f9861e794c5363b0c2";
 
-        String url = apiUrl+"?api_key="+apiKey;
+        String url = apiUrl+"?api_key="+apiKey+"&"+genres;
 
         System.out.println(url);
 
