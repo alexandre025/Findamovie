@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class NetworkAcces {
 
     public static final String TAG = NetworkAcces.class.getSimpleName();
-    public static Context mContext = MyApp.getContext();
 
     public static void requestMovies(String genres) {
 
