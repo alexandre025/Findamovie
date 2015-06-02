@@ -14,6 +14,14 @@ import com.squareup.okhttp.Response;
 
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
+import net.hetic.findamovie.model.Movie;
+import net.hetic.findamovie.model.RequestedMovies;
+
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,13 +59,19 @@ public class NetworkAcces {
                 @Override
                 public void onResponse(Response response) throws IOException {
                     try {
-                        Log.v(TAG, response.body().string());
+                        String jsonData = response.body().string();
+                        Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
-                            //TRAITEMENT
+
+                            RequestedMovies mRequestedMovies = getResult(jsonData);
+                            System.out.println(mRequestedMovies.getResults().get(0).getTitle());
+
                         } else {
                             //FAIL
                         }
                     } catch (IOException e) {
+                        Log.e(TAG, "Exception caught: ", e);
+                    } catch (JSONException e) {
                         Log.e(TAG, "Exception caught: ", e);
                     }
                 }
@@ -68,6 +82,20 @@ public class NetworkAcces {
             System.out.println("UNAVAILABLE");
             Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private static RequestedMovies getResult(String jsonData) throws JSONException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
+        RequestedMovies mResult = null;
+        try {
+            mResult = mapper.readValue(jsonData, RequestedMovies.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mResult;
 
     }
 

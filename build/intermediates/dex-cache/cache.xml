@@ -2,25 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/classes-3e36f79483f9d3a31b2cca7e4e572aca1b0b4488.jar" />
-    </item>
-    <item
-        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/classes-7cd6c2b22a3f59fbd59445a3bec1f39c021d49f1.jar" />
-    </item>
-    <item
         jar="/Users/alexandre/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="40340c0748190fe897baf7bffbc1b282734294e5">
         <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0-bf146cf85c87781cdf8951bcc5fb772135bb574e.jar" />
+    </item>
+    <item
+        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-7d553804d08143bc27dc10df0f0c2198f6c71b61.jar" />
     </item>
     <item
         jar="/Users/alexandre/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
@@ -30,18 +23,39 @@
         <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/okio-1.4.0-bd32300cfd04e12cf3ee279daaa97e88c0011d12.jar" />
     </item>
     <item
+        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/classes-7cd6c2b22a3f59fbd59445a3bec1f39c021d49f1.jar" />
+    </item>
+    <item
+        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/classes-3e36f79483f9d3a31b2cca7e4e572aca1b0b4488.jar" />
+    </item>
+    <item
+        jar="/Users/alexandre/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.12/8b290aae44213e2f6da00c07af59b0d442068f4d/jackson-mapper-asl-1.9.12.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8b290aae44213e2f6da00c07af59b0d442068f4d">
+        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/jackson-mapper-asl-1.9.12-42cc33f8f61bd8ad51bc8b2da29dfd29228b2938.jar" />
+    </item>
+    <item
+        jar="/Users/alexandre/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.12/ecfc6f73a841c4c3c653b59651a3f9d5f1286469/jackson-core-asl-1.9.12.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecfc6f73a841c4c3c653b59651a3f9d5f1286469">
+        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/jackson-core-asl-1.9.12-b206dbc6b9bad122cb67b78192734b297eb17fa4.jar" />
+    </item>
+    <item
         jar="/Users/alexandre/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
         <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-2ceccc96f20fdf09f23d8d12e990d79017058fc7.jar" />
-    </item>
-    <item
-        jar="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="/Users/alexandre/Documents/FindAMovie---Android/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-7d553804d08143bc27dc10df0f0c2198f6c71b61.jar" />
     </item>
 
 </items>
