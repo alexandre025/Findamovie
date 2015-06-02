@@ -90,6 +90,24 @@
             </objects>
             <point key="canvasLocation" x="838" y="700"/>
         </scene>
+        <!--Category View Controller-->
+        <scene sceneID="qYz-SF-mhy">
+            <objects>
+                <viewController id="tlD-km-jZQ" customClass="CategoryViewController" customModule="FindAMovie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JmX-wb-sOz"/>
+                        <viewControllerLayoutGuide type="bottom" id="u1Y-Uu-mQN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ojn-df-IV5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vfp-YI-PcA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1243" y="701"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Background" width="320" height="568"/>
