@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import net.hetic.findamovie.R;
@@ -20,10 +21,12 @@ public class CategoryAdapter extends BaseAdapter{
 
     private Context mContext;
     private ArrayList<Category> mCategory;
+    public ArrayList<String> mCheckedList;
 
     public CategoryAdapter(Context context, ArrayList<Category> category){
         mCategory = category;
         mContext = context;
+        mCheckedList = new ArrayList<>();
     }
 
     @Override
@@ -42,7 +45,7 @@ public class CategoryAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
         if(convertView == null) {
@@ -58,7 +61,25 @@ public class CategoryAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.categoryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mCheckedList.add(String.valueOf(position));
+                }
+                else{
+                    mCheckedList.remove(String.valueOf(position));
+                }
+            }
+        });
+
         Category category = mCategory.get(position);
+        if(mCheckedList.contains(String.valueOf(position))){
+            holder.categoryCheckBox.setChecked(true);
+        }
+        else {
+            holder.categoryCheckBox.setChecked(false);
+        }
         holder.categoryCheckBox.setText(category.getName());
         holder.apiNameTextView.setText(category.getApi_name());
 

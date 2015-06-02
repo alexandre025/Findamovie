@@ -15,4 +15,5 @@
     <string name="error_message">Une erreur est survenue, veuillez réessayer !</string>
     <string name="error_positive_button">OK</string>
     <string name="network_unavailable">Vérifiez votre connection au réseau</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 </resources>

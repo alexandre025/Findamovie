@@ -5,7 +5,7 @@
         android:width="1dp"
         android:color="#505050"/>
     <corners
-        android:radius="300dp" />
+        android:radius="200dp" />
     <gradient
         android:startColor="#3BA880"
         android:endColor="#70CCAA"
