@@ -10,10 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
+<<<<<<< HEAD
+    @IBOutlet weak var label: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view, typically from a nib.
+=======
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
     }
     
     override func didReceiveMemoryWarning() {

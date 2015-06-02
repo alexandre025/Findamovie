@@ -2,7 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+<<<<<<< HEAD
+=======
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,6 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Me-bG-Ve2">
+                                <rect key="frame" x="79" y="269" width="162" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="TROUVER UN FILM"/>
+=======
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="tPr-9b-hTQ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
@@ -36,10 +45,17 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
                                 <connections>
                                     <action selector="findMovie:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nVo-OQ-Nhc"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlQ-so-NYx">
+                                <rect key="frame" x="108" y="329" width="104" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="MES FILMS"/>
+=======
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlQ-so-NYx">
                                 <rect key="frame" x="70" y="404" width="180" height="50"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.74509803921568629" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,10 +73,15 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
                                 <connections>
                                     <action selector="myMovie:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AFi-WE-F62"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+=======
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Boisson" translatesAutoresizingMaskIntoConstraints="NO" id="cvH-pz-EMi">
                                 <rect key="frame" x="118" y="77" width="84" height="137"/>
                                 <constraints>
@@ -84,10 +105,16 @@
                             <constraint firstItem="1Me-bG-Ve2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="306" id="hFT-BB-gr5"/>
                             <constraint firstItem="PlQ-so-NYx" firstAttribute="top" secondItem="1Me-bG-Ve2" secondAttribute="bottom" constant="28" id="spx-JW-KTZ"/>
                         </constraints>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="478" y="543"/>
+        </scene>
+    </scenes>
+=======
             <point key="canvasLocation" x="838" y="700"/>
         </scene>
         <!--Category View Controller-->
@@ -113,6 +140,7 @@
         <image name="Background" width="320" height="568"/>
         <image name="Boisson" width="518" height="968"/>
     </resources>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

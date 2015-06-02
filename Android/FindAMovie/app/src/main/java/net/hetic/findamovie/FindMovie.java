@@ -3,11 +3,17 @@ package net.hetic.findamovie;
 import android.app.ListActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.hetic.findamovie.adapters.CategoryAdapter;
@@ -21,6 +27,8 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
     private TextView step1Comment;
     private Button step1Next;
+    private CategoryAdapter adapter;
+    ArrayList<String> selectedGenres = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +80,8 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         category = new Category("Etranger","foreigner");
         categories.add(category);
 
-        CategoryAdapter adapter = new CategoryAdapter(this, categories);
+        adapter = new CategoryAdapter(this, categories);
         setListAdapter(adapter);
-
     }
 
     @Override
@@ -105,12 +112,32 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         return super.onOptionsItemSelected(item);
     }
 
+    public void toggleGenres(View v){
+        CheckBox mCheckBox = (CheckBox) v;
+        LinearLayout mParent = (LinearLayout) mCheckBox.getParent();
+        TextView mTextView = (TextView) mParent.getChildAt(1);
+        if(mCheckBox.isChecked()){
+            selectedGenres.add(mTextView.getText().toString());
+        }
+        else{
+            selectedGenres.remove(mTextView.getText().toString());
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v == step1Next){
-            NetworkAcces.requestMovies();
+            String mApiRequest = "with_genres=";
+            for (int i = 0; i < selectedGenres.size(); i++){
+                if(i!=(selectedGenres.size()-1)) {
+                    mApiRequest = mApiRequest + selectedGenres.get(i)+",";
+                }
+                else {
+                    mApiRequest = mApiRequest + selectedGenres.get(i);
+                }
+            }
+            NetworkAcces.requestMovies(mApiRequest);
         }
-
     }
 
     @Override

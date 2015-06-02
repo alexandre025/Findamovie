@@ -2,6 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+<<<<<<< HEAD
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+=======
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -48,10 +52,13 @@
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+<<<<<<< HEAD
+=======
     <resources>
         <image name="Background" width="320" height="568"/>
         <image name="Boisson" width="518" height="968"/>
     </resources>
+>>>>>>> ead26f001075ca951e28076bdb61e8e7c9f3a2d3
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
