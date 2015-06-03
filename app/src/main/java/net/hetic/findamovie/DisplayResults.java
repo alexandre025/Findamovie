@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,25 +23,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class DisplayResults extends ActionBarActivity {
-
+public class DisplayResults extends ActionBarActivity implements View.OnClickListener {
 
     TextView mMovieSummary;
     TextView mMovieTitle;
     ImageView mMovieCover;
+    Button mNext;
+    Button mSave;
     ArrayList<Movie> mMovieList;
-
+    String request;
+    int page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_results);
 
+        getSupportActionBar().hide();
+
         mMovieSummary = (TextView) findViewById(R.id.movieSummary);
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
         mMovieCover = (ImageView) findViewById(R.id.movieCover);
+        mNext = (Button) findViewById(R.id.nextButton);
+        mSave = (Button) findViewById(R.id.saveButton);
 
         Intent intent = getIntent();
+        request = intent.getStringExtra("LAST_REQUEST");
         String jsonData = intent.getStringExtra("REQUESTED_MOVIES");
         RequestedMovies mRequestedMovies = null;
         try {
@@ -47,11 +56,19 @@ public class DisplayResults extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        page = mRequestedMovies.getPage();
         mMovieList = mRequestedMovies.getResults();
-        DisplayMovie(mMovieList.get(0));
+        displayMovie(mMovieList.get(0));
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mNext.setOnClickListener(this);
+        mSave.setOnClickListener(this);
     }
 
     @Override
@@ -90,9 +107,35 @@ public class DisplayResults extends ActionBarActivity {
 
     }
 
-    private void DisplayMovie(Movie mMovie){
+    private void displayMovie(Movie mMovie){
         mMovieSummary.setText(mMovie.getOverview());
         mMovieTitle.setText(mMovie.getTitle());
         NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500"+mMovie.getPoster_path(), mMovieCover);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if((v == mSave || v == mNext) && !mMovieList.isEmpty()){
+            mMovieList.remove(0);
+            if(!mMovieList.isEmpty()) {
+                if(mMovieList.size()==5){
+                    page++;
+                    NetworkAccess.nextPage(request+"&page="+page);
+                }
+                displayMovie(mMovieList.get(0));
+            }
+            else{
+                String jsonData = NetworkAccess.nextPage("none");
+                RequestedMovies mRequestedMovies = null;
+                try {
+                    mRequestedMovies = getResult(jsonData);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mMovieList = mRequestedMovies.getResults();
+                displayMovie(mMovieList.get(0));
+            }
+        }
     }
 }
