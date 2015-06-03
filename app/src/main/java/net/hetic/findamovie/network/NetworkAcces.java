@@ -1,6 +1,7 @@
 package net.hetic.findamovie.network;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import net.hetic.findamovie.DisplayResults;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
@@ -64,7 +66,14 @@ public class NetworkAcces {
                         if (response.isSuccessful()) {
 
                             RequestedMovies mRequestedMovies = getResult(jsonData);
-                            System.out.println(mRequestedMovies.getResults().get(0).getTitle());
+                            ArrayList<Movie> test = mRequestedMovies.getResults();
+                            test.remove(0);
+                            System.out.println(test.get(0).getTitle());
+
+                            Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), DisplayResults.class);
+                            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("REQUESTED_MOVIES", jsonData);
+                            MyApp.getContext().startActivity(intent);
 
                         } else {
                             //FAIL
