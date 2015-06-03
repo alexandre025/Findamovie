@@ -3,12 +3,15 @@ package net.hetic.findamovie;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.hetic.findamovie.model.Movie;
 import net.hetic.findamovie.model.RequestedMovies;
+import net.hetic.findamovie.network.NetworkAccess;
 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -23,6 +26,9 @@ public class DisplayResults extends ActionBarActivity {
 
     TextView mMovieSummary;
     TextView mMovieTitle;
+    ImageView mMovieCover;
+    ArrayList<Movie> mMovieList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class DisplayResults extends ActionBarActivity {
 
         mMovieSummary = (TextView) findViewById(R.id.movieSummary);
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
+        mMovieCover = (ImageView) findViewById(R.id.movieCover);
 
         Intent intent = getIntent();
         String jsonData = intent.getStringExtra("REQUESTED_MOVIES");
@@ -40,10 +47,9 @@ public class DisplayResults extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ArrayList<Movie> test = mRequestedMovies.getResults();
 
-        mMovieSummary.setText(test.get(0).getOverview());
-        mMovieTitle.setText(test.get(0).getTitle());
+        mMovieList = mRequestedMovies.getResults();
+        DisplayMovie(mMovieList.get(0));
 
 
     }
@@ -82,5 +88,11 @@ public class DisplayResults extends ActionBarActivity {
         }
         return mResult;
 
+    }
+
+    private void DisplayMovie(Movie mMovie){
+        mMovieSummary.setText(mMovie.getOverview());
+        mMovieTitle.setText(mMovie.getTitle());
+        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500"+mMovie.getPoster_path(), mMovieCover);
     }
 }

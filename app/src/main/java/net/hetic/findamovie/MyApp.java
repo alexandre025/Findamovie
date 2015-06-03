@@ -3,6 +3,9 @@ package net.hetic.findamovie;
 import android.app.Application;
 import android.content.Context;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 
 /**
  * Created by alexandre on 30/05/15.
@@ -17,6 +20,9 @@ public class MyApp extends Application {
         super.onCreate();
         MyApp.sharedInstance = this;
         mContext = getApplicationContext();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
 
     }
 

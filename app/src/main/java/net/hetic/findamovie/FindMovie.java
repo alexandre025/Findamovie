@@ -3,22 +3,18 @@ package net.hetic.findamovie;
 import android.app.ListActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.hetic.findamovie.adapters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
-import net.hetic.findamovie.network.NetworkAcces;
+import net.hetic.findamovie.network.NetworkAccess;
 
 import java.util.ArrayList;
 
@@ -138,7 +134,7 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
                     mApiRequest = mApiRequest + selectedGenres.get(i);
                 }
             }
-            NetworkAcces.requestMovies(mApiRequest);
+            NetworkAccess.requestMovies(mApiRequest);
         }
     }
 
