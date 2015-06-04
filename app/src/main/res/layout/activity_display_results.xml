@@ -13,25 +13,50 @@
         android:scaleType="centerCrop"
         android:id="@+id/movieCover"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/movieTitle"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/movie_gradient"></RelativeLayout>
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/button"
-        android:layout_below="@+id/movieTitle">
+        android:layout_above="@+id/saveButton"
+        android:layout_marginTop="250dp"
+        android:id="@+id/contentView" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/movieSummary"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                tools:text="Large Text"
+                android:id="@+id/movieTitle"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:textSize="25sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/movieSummary"
+                android:layout_below="@id/movieTitle"
+                tools:text="BBLBLBBLBLBBLBLBLBLBBL"
+                android:textColor="#FFF"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+
 
     </ScrollView>
 
@@ -58,4 +83,5 @@
         android:id="@+id/nextButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

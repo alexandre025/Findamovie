@@ -3,12 +3,12 @@ package net.hetic.findamovie;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import net.hetic.findamovie.model.Movie;
@@ -31,6 +31,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     Button mNext;
     Button mSave;
     ArrayList<Movie> mMovieList;
+    ScrollView mScrollView;
     String request;
     int page;
 
@@ -46,6 +47,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mMovieCover = (ImageView) findViewById(R.id.movieCover);
         mNext = (Button) findViewById(R.id.nextButton);
         mSave = (Button) findViewById(R.id.saveButton);
+        mScrollView = (ScrollView) findViewById(R.id.contentView);
 
         Intent intent = getIntent();
         request = intent.getStringExtra("LAST_REQUEST");
@@ -108,6 +110,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     }
 
     private void displayMovie(Movie mMovie){
+        mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(mMovie.getOverview());
         mMovieTitle.setText(mMovie.getTitle());
         NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500"+mMovie.getPoster_path(), mMovieCover);
@@ -123,6 +126,9 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
                     page++;
                     NetworkAccess.nextPage(request+"&page="+page);
                 }
+                if(v == mSave) {
+                    // SAVE THE MOVIE
+                }
                 displayMovie(mMovieList.get(0));
             }
             else{
@@ -134,6 +140,9 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
                     e.printStackTrace();
                 }
                 mMovieList = mRequestedMovies.getResults();
+                mScrollView.smoothScrollTo(0,0);
+                // ICI AJOUTER FIN DE LISTE GESTION
+
                 displayMovie(mMovieList.get(0));
             }
         }
