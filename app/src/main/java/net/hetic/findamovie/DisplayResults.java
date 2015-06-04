@@ -120,14 +120,15 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     public void onClick(View v) {
 
         if((v == mSave || v == mNext) && !mMovieList.isEmpty()){
+            Movie toSave = mMovieList.get(0);
             mMovieList.remove(0);
             if(!mMovieList.isEmpty()) {
                 if(mMovieList.size()==5){
                     page++;
                     NetworkAccess.nextPage(request+"&page="+page);
                 }
-                if(v == mSave) {
-                    // SAVE THE MOVIE
+                if(v == mSave && MyApp.getManager().isSaved(toSave.getId())) {
+                    MyApp.getManager().addMovie(toSave);
                 }
                 displayMovie(mMovieList.get(0));
             }
@@ -140,7 +141,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
                     e.printStackTrace();
                 }
                 mMovieList = mRequestedMovies.getResults();
-                mScrollView.smoothScrollTo(0,0);
+
                 // ICI AJOUTER FIN DE LISTE GESTION
 
                 displayMovie(mMovieList.get(0));

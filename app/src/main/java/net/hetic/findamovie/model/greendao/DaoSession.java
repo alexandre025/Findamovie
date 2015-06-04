@@ -9,7 +9,7 @@ import de.greenrobot.dao.AbstractDaoSession;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
 import de.greenrobot.dao.internal.DaoConfig;
 
-import net.hetic.findamovie.model.greendao.Movie;
+import net.hetic.findamovie.model.Movie;
 
 import net.hetic.findamovie.model.greendao.MovieDao;
 
