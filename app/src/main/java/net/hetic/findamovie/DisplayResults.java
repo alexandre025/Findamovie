@@ -38,16 +38,6 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_results);
-
-        getSupportActionBar().hide();
-
-        mMovieSummary = (TextView) findViewById(R.id.movieSummary);
-        mMovieTitle = (TextView) findViewById(R.id.movieTitle);
-        mMovieCover = (ImageView) findViewById(R.id.movieCover);
-        mNext = (Button) findViewById(R.id.nextButton);
-        mSave = (Button) findViewById(R.id.saveButton);
-        mScrollView = (ScrollView) findViewById(R.id.contentView);
 
         Intent intent = getIntent();
         request = intent.getStringExtra("LAST_REQUEST");
@@ -60,7 +50,24 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         }
         page = mRequestedMovies.getPage();
         mMovieList = mRequestedMovies.getResults();
-        displayMovie(mMovieList.get(0));
+        if(!mMovieList.isEmpty()) {
+            setContentView(R.layout.activity_display_results);
+            getSupportActionBar().hide();
+
+            mMovieSummary = (TextView) findViewById(R.id.movieSummary);
+            mMovieTitle = (TextView) findViewById(R.id.movieTitle);
+            mMovieCover = (ImageView) findViewById(R.id.movieCover);
+            mNext = (Button) findViewById(R.id.nextButton);
+            mSave = (Button) findViewById(R.id.saveButton);
+            mScrollView = (ScrollView) findViewById(R.id.contentView);
+
+            displayMovie(mMovieList.get(0));
+        }
+        else {
+            setContentView(R.layout.activity_display_no_results);
+            getSupportActionBar().hide();
+        }
+
 
 
     }
@@ -68,9 +75,10 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     @Override
     protected void onStart() {
         super.onStart();
-
-        mNext.setOnClickListener(this);
-        mSave.setOnClickListener(this);
+        if(!mMovieList.isEmpty()) {
+            mNext.setOnClickListener(this);
+            mSave.setOnClickListener(this);
+        }
     }
 
     @Override
