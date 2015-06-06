@@ -70,7 +70,6 @@ public class CategoryAdapter extends BaseAdapter{
                 else if(!isChecked && mCheckedList.contains(String.valueOf(position))){
                     mCheckedList.remove(String.valueOf(position));
                 }
-                System.out.println(mCheckedList);
             }
         });
 
