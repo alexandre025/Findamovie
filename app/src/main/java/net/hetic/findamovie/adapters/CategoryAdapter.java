@@ -64,12 +64,13 @@ public class CategoryAdapter extends BaseAdapter{
         holder.categoryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if(isChecked && !mCheckedList.contains(String.valueOf(position))){
                     mCheckedList.add(String.valueOf(position));
                 }
-                else{
+                else if(!isChecked && mCheckedList.contains(String.valueOf(position))){
                     mCheckedList.remove(String.valueOf(position));
                 }
+                System.out.println(mCheckedList);
             }
         });
 
