@@ -26,6 +26,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        overridePendingTransition(R.anim.transition_fadein, R.anim.transition_fadeout);
+
         setContentView(R.layout.activity_main);
 
         buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);

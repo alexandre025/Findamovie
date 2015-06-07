@@ -14,6 +14,8 @@ import net.hetic.findamovie.adapters.CategoryAdapter;
 import net.hetic.findamovie.adapters.MovieAdapter;
 import net.hetic.findamovie.model.Movie;
 
+import java.util.ArrayList;
+
 
 public class MyMovies extends ListActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -26,7 +28,7 @@ public class MyMovies extends ListActivity implements View.OnClickListener, Adap
         setContentView(R.layout.activity_my_movies);
 
         System.out.println();
-        adapter = new MovieAdapter(this, MyApp.getManager().getAllMovie());
+        adapter = new MovieAdapter(this, (ArrayList) MyApp.getManager().getAllMovie());
         setListAdapter(adapter);
 
         mListView = getListView();
@@ -41,7 +43,7 @@ public class MyMovies extends ListActivity implements View.OnClickListener, Adap
     @Override
     protected void onResume(){
         super.onResume();
-        adapter = new MovieAdapter(this, MyApp.getManager().getAllMovie());
+        adapter = new MovieAdapter(this, (ArrayList) MyApp.getManager().getAllMovie());
         setListAdapter(adapter);
     }
 

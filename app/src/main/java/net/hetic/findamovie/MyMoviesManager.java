@@ -35,9 +35,11 @@ public class MyMoviesManager {
         movieDao.insert(movie);
     }
 
-    public ArrayList<Movie> getAllMovie() {
+    public List getAllMovie() {
         MovieDao movieDao = daoSession.getMovieDao();
-        ArrayList<Movie> movies = new ArrayList<>(movieDao.loadAll());
+        List movies = movieDao.queryBuilder()
+                .orderAsc(MovieDao.Properties.Title)
+                .list();
         return movies;
     }
 
@@ -55,6 +57,7 @@ public class MyMoviesManager {
     }
 
     public Movie getMovie(Long Id) {
+        System.out.println(Id);
         MovieDao movieDao = daoSession.getMovieDao();
         List movies = movieDao.queryBuilder()
                 .where(MovieDao.Properties.Id.eq(Id))
