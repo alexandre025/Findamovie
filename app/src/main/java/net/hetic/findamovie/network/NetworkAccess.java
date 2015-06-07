@@ -34,7 +34,7 @@ public class NetworkAccess {
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
         String apiKey = "c1ac741d5dd740f9861e794c5363b0c2";
 
-        url = apiUrl+"?api_key="+apiKey+"&"+genres;
+        url = apiUrl+"?api_key="+apiKey+"&"+genres+"&language=fr";
 
         System.out.println(url);
 
