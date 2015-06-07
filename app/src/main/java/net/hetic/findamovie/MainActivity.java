@@ -34,9 +34,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);
         buttonMyMovies = (Button) findViewById(R.id.buttonMyMovies);
 
-        Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
-        buttonFindAMovie.setTypeface(font);
-        buttonMyMovies.setTypeface(font);
     }
 
     @Override
@@ -79,12 +76,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
             Intent FindMovie = new Intent(this, FindMovie.class);
             startActivity(FindMovie);
         }
-        //Toast.makeText(getApplicationContext(),"Push", Toast.LENGTH_LONG).show();
         if(v == buttonMyMovies) {
             Intent MyMovies = new Intent(this, MyMovies.class);
             startActivity(MyMovies);
         }
-        //Toast.makeText(getApplicationContext(),"Push 2",Toast.LENGTH_LONG).show();
     }
 
     @Override

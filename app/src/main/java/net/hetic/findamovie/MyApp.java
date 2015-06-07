@@ -21,6 +21,8 @@ public class MyApp extends Application {
         MyApp.sharedInstance = this;
         mContext = getApplicationContext();
 
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "Lato-Regular.ttf");
+
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
 

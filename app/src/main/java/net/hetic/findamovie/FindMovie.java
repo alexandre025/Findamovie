@@ -32,10 +32,6 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         setContentView(R.layout.activity_find_movie);
         //getSupportActionBar().hide(); // REMOVE THIS LINE TO DISPLAY ACTION BAR
 
-        step1Comment = (TextView) findViewById(R.id.step1_comment);
-        Typeface font = Typeface.createFromAsset(getAssets(), "Lato-Regular.ttf");
-        step1Comment.setTypeface(font);
-
         step1Next = (Button) findViewById(R.id.step1_next);
 
         ArrayList<Category> categories = new ArrayList<Category>();

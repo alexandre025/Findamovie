@@ -122,6 +122,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mMovieSummary.setText(mMovie.getOverview());
         mMovieTitle.setText(mMovie.getTitle());
         NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500"+mMovie.getPoster_path(), mMovieCover);
+        mScrollView.scrollTo(0,0);
     }
 
     @Override
