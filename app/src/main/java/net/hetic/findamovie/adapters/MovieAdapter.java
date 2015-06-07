@@ -51,7 +51,7 @@ public class MovieAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.movie_list_item, null);
             holder = new ViewHolder();
             holder.mMovieTitle = (TextView) convertView.findViewById(R.id.movieTitle);
-            holder.mMovieCover = (ImageView) convertView.findViewById(R.id.movieCover);
+            //holder.mMovieCover = (ImageView) convertView.findViewById(R.id.movieCover);
 
             convertView.setTag(holder);
         }
@@ -62,13 +62,13 @@ public class MovieAdapter extends BaseAdapter {
 
         Movie movie = mMovieList.get(position);
         holder.mMovieTitle.setText(movie.getTitle());
-        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + movie.getPoster_path(), holder.mMovieCover);
+        //NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + movie.getPoster_path(), holder.mMovieCover);
 
         return convertView;
     }
 
     private static class ViewHolder {
         TextView mMovieTitle;
-        ImageView mMovieCover;
+        //ImageView mMovieCover;
     }
 }

@@ -25,14 +25,14 @@ import java.util.ArrayList;
 
 public class DisplayResults extends ActionBarActivity implements View.OnClickListener {
 
-    TextView mMovieSummary;
-    TextView mMovieTitle;
-    ImageView mMovieCover;
-    Button mNext;
-    Button mSave;
-    ArrayList<Movie> mMovieList;
-    ScrollView mScrollView;
-    String request;
+    private TextView mMovieSummary;
+    private TextView mMovieTitle;
+    private ImageView mMovieCover;
+    private Button mNext;
+    private Button mSave;
+    private ArrayList<Movie> mMovieList;
+    private ScrollView mScrollView;
+    private String request;
     int page;
 
     @Override

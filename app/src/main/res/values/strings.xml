@@ -16,4 +16,6 @@
     <string name="error_positive_button">OK</string>
     <string name="network_unavailable">Vérifiez votre connection au réseau</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="myMovies">Mes films</string>
+    <string name="title_activity_my_movie_view">MyMovieView</string>
 </resources>

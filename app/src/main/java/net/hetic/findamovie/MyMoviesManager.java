@@ -46,12 +46,21 @@ public class MyMoviesManager {
         movieDao.delete(movie);
     }
 
-    public Boolean isSaved(Long id){
+    public Boolean isSaved(Long Id){
         MovieDao movieDao = daoSession.getMovieDao();
         List movies = movieDao.queryBuilder()
-                .where(MovieDao.Properties.Id.eq(id))
+                .where(MovieDao.Properties.Id.eq(Id))
                 .list();
         return movies.isEmpty();
+    }
+
+    public Movie getMovie(Long Id) {
+        MovieDao movieDao = daoSession.getMovieDao();
+        List movies = movieDao.queryBuilder()
+                .where(MovieDao.Properties.Id.eq(Id))
+                .list();
+        Movie movie = (Movie) movies.get(0);
+        return movie;
     }
 
 }

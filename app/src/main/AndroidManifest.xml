@@ -36,6 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MyMovieView"
+            android:label="@string/title_activity_my_movie_view" >
+        </activity>
     </application>
 
 </manifest>
