@@ -11,7 +11,10 @@
         tools:text="CATEGORY"
         android:id="@+id/categoryName"
         android:clickable="true"
-        android:onClick="toggleGenres"/>
+        android:onClick="toggleGenres"
+        android:button="@null"
+        android:drawableRight="@drawable/checkbox_selector"
+        tools:checked="true"/>
 
     <TextView
         android:layout_width="0dp"
