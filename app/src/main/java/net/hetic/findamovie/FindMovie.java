@@ -121,6 +121,7 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
     @Override
     public void onClick(View v) {
         if (v == step1Next){
+
             String mApiRequest = "with_genres=";
             for (int i = 0; i < selectedGenres.size(); i++){
                 if(i!=(selectedGenres.size()-1)) {

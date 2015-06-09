@@ -130,6 +130,11 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     public void onClick(View v) {
 
         if((v == mSave || v == mNext) && !mMovieList.isEmpty()){
+
+            // PREVENT USERS FROM QUICK OVERSPEED-AND-CRASH
+            mSave.setOnClickListener(null);
+            mNext.setOnClickListener(null);
+
             Movie toSave = mMovieList.get(0);
             mMovieList.remove(0);
             if(!mMovieList.isEmpty()) {
@@ -155,7 +160,10 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
                 // ICI AJOUTER FIN DE LISTE GESTION
 
                 displayMovie(mMovieList.get(0));
+
             }
+            mSave.setOnClickListener(this);
+            mNext.setOnClickListener(this);
         }
     }
 }

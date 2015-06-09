@@ -28,7 +28,9 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/layoutButtons"
         android:layout_marginTop="250dp"
-        android:id="@+id/contentView" >
+        android:id="@+id/contentView"
+        android:fadingEdgeLength="15dp"
+        android:requiresFadingEdge="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,13 +61,12 @@
 
         </RelativeLayout>
 
-
     </ScrollView>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:padding="5dp"
+        android:layout_height="80dp"
+        android:paddingTop="15dp"
         android:layout_marginLeft="110dp"
         android:layout_marginRight="110dp"
         android:id="@+id/layoutButtons"
