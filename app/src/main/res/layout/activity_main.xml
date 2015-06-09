@@ -53,4 +53,14 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This product uses the TMDb API but is not endorsed or certified by TMDb."
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#393939"/>
+
+
 </RelativeLayout>

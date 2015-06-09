@@ -27,7 +27,9 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/deleteButton"
         android:layout_marginTop="250dp"
-        android:id="@+id/contentView" >
+        android:id="@+id/contentView"
+        android:fadingEdgeLength="15dp"
+        android:requiresFadingEdge="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,7 +67,7 @@
 
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/delete_button_selector"
         android:scaleType="fitXY"
