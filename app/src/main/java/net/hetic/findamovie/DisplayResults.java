@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -28,8 +29,8 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private TextView mMovieSummary;
     private TextView mMovieTitle;
     private ImageView mMovieCover;
-    private Button mNext;
-    private Button mSave;
+    private ImageButton mNext;
+    private ImageButton mSave;
     private ArrayList<Movie> mMovieList;
     private ScrollView mScrollView;
     private String request;
@@ -57,8 +58,8 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mMovieSummary = (TextView) findViewById(R.id.movieSummary);
             mMovieTitle = (TextView) findViewById(R.id.movieTitle);
             mMovieCover = (ImageView) findViewById(R.id.movieCover);
-            mNext = (Button) findViewById(R.id.nextButton);
-            mSave = (Button) findViewById(R.id.saveButton);
+            mNext = (ImageButton) findViewById(R.id.nextButton);
+            mSave = (ImageButton) findViewById(R.id.saveButton);
             mScrollView = (ScrollView) findViewById(R.id.contentView);
 
             displayMovie(mMovieList.get(0));
@@ -121,7 +122,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(mMovie.getOverview());
         mMovieTitle.setText(mMovie.getTitle());
-        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500"+mMovie.getPoster_path(), mMovieCover);
+        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
         mScrollView.scrollTo(0,0);
     }
 

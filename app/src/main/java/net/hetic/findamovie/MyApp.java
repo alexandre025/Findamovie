@@ -3,6 +3,7 @@ package net.hetic.findamovie;
 import android.app.Application;
 import android.content.Context;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -23,7 +24,14 @@ public class MyApp extends Application {
 
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "Lato-Regular.ttf");
 
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .defaultDisplayImageOptions(options)
+                .diskCacheFileCount(1000)
+                .build();
         ImageLoader.getInstance().init(config);
 
         manager = new MyMoviesManager(mContext);

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +19,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
     private TextView mMovieSummary;
     private TextView mMovieTitle;
     private ImageView mMovieCover;
-    private Button mDeleteButton;
+    private ImageButton mDeleteButton;
     private Movie mMovie;
 
     @Override
@@ -32,7 +32,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
         mMovieSummary = (TextView) findViewById(R.id.movieSummary);
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
         mMovieCover = (ImageView) findViewById(R.id.movieCover);
-        mDeleteButton = (Button) findViewById(R.id.deleteButton);
+        mDeleteButton = (ImageButton) findViewById(R.id.deleteButton);
 
         Intent intent = getIntent();
         Long Id = intent.getLongExtra("THE_MOVIE", 0);
