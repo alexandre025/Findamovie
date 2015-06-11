@@ -9,11 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.Intent;
 import android.content.IntentFilter;
 
 import net.hetic.findamovie.fragments.AlertDialogFragment;
+import net.hetic.findamovie.network.NetworkAccess;
 
 
 public class MainActivity extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener
@@ -21,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
 
     private Button buttonFindAMovie;
     private Button buttonMyMovies;
+    private ImageButton buttonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +36,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
 
         buttonFindAMovie = (Button) findViewById(R.id.buttonFindAMovie);
         buttonMyMovies = (Button) findViewById(R.id.buttonMyMovies);
+        buttonSettings = (ImageButton) findViewById(R.id.settingsButton);
 
     }
 
@@ -42,6 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         super.onStart();
         buttonMyMovies.setOnClickListener(this);
         buttonFindAMovie.setOnClickListener(this);
+        buttonSettings.setOnClickListener(this);
     }
 
     @Override
@@ -73,12 +78,14 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
     public void onClick(View v)
     {
         if(v == buttonFindAMovie) {
-            Intent FindMovie = new Intent(this, FindMovie.class);
-            startActivity(FindMovie);
+            NetworkAccess.requestGenres();
         }
         if(v == buttonMyMovies) {
             Intent MyMovies = new Intent(this, MyMovies.class);
             startActivity(MyMovies);
+        }
+        if(v == buttonSettings) {
+            Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.availability), Toast.LENGTH_LONG).show();
         }
     }
 

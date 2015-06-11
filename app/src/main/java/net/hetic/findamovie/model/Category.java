@@ -6,27 +6,29 @@ package net.hetic.findamovie.model;
 public class Category {
 
     private String name;
-    private String api_name;
+    private Integer id;
 
-    public Category(String name, String api_name) {
-        super();
-        this.name = name;
-        this.api_name = api_name;
+    public Category() {
+
     }
 
     public String getName() {
         return name;
     }
 
-    public String getApi_name() {
-        return api_name;
-    }
-
-    public void setApi_name(String api_name) {
-        this.api_name = api_name;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStringId(){
+        return id.toString();
     }
 }

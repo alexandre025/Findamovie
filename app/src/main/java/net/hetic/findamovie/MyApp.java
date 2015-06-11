@@ -7,6 +7,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import java.util.Locale;
+
 /**
  * Created by alexandre on 30/05/15.
  */
@@ -48,6 +50,14 @@ public class MyApp extends Application {
 
     public static MyMoviesManager getManager() {
         return manager;
+    }
+
+    public static String getLanguage() {
+        String language = Locale.getDefault().getLanguage();
+        System.out.println(language);
+        if(!language.equals("fr"))
+            language = "en";
+        return language;
     }
 
 }

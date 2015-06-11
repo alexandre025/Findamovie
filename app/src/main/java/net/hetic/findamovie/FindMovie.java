@@ -1,7 +1,7 @@
 package net.hetic.findamovie;
 
 import android.app.ListActivity;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,8 +14,14 @@ import android.widget.TextView;
 
 import net.hetic.findamovie.adapters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
+import net.hetic.findamovie.model.RequestedCategories;
 import net.hetic.findamovie.network.NetworkAccess;
 
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -34,48 +40,34 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
         step1Next = (Button) findViewById(R.id.step1_next);
 
-        ArrayList<Category> categories = new ArrayList<Category>();
-        Category category = new Category("Action","28");
-        categories.add(category);
-        category = new Category("Aventure","12");
-        categories.add(category);
-        category = new Category("Animation","16");
-        categories.add(category);
-        category = new Category("Comédie","35");
-        categories.add(category);
-        category = new Category("Crime","80");
-        categories.add(category);
-        category = new Category("Documentaire","99");
-        categories.add(category);
-        category = new Category("Drame","18");
-        categories.add(category);
-        category = new Category("Etranger","10769");
-        categories.add(category);
-        category = new Category("Familial","10751");
-        categories.add(category);
-        category = new Category("Guerre","10752");
-        categories.add(category);
-        category = new Category("Histoire","36");
-        categories.add(category);
-        category = new Category("Horreur","27");
-        categories.add(category);
-        category = new Category("Musique","10402");
-        categories.add(category);
-        category = new Category("Mystère","9648");
-        categories.add(category);
-        category = new Category("Romance","10749");
-        categories.add(category);
-        category = new Category("Science-Fiction","878");
-        categories.add(category);
-        category = new Category("Téléfilm","10770");
-        categories.add(category);
-        category = new Category("Thriller","53");
-        categories.add(category);
-        category = new Category("Western","37");
-        categories.add(category);
+        Intent intent = getIntent();
+        String jsonData = intent.getStringExtra("REQUESTED_GENRES");
+
+        ArrayList<Category> categories = null;
+        try {
+            categories = getResult(jsonData);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         adapter = new CategoryAdapter(this, categories);
         setListAdapter(adapter);
+    }
+
+    private static ArrayList<Category> getResult(String jsonData) throws JSONException {
+
+        System.out.println(jsonData);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
+        RequestedCategories mResult = null;
+        try {
+            mResult = mapper.readValue(jsonData, RequestedCategories.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(mResult);
+        return mResult.getGenres();
+
     }
 
     @Override

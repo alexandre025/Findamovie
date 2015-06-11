@@ -81,7 +81,7 @@ public class CategoryAdapter extends BaseAdapter{
             holder.categoryCheckBox.setChecked(false);
         }
         holder.categoryCheckBox.setText(category.getName());
-        holder.apiNameTextView.setText(category.getApi_name());
+        holder.apiNameTextView.setText(category.getStringId());
 
         return convertView;
     }

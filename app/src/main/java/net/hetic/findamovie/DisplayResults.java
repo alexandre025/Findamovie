@@ -5,8 +5,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -63,13 +63,38 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mScrollView = (ScrollView) findViewById(R.id.contentView);
 
             displayMovie(mMovieList.get(0));
+
+            View myView = this.getWindow().getDecorView();
+            myView.setOnTouchListener(new OnSwipeTouchListener(MyApp.getContext()) {
+                @Override
+                public void onSwipeLeft() {
+                    mMovieList.remove(0);
+                    if(!mMovieList.isEmpty()) {
+                        if(mMovieList.size()==5){
+                            page++;
+                            NetworkAccess.nextPage(request+"&page="+page);
+                        }
+                        displayMovie(mMovieList.get(0));
+                    }
+                    else{
+                        String jsonData = NetworkAccess.nextPage("none");
+                        RequestedMovies mRequestedMovies = null;
+                        try {
+                            mRequestedMovies = getResult(jsonData);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        mMovieList = mRequestedMovies.getResults();
+                        displayMovie(mMovieList.get(0));
+                    }
+                }
+            });
+
         }
         else {
             setContentView(R.layout.activity_display_no_results);
             getSupportActionBar().hide();
         }
-
-
 
     }
 

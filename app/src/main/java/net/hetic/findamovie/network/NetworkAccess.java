@@ -15,6 +15,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import net.hetic.findamovie.DisplayResults;
+import net.hetic.findamovie.FindMovie;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 
@@ -28,13 +29,66 @@ public class NetworkAccess {
     public static final String TAG = NetworkAccess.class.getSimpleName();
     public static String url;
     public static String jsonData;
+    private static String apiKey = "70890ed92e2d332f35ea0cd41086c921";
+
+    public static void requestGenres() {
+
+        String apiUrl = "http://api.themoviedb.org/3/genre/movie/list";
+
+        String language = MyApp.getLanguage();
+
+        url = apiUrl + "?api_key=" + apiKey + "&language=" + language;
+
+        System.out.println(url);
+
+        if (isNetworkAvailable()) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request
+                    .Builder()
+                    .url(url)
+                    .build();
+
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    try {
+                        jsonData = response.body().string();
+                        Log.v(TAG, jsonData);
+                        if (response.isSuccessful()) {
+
+                            Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), FindMovie.class);
+                            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("REQUESTED_GENRES", jsonData);
+                            MyApp.getContext().startActivity(intent);
+
+                        } else {
+                            //FAIL
+                        }
+                    } catch (IOException e) {
+                        Log.e(TAG, "Exception caught: ", e);
+                    }
+                }
+            });
+        } else {
+            System.out.println("UNAVAILABLE");
+            Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
+        }
+    }
 
     public static void requestMovies(String genres) {
 
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
-        String apiKey = "c1ac741d5dd740f9861e794c5363b0c2";
 
-        url = apiUrl+"?api_key="+apiKey+"&"+genres+"&language=fr";
+        String language = MyApp.getLanguage();
+        System.out.println(language);
+
+        url = apiUrl+"?api_key="+apiKey+"&"+genres+"&language="+language;
 
         System.out.println(url);
 

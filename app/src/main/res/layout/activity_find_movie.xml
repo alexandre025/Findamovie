@@ -35,7 +35,7 @@
     <Button style="@style/LargeButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="SUIVANT"
+        android:text="@string/validate"
         android:id="@+id/step1_next"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
