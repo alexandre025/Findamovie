@@ -28,9 +28,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/layoutButtons"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="280dp"
         android:id="@+id/contentView"
-        android:fadingEdgeLength="15dp"
+        android:fadingEdgeLength="30dp"
         android:requiresFadingEdge="vertical">
 
         <RelativeLayout
@@ -46,8 +46,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:textColor="#FFF"
-                android:textSize="25sp"
-                android:layout_marginTop="8dp"
+                android:textSize="@dimen/movieTitle"
+                android:layout_marginTop="15dp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -59,7 +59,20 @@
                 android:textColor="#FFF"
                 android:layout_marginTop="8dp"
                 android:padding="16dp"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/movieSummary"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/moreDetails"
+                android:layout_below="@id/movieSummary"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:textColor="#FFF"
+                android:textSize="@dimen/movieSummary"
+                android:background="@drawable/more_button_selector"
+                android:id="@+id/detailsButton" />
 
         </RelativeLayout>
 

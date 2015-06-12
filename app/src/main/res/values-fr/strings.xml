@@ -23,6 +23,7 @@
     <string name="validate">VALIDER</string>
     <string name="availability">Disponible prochainement avec la version 1.1</string>
     <string name="no_results">Désolé, aucun film ne correspond à votre requête</string>
+    <string name="moreDetails">More details</string>
 
 
     <string-array name="language_array">

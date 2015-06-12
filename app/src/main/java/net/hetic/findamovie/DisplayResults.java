@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -76,7 +75,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
                         }
                         displayMovie(mMovieList.get(0));
                     }
-                    else{
+                    else {
                         String jsonData = NetworkAccess.nextPage("none");
                         RequestedMovies mRequestedMovies = null;
                         try {

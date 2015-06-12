@@ -23,17 +23,7 @@
         android:text="@string/settings"
         android:textAllCaps="true"
         android:textColor="#FFF"
-        android:textSize="20sp" />
-
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/language_spinner"
-        android:layout_below="@+id/step1_comment"
-        android:layout_alignParentStart="true"
-        android:spinnerMode="dialog"
-        android:textAlignment="center"/>
-
+        android:textSize="@dimen/default_header" />
 
 </RelativeLayout>
 

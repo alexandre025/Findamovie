@@ -20,7 +20,7 @@
         android:text="@string/myMovies"
         android:textAllCaps="true"
         android:textColor="#FFF"
-        android:textSize="20sp" />
+        android:textSize="@dimen/default_header" />
 
     <ListView
         android:id="@android:id/list"
