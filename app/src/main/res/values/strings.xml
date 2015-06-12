@@ -30,5 +30,6 @@
         <item>Français</item>
         <item>Anglais</item>
     </string-array>
+    <string name="title_activity_movie_details">MovieDetails</string>
 
 </resources>

@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="net.hetic.findamovie.MovieDetails">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:id="@+id/movieCover"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        tools:text="BLABLA"
+        android:textColor="#FFF"
+        android:textSize="@dimen/movieTitle"
+        android:gravity="center"
+        android:layout_margin="8dp"
+        android:id="@+id/movieTitle"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/movieSummary"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:layout_below="@id/movieTitle"
+        tools:text="Sortie le 2015-09-10"
+        android:textSize="@dimen/movieSummary"
+        android:layout_margin="8dp"/>
+
+</RelativeLayout>

@@ -7,6 +7,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import net.hetic.findamovie.model.Movie;
+
 import java.util.Locale;
 
 /**
@@ -17,6 +19,7 @@ public class MyApp extends Application {
     private static MyApp sharedInstance;
     private static Context mContext;
     private static MyMoviesManager manager;
+    public static Movie MovieToDetails;
 
     @Override
     public void onCreate() {

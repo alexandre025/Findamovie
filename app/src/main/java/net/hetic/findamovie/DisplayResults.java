@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -30,6 +31,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private ImageView mMovieCover;
     private ImageButton mNext;
     private ImageButton mSave;
+    private Button mDetails;
     private ArrayList<Movie> mMovieList;
     private ScrollView mScrollView;
     private String request;
@@ -60,6 +62,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mNext = (ImageButton) findViewById(R.id.nextButton);
             mSave = (ImageButton) findViewById(R.id.saveButton);
             mScrollView = (ScrollView) findViewById(R.id.contentView);
+            mDetails = (Button) findViewById(R.id.detailsButton);
 
             displayMovie(mMovieList.get(0));
 
@@ -103,6 +106,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         if(!mMovieList.isEmpty()) {
             mNext.setOnClickListener(this);
             mSave.setOnClickListener(this);
+            mDetails.setOnClickListener(this);
         }
     }
 
@@ -188,6 +192,12 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             }
             mSave.setOnClickListener(this);
             mNext.setOnClickListener(this);
+        }
+
+        if(v == mDetails){
+            Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
+            MyApp.MovieToDetails = mMovieList.get(0);
+            startActivity(intent);
         }
     }
 }
