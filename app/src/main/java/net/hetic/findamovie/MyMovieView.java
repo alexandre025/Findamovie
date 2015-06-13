@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
     private TextView mMovieTitle;
     private ImageView mMovieCover;
     private ImageButton mDeleteButton;
+    private Button mDetailsButton;
     private Movie mMovie;
 
     @Override
@@ -33,6 +35,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
         mMovieCover = (ImageView) findViewById(R.id.movieCover);
         mDeleteButton = (ImageButton) findViewById(R.id.deleteButton);
+        mDetailsButton = (Button) findViewById(R.id.detailsButton);
 
         Intent intent = getIntent();
         Long Id = intent.getLongExtra("THE_MOVIE", 0);
@@ -45,6 +48,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
     public void onStart() {
         super.onStart();
         mDeleteButton.setOnClickListener(this);
+        mDetailsButton.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +86,11 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
             System.out.println("DELETE");
             MyApp.getManager().delete(mMovie);
             finish();
+        }
+        if(v == mDetailsButton) {
+            MyApp.MovieToDetails = mMovie;
+            Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
+            startActivity(intent);
         }
     }
 }

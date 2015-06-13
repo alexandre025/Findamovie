@@ -13,25 +13,58 @@
         android:scaleType="centerCrop"
         android:id="@+id/movieCover"/>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        tools:text="BLABLA"
-        android:textColor="#FFF"
-        android:textSize="@dimen/movieTitle"
-        android:gravity="center"
-        android:layout_margin="8dp"
-        android:id="@+id/movieTitle"
-        android:textStyle="bold"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0dp"
+        android:background="#AF000000"></RelativeLayout>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/movieSummary"
-        android:gravity="center"
-        android:textColor="#FFF"
-        android:layout_below="@id/movieTitle"
-        tools:text="Sortie le 2015-09-10"
-        android:textSize="@dimen/movieSummary"
-        android:layout_margin="8dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                tools:text="BLABLA"
+                android:textColor="#FFF"
+                android:textSize="@dimen/movieTitle"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:id="@+id/movieTitle"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#FFF"
+                android:layout_below="@id/movieTitle"
+                tools:text="Sortie le 2015-09-10"
+                android:textSize="@dimen/movieSummary"
+                android:layout_marginTop="16dp"
+                android:id="@+id/movieReleaseDate"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textColor="#FFF"
+                android:layout_below="@id/movieReleaseDate"
+                tools:text="Sortie le 2015-09-10"
+                android:textSize="@dimen/movieSummary"
+                android:id="@+id/movieSummary"/>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

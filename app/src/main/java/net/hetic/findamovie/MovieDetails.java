@@ -4,14 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.hetic.findamovie.model.Movie;
+import net.hetic.findamovie.network.NetworkAccess;
 
 
 public class MovieDetails extends ActionBarActivity {
 
     private static TextView mMovieTitle;
+    private static TextView mMovieReleaseDate;
+    private static TextView mMovieSummary;
+    private static ImageView mMovieCover;
     private static Movie mMovie;
 
     @Override
@@ -21,11 +26,25 @@ public class MovieDetails extends ActionBarActivity {
 
         getSupportActionBar().hide();
 
+        // Get current movie object
         mMovie = MyApp.MovieToDetails;
 
+        // Set release date
+        mMovieReleaseDate = (TextView) findViewById(R.id.movieReleaseDate);
+        mMovieReleaseDate.setText(MyApp.getContext().getString(R.string.releaseDate)+" "+mMovie.getRelease_date());
+
+        // Set title
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
         mMovieTitle.setText(mMovie.getTitle().toString());
-        
+
+        // Set summary
+        mMovieSummary = (TextView) findViewById(R.id.movieSummary);
+        mMovieSummary.setText(mMovie.getOverview().toString());
+
+        // Set cover
+        mMovieCover = (ImageView) findViewById(R.id.movieCover);
+        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
+
     }
 
     @Override

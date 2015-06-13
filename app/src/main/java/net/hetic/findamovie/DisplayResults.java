@@ -132,6 +132,12 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Parse a json results to a RequestedMovies object
+     * @param jsonData
+     * @return
+     * @throws JSONException
+     */
     private static RequestedMovies getResult(String jsonData) throws JSONException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -146,6 +152,10 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
 
     }
 
+    /**
+     * Display a movie
+     * @param mMovie
+     */
     private void displayMovie(Movie mMovie){
         mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(mMovie.getOverview());
@@ -163,40 +173,60 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mSave.setOnClickListener(null);
             mNext.setOnClickListener(null);
 
+            // If user save the movie
             Movie toSave = mMovieList.get(0);
+            // Remove displayed movie
             mMovieList.remove(0);
+
+            // If there is a next movie
             if(!mMovieList.isEmpty()) {
                 if(mMovieList.size()==5){
+
+                    // Next page of results
                     page++;
+
+                    // Call the api
                     NetworkAccess.nextPage(request+"&page="+page);
                 }
+                // If we have to save a movie
                 if(v == mSave && MyApp.getManager().isSaved(toSave.getId())) {
+                    // Movie goes to GreenDAO
                     MyApp.getManager().addMovie(toSave);
                 }
+                // We display next movie
                 displayMovie(mMovieList.get(0));
             }
+            // If we are at the end of the movie list
             else{
+                // Get async results previously loaded
                 String jsonData = NetworkAccess.nextPage("none");
                 RequestedMovies mRequestedMovies = null;
                 try {
+                    // Jackson mapper transform json to RequestedMovies object
                     mRequestedMovies = getResult(jsonData);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                // Get Results field from RequestedMovies object
                 mMovieList = mRequestedMovies.getResults();
 
-                // ICI AJOUTER FIN DE LISTE GESTION
-
+                // Next movie is displayed
                 displayMovie(mMovieList.get(0));
 
             }
+
+            // Allow user to switch again
             mSave.setOnClickListener(this);
             mNext.setOnClickListener(this);
         }
 
+        // User require more details for a movie
         if(v == mDetails){
+            // New intent
             Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
+            // Pass movie object by MyApp witch extend Activity
             MyApp.MovieToDetails = mMovieList.get(0);
+            // Start new activity
             startActivity(intent);
         }
     }

@@ -2,33 +2,25 @@
     <string name="app_name">Find a movie</string>
     <string name="title_activity_find_movie">Trouver un film</string>
     <string name="title_activity_my_movies">Mes films</string>
+    <string name="title_activity_display_results">DisplayResults</string>
+    <string name="title_activity_my_movie_view">MyMovieView</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
     <string name="logo_description">Logo Find a movie</string>
     <string name="step1_comment">quel genre de film souhaitez vous regarder ?</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_display_results">DisplayResults</string>
-
     <string name="hello_world">BONJOUR !</string>
     <string name="action_settings">Settings</string>
     <string name="error_title">Oops...</string>
     <string name="error_message">Une erreur est survenue, veuillez réessayer !</string>
     <string name="error_positive_button">OK</string>
     <string name="network_unavailable">Vérifiez votre connection au réseau</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="myMovies">Mes films</string>
-    <string name="title_activity_my_movie_view">MyMovieView</string>
-    <string name="title_activity_settings">Settings</string>
     <string name="settings">Paramètres</string>
     <string name="validate">VALIDER</string>
-    <string name="availability">Disponible prochainement avec la version 1.1</string>
+    <string name="availability">Disponible prochainement</string>
     <string name="no_results">Désolé, aucun film ne correspond à votre requête</string>
     <string name="moreDetails">More details</string>
-
-
-    <string-array name="language_array">
-        <item>Français</item>
-        <item>Anglais</item>
-    </string-array>
+    <string name="releaseDate">Date de sortie :</string>
 
 </resources>
