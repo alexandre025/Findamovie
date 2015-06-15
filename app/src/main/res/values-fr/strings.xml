@@ -20,7 +20,8 @@
     <string name="validate">VALIDER</string>
     <string name="availability">Disponible prochainement</string>
     <string name="no_results">Désolé, aucun film ne correspond à votre requête</string>
-    <string name="moreDetails">More details</string>
+    <string name="moreDetails">+ de détails</string>
     <string name="releaseDate">Date de sortie :</string>
+    <string name="undefined">non défini(e)</string>
 
 </resources>

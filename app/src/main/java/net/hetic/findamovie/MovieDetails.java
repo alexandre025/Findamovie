@@ -24,6 +24,8 @@ public class MovieDetails extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
+        overridePendingTransition(R.anim.transition_fadein, R.anim.transition_fadeout);
+
         getSupportActionBar().hide();
 
         // Get current movie object
@@ -31,7 +33,10 @@ public class MovieDetails extends ActionBarActivity {
 
         // Set release date
         mMovieReleaseDate = (TextView) findViewById(R.id.movieReleaseDate);
-        mMovieReleaseDate.setText(MyApp.getContext().getString(R.string.releaseDate)+" "+mMovie.getRelease_date());
+        if(mMovie.getRelease_date() != null)
+            mMovieReleaseDate.setText(MyApp.getContext().getString(R.string.releaseDate)+" "+mMovie.getRelease_date());
+        else
+            mMovieReleaseDate.setText(MyApp.getContext().getString(R.string.releaseDate)+" "+MyApp.getContext().getString(R.string.undefined));
 
         // Set title
         mMovieTitle = (TextView) findViewById(R.id.movieTitle);
@@ -39,7 +44,8 @@ public class MovieDetails extends ActionBarActivity {
 
         // Set summary
         mMovieSummary = (TextView) findViewById(R.id.movieSummary);
-        mMovieSummary.setText(mMovie.getOverview().toString());
+        if(mMovie.getOverview() != null)
+            mMovieSummary.setText(mMovie.getOverview().toString());
 
         // Set cover
         mMovieCover = (ImageView) findViewById(R.id.movieCover);

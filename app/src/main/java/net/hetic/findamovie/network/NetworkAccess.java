@@ -31,6 +31,9 @@ public class NetworkAccess {
     public static String jsonData;
     private static String apiKey = "70890ed92e2d332f35ea0cd41086c921";
 
+    /**
+     * Preload list of categories witch will be displayed in FindMovie activity
+     */
     public static void requestGenres() {
 
         String apiUrl = "http://api.themoviedb.org/3/genre/movie/list";
@@ -76,21 +79,23 @@ public class NetworkAccess {
                 }
             });
         } else {
-            System.out.println("UNAVAILABLE");
             Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Build and request the movie list
+     * @param genres
+     */
     public static void requestMovies(String genres) {
 
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
 
+        // Get current device's language
         String language = MyApp.getLanguage();
-        System.out.println(language);
 
+        // Build the request with parameters
         url = apiUrl+"?api_key="+apiKey+"&"+genres+"&language="+language;
-
-        System.out.println(url);
 
         if(isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
@@ -129,22 +134,34 @@ public class NetworkAccess {
             });
         }
         else {
-            System.out.println("UNAVAILABLE");
             Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
         }
 
     }
 
+    /**
+     * Load and set content for an ImageView
+     * @param url
+     * @param v
+     */
     public static void downloadImage(String url, ImageView v) {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(url, v);
     }
 
+    /**
+     * Load and return next page of results
+     * @param url
+     * @return
+     */
     public static String nextPage(String url){
-        if(url=="none"){
+        // We already call the api, result should be received
+        if(url == "none"){
+            // Return the async result
             return jsonData;
         }
-        if(isNetworkAvailable()) {
+        // Else, we need to load future results
+        else if(isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request
                     .Builder()
@@ -171,10 +188,11 @@ public class NetworkAccess {
                 }
             });
         }
+        // Network down
         else {
-            System.out.println("UNAVAILABLE");
             Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
         }
+        // Return json in a String
         return jsonData;
     }
 

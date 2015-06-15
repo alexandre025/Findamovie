@@ -23,6 +23,7 @@
     <string name="no_results">Sorry, no film matches your request</string>
     <string name="moreDetails">More details</string>
     <string name="releaseDate">Release date :</string>
+    <string name="undefined">undefined</string>
 
 
 </resources>

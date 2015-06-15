@@ -111,6 +111,12 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onRestart(){
+        super.onRestart();
+        overridePendingTransition(R.anim.transition_fadein, R.anim.transition_fadeout);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_display_results, menu);

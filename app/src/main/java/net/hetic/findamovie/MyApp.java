@@ -7,8 +7,10 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import net.hetic.findamovie.model.Category;
 import net.hetic.findamovie.model.Movie;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
