@@ -146,6 +146,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
      */
     private static RequestedMovies getResult(String jsonData) throws JSONException {
 
+        // We use Jackson mapper
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
         RequestedMovies mResult = null;
@@ -163,10 +164,15 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
      * @param mMovie
      */
     private void displayMovie(Movie mMovie){
+        // Set content
         mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(mMovie.getOverview());
         mMovieTitle.setText(mMovie.getTitle());
+
+        // Set movie cover
         NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
+
+        // Set initial position for ScrollView
         mScrollView.scrollTo(0,0);
     }
 
@@ -230,7 +236,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         if(v == mDetails){
             // New intent
             Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
-            // Pass movie object by MyApp witch extend Activity
+            // Pass movie object by MyApp which extend Activity
             MyApp.MovieToDetails = mMovieList.get(0);
             // Start new activity
             startActivity(intent);

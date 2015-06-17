@@ -61,6 +61,7 @@ public class CategoryAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // This block is used to save check status for each row
         holder.categoryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,12 +75,15 @@ public class CategoryAdapter extends BaseAdapter{
         });
 
         Category category = mCategory.get(position);
+
+        // When a row is re alocated, set the good check status
         if(mCheckedList.contains(String.valueOf(position))){
             holder.categoryCheckBox.setChecked(true);
         }
         else {
             holder.categoryCheckBox.setChecked(false);
         }
+
         holder.categoryCheckBox.setText(category.getName());
         holder.apiNameTextView.setText(category.getStringId());
 

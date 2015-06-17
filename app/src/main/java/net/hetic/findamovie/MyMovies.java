@@ -28,7 +28,6 @@ public class MyMovies extends ListActivity implements View.OnClickListener, Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_movies);
 
-        System.out.println();
         adapter = new MovieAdapter(this, (ArrayList) MyApp.getManager().getAllMovie());
         setListAdapter(adapter);
 
@@ -44,6 +43,8 @@ public class MyMovies extends ListActivity implements View.OnClickListener, Adap
     @Override
     protected void onResume(){
         super.onResume();
+
+        // Refresh listView, user may have delete a movie
         adapter = new MovieAdapter(this, (ArrayList) MyApp.getManager().getAllMovie());
         setListAdapter(adapter);
     }

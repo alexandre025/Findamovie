@@ -19,6 +19,10 @@ public class MyMoviesManager {
     private DaoSession daoSession;
     private SQLiteDatabase db;
 
+    /**
+     * Set DB with GreenDAO
+     * @param context
+     */
     public MyMoviesManager(Context context) {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context,"db",null);
         db = helper.getWritableDatabase();
@@ -26,15 +30,26 @@ public class MyMoviesManager {
         daoSession = daoMaster.newSession();
     }
 
+    /**
+     * Close DB
+     */
     public void close() {
         db.close();
     }
 
+    /**
+     * Add a movie into the DB
+     * @param movie
+     */
     public void addMovie(Movie movie) {
         MovieDao movieDao = daoSession.getMovieDao();
         movieDao.insert(movie);
     }
 
+    /**
+     * Get all movies in the DB, order by title
+     * @return
+     */
     public List getAllMovie() {
         MovieDao movieDao = daoSession.getMovieDao();
         List movies = movieDao.queryBuilder()
@@ -43,11 +58,20 @@ public class MyMoviesManager {
         return movies;
     }
 
+    /**
+     * Delete a movie into the DB
+     * @param movie
+     */
     public void delete(Movie movie) {
         MovieDao movieDao = daoSession.getMovieDao();
         movieDao.delete(movie);
     }
 
+    /**
+     * Check if a movie is already in the DB
+     * @param Id
+     * @return
+     */
     public Boolean isSaved(Long Id){
         MovieDao movieDao = daoSession.getMovieDao();
         List movies = movieDao.queryBuilder()
@@ -56,6 +80,11 @@ public class MyMoviesManager {
         return movies.isEmpty();
     }
 
+    /**
+     * Get a specific movie by Id
+     * @param Id
+     * @return
+     */
     public Movie getMovie(Long Id) {
         System.out.println(Id);
         MovieDao movieDao = daoSession.getMovieDao();

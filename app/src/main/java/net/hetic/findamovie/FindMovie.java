@@ -54,9 +54,15 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         setListAdapter(adapter);
     }
 
+    /**
+     * Map categories result in an ArrayList
+     * @param jsonData
+     * @return
+     * @throws JSONException
+     */
     private static ArrayList<Category> getResult(String jsonData) throws JSONException {
 
-        System.out.println(jsonData);
+        // We use Jackson mapper
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
         RequestedCategories mResult = null;
@@ -98,6 +104,10 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Save checkbox status in an ArrayList for future request
+     * @param v
+     */
     public void toggleGenres(View v){
         CheckBox mCheckBox = (CheckBox) v;
         LinearLayout mParent = (LinearLayout) mCheckBox.getParent();
@@ -116,6 +126,7 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
 
             String mApiRequest = "with_genres=";
             for (int i = 0; i < selectedGenres.size(); i++){
+                // Build the genres request
                 if(i!=(selectedGenres.size()-1)) {
                     mApiRequest = mApiRequest + selectedGenres.get(i)+",";
                 }
@@ -123,6 +134,7 @@ public class FindMovie extends ListActivity implements View.OnClickListener, Ada
                     mApiRequest = mApiRequest + selectedGenres.get(i);
                 }
             }
+            // Request the movies
             NetworkAccess.requestMovies(mApiRequest);
         }
     }

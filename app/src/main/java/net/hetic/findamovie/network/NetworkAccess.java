@@ -65,6 +65,7 @@ public class NetworkAccess {
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
 
+                            // If response is successful we start a new Intent
                             Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), FindMovie.class);
                             intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("REQUESTED_GENRES", jsonData);
@@ -118,6 +119,7 @@ public class NetworkAccess {
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
 
+                            // If response is successful we start a new Intent
                             Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), DisplayResults.class);
                             intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("REQUESTED_MOVIES", jsonData);
@@ -196,6 +198,10 @@ public class NetworkAccess {
         return jsonData;
     }
 
+    /**
+     * Check if the network is available
+     * @return
+     */
     private static boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) MyApp.getContext().getSystemService(MyApp.getContext().CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();

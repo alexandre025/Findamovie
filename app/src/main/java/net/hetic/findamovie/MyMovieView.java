@@ -79,6 +79,10 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Display a movie
+     * @param movie
+     */
     private void displayMovie(Movie movie){
         mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(movie.getOverview());

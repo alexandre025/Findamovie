@@ -29,12 +29,15 @@ public class MyApp extends Application {
         MyApp.sharedInstance = this;
         mContext = getApplicationContext();
 
+        // Set default font-family
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "Lato-Regular.ttf");
 
+        // Options for image downloader
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .build();
+        // Config for image downloader
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .defaultDisplayImageOptions(options)
                 .diskCacheFileCount(1000)
@@ -57,6 +60,10 @@ public class MyApp extends Application {
         return manager;
     }
 
+    /**
+     * Get device language
+     * @return
+     */
     public static String getLanguage() {
         String language = Locale.getDefault().getLanguage();
         System.out.println(language);

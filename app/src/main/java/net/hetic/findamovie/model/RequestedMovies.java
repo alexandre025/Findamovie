@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by alexandre on 30/05/15.
+ * Save TMDb discover request
  */
 public class RequestedMovies {
     private int page;

@@ -7,7 +7,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-
+/**
+ * Note implemented yet
+ */
 public class Settings extends ActionBarActivity {
 
     @Override
