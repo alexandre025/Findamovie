@@ -39,6 +39,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private ScrollView mScrollView;
     private String request;
     int page;
+    private static Boolean loadNextPage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,25 +74,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             myView.setOnTouchListener(new OnSwipeTouchListener(MyApp.getContext()) {
                 @Override
                 public void onSwipeLeft() {
-                    mMovieList.remove(0);
-                    if(!mMovieList.isEmpty()) {
-                        if(mMovieList.size()==5){
-                            page++;
-                            NetworkAccess.nextPage(request+"&page="+page);
-                        }
-                        displayMovie(mMovieList.get(0));
-                    }
-                    else {
-                        String jsonData = NetworkAccess.nextPage("none");
-                        RequestedMovies mRequestedMovies = null;
-                        try {
-                            mRequestedMovies = getResult(jsonData);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        mMovieList = mRequestedMovies.getResults();
-                        displayMovie(mMovieList.get(0));
-                    }
+                    selectNextMovie(false);
                 }
             });
 
@@ -179,6 +162,53 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mScrollView.scrollTo(0,0);
     }
 
+    /**
+     * Select and display the next movie
+     * @param needToSave
+     */
+    private void selectNextMovie(Boolean needToSave){
+        // If user save the movie
+        Movie toSave = mMovieList.get(0);
+        // Remove displayed movie
+        mMovieList.remove(0);
+
+        // If there is a next movie
+        if(!mMovieList.isEmpty()) {
+            if(mMovieList.size()==5){
+
+                // Next page of results
+                page++;
+
+                // Call the api
+                NetworkAccess.nextPage(request+"&page="+page);
+            }
+            // If we have to save a movie
+            if(needToSave && MyApp.getManager().isSaved(toSave.getId())) {
+                // Movie goes to GreenDAO
+                MyApp.getManager().addMovie(toSave);
+            }
+            // We display next movie
+            displayMovie(mMovieList.get(0));
+        }
+        // If we are at the end of the movie list
+        else{
+            // Get async results previously loaded
+            String jsonData = NetworkAccess.nextPage("none");
+            RequestedMovies mRequestedMovies = null;
+            try {
+                // Jackson mapper transform json to RequestedMovies object
+                mRequestedMovies = getResult(jsonData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // Get Results field from RequestedMovies object
+            mMovieList = mRequestedMovies.getResults();
+
+            // Next movie is displayed
+            displayMovie(mMovieList.get(0));
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -188,47 +218,10 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mSave.setOnClickListener(null);
             mNext.setOnClickListener(null);
 
-            // If user save the movie
-            Movie toSave = mMovieList.get(0);
-            // Remove displayed movie
-            mMovieList.remove(0);
-
-            // If there is a next movie
-            if(!mMovieList.isEmpty()) {
-                if(mMovieList.size()==5){
-
-                    // Next page of results
-                    page++;
-
-                    // Call the api
-                    NetworkAccess.nextPage(request+"&page="+page);
-                }
-                // If we have to save a movie
-                if(v == mSave && MyApp.getManager().isSaved(toSave.getId())) {
-                    // Movie goes to GreenDAO
-                    MyApp.getManager().addMovie(toSave);
-                }
-                // We display next movie
-                displayMovie(mMovieList.get(0));
-            }
-            // If we are at the end of the movie list
-            else{
-                // Get async results previously loaded
-                String jsonData = NetworkAccess.nextPage("none");
-                RequestedMovies mRequestedMovies = null;
-                try {
-                    // Jackson mapper transform json to RequestedMovies object
-                    mRequestedMovies = getResult(jsonData);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                // Get Results field from RequestedMovies object
-                mMovieList = mRequestedMovies.getResults();
-
-                // Next movie is displayed
-                displayMovie(mMovieList.get(0));
-
-            }
+            if(v == mSave)
+                selectNextMovie(true);
+            else if(v == mNext)
+                selectNextMovie(false);
 
             // Allow user to switch again
             mSave.setOnClickListener(this);

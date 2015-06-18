@@ -11,6 +11,7 @@ import net.hetic.findamovie.model.Movie;
 import net.hetic.findamovie.model.managers.MyMoviesManager;
 import net.hetic.findamovie.utils.TypefaceUtil;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -22,6 +23,7 @@ public class MyApp extends Application {
     private static Context mContext;
     private static MyMoviesManager manager;
     public static Movie MovieToDetails;
+    public static ArrayList<Long> IgnoredMovies;
 
     @Override
     public void onCreate() {
