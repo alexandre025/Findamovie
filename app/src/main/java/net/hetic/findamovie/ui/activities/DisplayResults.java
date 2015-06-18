@@ -1,6 +1,10 @@
 package net.hetic.findamovie.ui.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,12 +42,17 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private ArrayList<Movie> mMovieList;
     private ScrollView mScrollView;
     private String request;
-    int page;
-    private static Boolean loadNextPage = false;
+    private int page;
+    private int total_pages;
+    private Boolean loadNextPage;
+    private NextPageReceiver receiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loadNextPage = true;
 
         Intent intent = getIntent();
         request = intent.getStringExtra("LAST_REQUEST");
@@ -55,7 +64,9 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             e.printStackTrace();
         }
         page = mRequestedMovies.getPage();
+        total_pages = mRequestedMovies.getTotal_pages();
         mMovieList = mRequestedMovies.getResults();
+
         if(!mMovieList.isEmpty()) {
             setContentView(R.layout.activity_display_results);
             getSupportActionBar().hide();
@@ -68,13 +79,13 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mScrollView = (ScrollView) findViewById(R.id.contentView);
             mDetails = (Button) findViewById(R.id.detailsButton);
 
-            displayMovie(mMovieList.get(0));
+            selectNextMovie();
 
             View myView = this.getWindow().getDecorView();
             myView.setOnTouchListener(new OnSwipeTouchListener(MyApp.getContext()) {
                 @Override
                 public void onSwipeLeft() {
-                    selectNextMovie(false);
+                    moviesListLoading(false);
                 }
             });
 
@@ -93,13 +104,28 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mNext.setOnClickListener(this);
             mSave.setOnClickListener(this);
             mDetails.setOnClickListener(this);
+
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        receiver = new NextPageReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(NetworkAccess.NEXT_PAGE));
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override
     protected void onRestart(){
         super.onRestart();
         overridePendingTransition(R.anim.transition_fadein, R.anim.transition_fadeout);
+
     }
 
     @Override
@@ -159,54 +185,59 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
 
         // Set initial position for ScrollView
-        mScrollView.scrollTo(0,0);
+        mScrollView.scrollTo(0, 0);
     }
 
     /**
      * Select and display the next movie
      * @param needToSave
      */
-    private void selectNextMovie(Boolean needToSave){
+    private void moviesListLoading(Boolean needToSave){
+
         // If user save the movie
-        Movie toSave = mMovieList.get(0);
+        if(needToSave && MyApp.getManager().isSaved(mMovieList.get(0).getId())) {
+            // Movie goes to GreenDAO
+            MyApp.getManager().addMovie(mMovieList.get(0));
+        }
+
         // Remove displayed movie
-        mMovieList.remove(0);
+        if(!mMovieList.isEmpty())
+
 
         // If there is a next movie
         if(!mMovieList.isEmpty()) {
-            if(mMovieList.size()==5){
+
+            mMovieList.remove(0);
+
+            if(loadNextPage && mMovieList.size()<30 && page <= total_pages){
 
                 // Next page of results
                 page++;
 
                 // Call the api
                 NetworkAccess.nextPage(request+"&page="+page);
+
+                loadNextPage = false;
             }
-            // If we have to save a movie
-            if(needToSave && MyApp.getManager().isSaved(toSave.getId())) {
-                // Movie goes to GreenDAO
-                MyApp.getManager().addMovie(toSave);
-            }
+
             // We display next movie
-            displayMovie(mMovieList.get(0));
+            selectNextMovie();
+
         }
         // If we are at the end of the movie list
-        else{
-            // Get async results previously loaded
-            String jsonData = NetworkAccess.nextPage("none");
-            RequestedMovies mRequestedMovies = null;
-            try {
-                // Jackson mapper transform json to RequestedMovies object
-                mRequestedMovies = getResult(jsonData);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            // Get Results field from RequestedMovies object
-            mMovieList = mRequestedMovies.getResults();
-
-            // Next movie is displayed
-            displayMovie(mMovieList.get(0));
+        else if(mMovieList.isEmpty() && page > total_pages){
+            System.out.println("THE END");
         }
+    }
+
+    /**
+     * Select the next movie which is unsaved
+     */
+    private void selectNextMovie(){
+        if(!mMovieList.isEmpty() && MyApp.getManager().isSaved(mMovieList.get(0).getId()))
+            displayMovie(mMovieList.get(0));
+        else
+            moviesListLoading(false);
     }
 
     @Override
@@ -219,9 +250,9 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             mNext.setOnClickListener(null);
 
             if(v == mSave)
-                selectNextMovie(true);
+                moviesListLoading(true);
             else if(v == mNext)
-                selectNextMovie(false);
+                moviesListLoading(false);
 
             // Allow user to switch again
             mSave.setOnClickListener(this);
@@ -236,6 +267,37 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             MyApp.MovieToDetails = mMovieList.get(0);
             // Start new activity
             startActivity(intent);
+        }
+    }
+
+    class NextPageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String jsonData = (String)intent.getStringExtra(NetworkAccess.NEXT_PAGE_EXTRA);
+            RequestedMovies mRequestedMovies = null;
+            try {
+                // Jackson mapper transform json to RequestedMovies object
+                mRequestedMovies = getResult(jsonData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(jsonData);
+
+            Boolean wasEmpty = mMovieList.isEmpty();
+
+            // Append new movies at the end of the movie list
+            while(!mRequestedMovies.getResults().isEmpty()) {
+
+                mMovieList.add(mRequestedMovies.getResults().get(0));
+                mRequestedMovies.getResults().remove(0);
+            }
+
+            loadNextPage = true;
+
+            if(wasEmpty)
+                selectNextMovie();
+
         }
     }
 }

@@ -3,6 +3,7 @@ package net.hetic.findamovie.network;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +26,10 @@ import java.io.IOException;
  * Created by alexandre on 30/05/15.
  */
 public class NetworkAccess {
+
+    public static final String NEXT_PAGE = "nextPage";
+    public static final String NEXT_PAGE_EXTRA = "nextPageExtra";
+
 
     public static final String TAG = NetworkAccess.class.getSimpleName();
     public static String url;
@@ -156,14 +161,9 @@ public class NetworkAccess {
      * @param url
      * @return
      */
-    public static String nextPage(String url){
-        // We already call the api, result should be received
-        if(url == "none"){
-            // Return the async result
-            return jsonData;
-        }
-        // Else, we need to load future results
-        else if(isNetworkAvailable()) {
+    public static void nextPage(String url){
+
+        if(isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request
                     .Builder()
@@ -181,8 +181,12 @@ public class NetworkAccess {
                 public void onResponse(Response response) throws IOException {
                     try {
                         jsonData = response.body().string();
-                        Log.v(TAG, jsonData);
-                        if (response.isSuccessful()) { }
+                        //Log.v(TAG, jsonData);
+                        if (response.isSuccessful()) {
+                            Intent intent = new Intent(NEXT_PAGE);
+                            intent.putExtra(NEXT_PAGE_EXTRA,jsonData);
+                            LocalBroadcastManager.getInstance(MyApp.getContext()).sendBroadcast(intent);
+                        }
                         else { }
                     } catch (IOException e) {
                         Log.e(TAG, "Exception caught: ", e);
@@ -194,8 +198,6 @@ public class NetworkAccess {
         else {
             Toast.makeText(MyApp.getContext(), MyApp.getContext().getString(R.string.network_unavailable), Toast.LENGTH_LONG).show();
         }
-        // Return json in a String
-        return jsonData;
     }
 
     /**

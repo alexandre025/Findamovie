@@ -23,7 +23,6 @@ public class MyApp extends Application {
     private static Context mContext;
     private static MyMoviesManager manager;
     public static Movie MovieToDetails;
-    public static ArrayList<Long> IgnoredMovies;
 
     @Override
     public void onCreate() {
