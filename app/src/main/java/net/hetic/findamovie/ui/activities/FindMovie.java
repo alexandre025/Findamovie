@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.hetic.findamovie.adapters.CategoryAdapter;
+import net.hetic.findamovie.R;
+import net.hetic.findamovie.ui.adapters.CategoryAdapter;
 import net.hetic.findamovie.model.Category;
 import net.hetic.findamovie.model.RequestedCategories;
 import net.hetic.findamovie.network.NetworkAccess;

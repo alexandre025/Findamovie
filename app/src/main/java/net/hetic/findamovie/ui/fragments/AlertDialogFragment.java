@@ -1,4 +1,4 @@
-package net.hetic.findamovie.fragments;
+package net.hetic.findamovie.ui.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

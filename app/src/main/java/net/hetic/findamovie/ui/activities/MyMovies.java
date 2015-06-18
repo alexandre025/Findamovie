@@ -1,18 +1,17 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
-import net.hetic.findamovie.adapters.CategoryAdapter;
-import net.hetic.findamovie.adapters.MovieAdapter;
+import net.hetic.findamovie.MyApp;
+import net.hetic.findamovie.R;
+import net.hetic.findamovie.ui.adapters.MovieAdapter;
 import net.hetic.findamovie.model.Movie;
 
 import java.util.ArrayList;

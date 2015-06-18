@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.utils;
 
 import android.content.Context;
 import android.view.GestureDetector;

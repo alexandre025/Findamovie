@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import net.hetic.findamovie.R;
 
 /**
  * Note implemented yet

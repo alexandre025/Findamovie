@@ -1,16 +1,14 @@
-package net.hetic.findamovie.adapters;
+package net.hetic.findamovie.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
-import net.hetic.findamovie.network.NetworkAccess;
 
 import java.util.ArrayList;
 

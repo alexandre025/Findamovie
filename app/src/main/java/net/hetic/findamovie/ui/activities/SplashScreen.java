@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import net.hetic.findamovie.R;
 
 public class SplashScreen extends ActionBarActivity {
 

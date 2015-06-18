@@ -1,8 +1,6 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.app.Activity;
-import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +10,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.Intent;
-import android.content.IntentFilter;
 
-import net.hetic.findamovie.fragments.AlertDialogFragment;
+import net.hetic.findamovie.MyApp;
+import net.hetic.findamovie.R;
 import net.hetic.findamovie.network.NetworkAccess;
 
 

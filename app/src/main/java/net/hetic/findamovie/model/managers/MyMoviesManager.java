@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.model.managers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

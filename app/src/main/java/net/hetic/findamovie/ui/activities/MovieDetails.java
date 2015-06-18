@@ -1,4 +1,4 @@
-package net.hetic.findamovie;
+package net.hetic.findamovie.ui.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.hetic.findamovie.MyApp;
+import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
 import net.hetic.findamovie.network.NetworkAccess;
 

@@ -1,4 +1,4 @@
-package net.hetic.findamovie.adapters;
+package net.hetic.findamovie.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

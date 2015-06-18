@@ -14,8 +14,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import net.hetic.findamovie.DisplayResults;
-import net.hetic.findamovie.FindMovie;
+import net.hetic.findamovie.ui.activities.DisplayResults;
+import net.hetic.findamovie.ui.activities.FindMovie;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="net.hetic.findamovie.FindMovie">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="net.hetic.findamovie.ui.activities.FindMovie">
     <item android:id="@+id/action_FindMovie" android:title="@string/title_activity_find_movie"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_MyMovies" android:title="@string/title_activity_my_movies"
