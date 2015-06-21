@@ -28,4 +28,33 @@ public class UrlBuilder {
         return url+apiKey+language;
     }
 
+    /**
+     * Movie credits basic url for TMDb
+     * @param id
+     * @return
+     */
+    public static String baseCredits(Long id){
+        String url = "http://api.themoviedb.org/3/movie/";
+        return url+id+"/credits"+apiKey;
+    }
+
+    /**
+     * Movie credits basic url for TMDb
+     * @param id
+     * @return
+     */
+    public static String baseImages(Long id){
+        String url = "http://api.themoviedb.org/3/movie/";
+        return url+id+"/images"+apiKey;
+    }
+
+    /**
+     * 500px width images for TMDb
+     * @return
+     */
+    public static String baseW500(String path){
+        String url = "http://image.tmdb.org/t/p/w500";
+        return url+path;
+    }
+
 }

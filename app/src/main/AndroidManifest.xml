@@ -27,8 +27,8 @@
         </activity>
         <activity
             android:launchMode="singleTop"
-            android:name=".ui.activities.FindMovie"
-            android:label="@string/title_activity_find_movie" >
+            android:name=".ui.activities.SelectGenres"
+            android:label="@string/title_activity_select_genres" >
         </activity>
         <activity
             android:name=".ui.activities.MyMovies"

@@ -1,6 +1,10 @@
 package net.hetic.findamovie.ui.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +15,14 @@ import android.widget.TextView;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
+import net.hetic.findamovie.model.RequestedCredits;
+import net.hetic.findamovie.model.RequestedImages;
 import net.hetic.findamovie.network.NetworkAccess;
+import net.hetic.findamovie.network.NetworkAccess_MovieDetails;
+import net.hetic.findamovie.network.UrlBuilder;
+import net.hetic.findamovie.utils.Mapper;
+
+import org.json.JSONException;
 
 
 public class MovieDetails extends ActionBarActivity {
@@ -21,6 +32,7 @@ public class MovieDetails extends ActionBarActivity {
     private static TextView mMovieSummary;
     private static ImageView mMovieCover;
     private static Movie mMovie;
+    private DetailsReceiver receiver;
 
     public static final String MOVIE_TO_DETAILS = "MOVIE_TO_DETAILS";
 
@@ -37,6 +49,10 @@ public class MovieDetails extends ActionBarActivity {
 
         // Get current movie object
         mMovie = intent.getExtras().getParcelable(MOVIE_TO_DETAILS);
+
+        // Request more details for a single movie
+        NetworkAccess_MovieDetails.requestMovieCredits(mMovie.getId());
+        NetworkAccess_MovieDetails.requestMovieImages(mMovie.getId());
 
         // Set release date
         mMovieReleaseDate = (TextView) findViewById(R.id.movieReleaseDate);
@@ -56,8 +72,21 @@ public class MovieDetails extends ActionBarActivity {
 
         // Set cover
         mMovieCover = (ImageView) findViewById(R.id.movieCover);
-        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
+        NetworkAccess.downloadImage(UrlBuilder.baseW500(mMovie.getPoster_path()), mMovieCover);
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        receiver = new DetailsReceiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter(NetworkAccess_MovieDetails.DETAILS));
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
     }
 
     @Override
@@ -80,5 +109,30 @@ public class MovieDetails extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class DetailsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Bundle bundle = intent.getExtras();
+
+            if(bundle != null){
+                if(bundle.containsKey(NetworkAccess_MovieDetails.CREDITS_EXTRA)){
+                    String jsonData = bundle.getString(NetworkAccess_MovieDetails.CREDITS_EXTRA,"null");
+                    RequestedCredits mRequestedCredits = null;
+                    mRequestedCredits = Mapper.mapResult(jsonData, mRequestedCredits);
+                }
+                if(bundle.containsKey(NetworkAccess_MovieDetails.IMAGES_EXTRA)){
+                    String jsonData = bundle.getString(NetworkAccess_MovieDetails.IMAGES_EXTRA,"null");
+                    RequestedImages mRequestedImages = null;
+                    mRequestedImages = Mapper.mapResult(jsonData, mRequestedImages);
+                }
+            }
+
+
+
+
+        }
     }
 }

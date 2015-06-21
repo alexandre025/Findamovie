@@ -16,7 +16,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import net.hetic.findamovie.ui.activities.DisplayResults;
-import net.hetic.findamovie.ui.activities.FindMovie;
+import net.hetic.findamovie.ui.activities.SelectGenres;
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 
@@ -31,15 +31,13 @@ public class NetworkAccess {
     public static final String NEXT_PAGE_EXTRA = "nextPageExtra";
 
     public static final String TAG = NetworkAccess.class.getSimpleName();
-    public static String url;
-    public static String jsonData;
 
     /**
      * Preload list of categories witch will be displayed in FindMovie activity
      */
     public static void requestGenres() {
 
-        url = UrlBuilder.baseGenres();
+        String url = UrlBuilder.baseGenres();
 
         if (isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
@@ -58,12 +56,12 @@ public class NetworkAccess {
                 @Override
                 public void onResponse(Response response) throws IOException {
                     try {
-                        jsonData = response.body().string();
+                        String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
 
                             // If response is successful we start a new Intent
-                            Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), FindMovie.class);
+                            Intent intent = new Intent(MyApp.getInstance().getApplicationContext(), SelectGenres.class);
                             intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("REQUESTED_GENRES", jsonData);
                             MyApp.getContext().startActivity(intent);
@@ -87,10 +85,8 @@ public class NetworkAccess {
      */
     public static void requestMovies(String genres) {
 
-        String apiUrl = "http://api.themoviedb.org/3/discover/movie";
-
         // Build the request with parameters
-        url = UrlBuilder.baseDiscover()+"&"+genres;
+        final String url = UrlBuilder.baseDiscover()+"&"+genres;
 
         if(isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
@@ -109,7 +105,7 @@ public class NetworkAccess {
                 @Override
                 public void onResponse(Response response) throws IOException {
                     try {
-                        jsonData = response.body().string();
+                        String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
 
@@ -169,8 +165,8 @@ public class NetworkAccess {
                 @Override
                 public void onResponse(Response response) throws IOException {
                     try {
-                        jsonData = response.body().string();
-                        //Log.v(TAG, jsonData);
+                        String jsonData = response.body().string();
+                        Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
                             Intent intent = new Intent(NEXT_PAGE);
                             intent.putExtra(NEXT_PAGE_EXTRA,jsonData);
@@ -193,7 +189,7 @@ public class NetworkAccess {
      * Check if the network is available
      * @return
      */
-    private static boolean isNetworkAvailable() {
+    public static boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) MyApp.getContext().getSystemService(MyApp.getContext().CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         boolean isAvailable = false;

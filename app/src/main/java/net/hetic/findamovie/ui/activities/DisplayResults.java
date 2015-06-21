@@ -21,13 +21,10 @@ import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
 import net.hetic.findamovie.model.RequestedMovies;
 import net.hetic.findamovie.network.NetworkAccess;
+import net.hetic.findamovie.network.UrlBuilder;
+import net.hetic.findamovie.utils.Mapper;
 import net.hetic.findamovie.utils.OnSwipeTouchListener;
 
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -57,11 +54,8 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         request = intent.getStringExtra("LAST_REQUEST");
         String jsonData = intent.getStringExtra("REQUESTED_MOVIES");
         RequestedMovies mRequestedMovies = null;
-        try {
-            mRequestedMovies = getResult(jsonData);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        mRequestedMovies = Mapper.mapResult(jsonData,mRequestedMovies);
+
         page = mRequestedMovies.getPage();
         total_pages = mRequestedMovies.getTotal_pages();
         mMovieList = mRequestedMovies.getResults();
@@ -150,27 +144,6 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     }
 
     /**
-     * Parse a json results to a RequestedMovies object
-     * @param jsonData
-     * @return
-     * @throws JSONException
-     */
-    private static RequestedMovies getResult(String jsonData) throws JSONException {
-
-        // We use Jackson mapper
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
-        RequestedMovies mResult = null;
-        try {
-            mResult = mapper.readValue(jsonData, RequestedMovies.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return mResult;
-
-    }
-
-    /**
      * Display a movie
      * @param mMovie
      */
@@ -181,7 +154,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mMovieTitle.setText(mMovie.getTitle());
 
         // Set movie cover
-        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + mMovie.getPoster_path(), mMovieCover);
+        NetworkAccess.downloadImage(UrlBuilder.baseW500(mMovie.getPoster_path()), mMovieCover);
 
         // Set initial position for ScrollView
         mScrollView.scrollTo(0, 0);
@@ -275,14 +248,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         public void onReceive(Context context, Intent intent) {
             String jsonData = intent.getStringExtra(NetworkAccess.NEXT_PAGE_EXTRA);
             RequestedMovies mRequestedMovies = null;
-            try {
-                // Jackson mapper transform json to RequestedMovies object
-                mRequestedMovies = getResult(jsonData);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(jsonData);
+            mRequestedMovies = Mapper.mapResult(jsonData,mRequestedMovies);
 
             Boolean wasEmpty = mMovieList.isEmpty();
 

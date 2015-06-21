@@ -15,6 +15,7 @@ import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
 import net.hetic.findamovie.model.Movie;
 import net.hetic.findamovie.network.NetworkAccess;
+import net.hetic.findamovie.network.UrlBuilder;
 
 
 public class MyMovieView extends ActionBarActivity implements View.OnClickListener {
@@ -89,7 +90,7 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
         mMovieCover.setImageResource(R.drawable.background);
         mMovieSummary.setText(movie.getOverview());
         mMovieTitle.setText(movie.getTitle());
-        NetworkAccess.downloadImage("http://image.tmdb.org/t/p/w500" + movie.getPoster_path(), mMovieCover);
+        NetworkAccess.downloadImage(UrlBuilder.baseW500(movie.getPoster_path()), mMovieCover);
     }
 
     @Override
