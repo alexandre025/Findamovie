@@ -1,4 +1,4 @@
-# FindAMovie
+# Find a movie
 
 You don’t know what to watch tonight ? You would like to watch an action movie while your friend would rather watch a thriller ? Find a Movie suggests, in just a few seconds, a list of movies likely to suit both of you. And if you are looking for movies to watch later, you can simply add them to your wishlist.
 
