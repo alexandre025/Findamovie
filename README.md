@@ -5,9 +5,13 @@ You don’t know what to watch tonight ? You would like to watch an action movie
 
 ## Availability 
 
-It works with android 4.2 and later, available soon on Google Play Store.
+It works with android 4.2 and later, for smartphones, soon on tablets.
 
+Last release ( 1.0.0 ) is available on Google Play Store here :
 
-## Download
+https://play.google.com/store/apps/details?id=net.hetic.findamovie
 
-http://www.alexandre-ferraille.fr/Findamovie.apk
+Or on my private server here ( 1.0.0 ) :
+
+http://alexandre-ferraille.fr/FindAmovie.apk
+
