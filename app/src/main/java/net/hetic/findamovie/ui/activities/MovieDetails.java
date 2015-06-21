@@ -1,5 +1,6 @@
 package net.hetic.findamovie.ui.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +22,8 @@ public class MovieDetails extends ActionBarActivity {
     private static ImageView mMovieCover;
     private static Movie mMovie;
 
+    public static final String MOVIE_TO_DETAILS = "MOVIE_TO_DETAILS";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +33,10 @@ public class MovieDetails extends ActionBarActivity {
 
         getSupportActionBar().hide();
 
+        Intent intent = getIntent();
+
         // Get current movie object
-        mMovie = MyApp.MovieToDetails;
+        mMovie = intent.getExtras().getParcelable(MOVIE_TO_DETAILS);
 
         // Set release date
         mMovieReleaseDate = (TextView) findViewById(R.id.movieReleaseDate);

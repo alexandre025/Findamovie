@@ -47,7 +47,6 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private Boolean loadNextPage;
     private NextPageReceiver receiver;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -260,11 +259,12 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         }
 
         // User require more details for a movie
-        if(v == mDetails){
+        if(v == mDetails && !mMovieList.isEmpty()){
+
             // New intent
             Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
-            // Pass movie object by MyApp which extend Activity
-            MyApp.MovieToDetails = mMovieList.get(0);
+            intent.putExtra(MovieDetails.MOVIE_TO_DETAILS,mMovieList.get(0));
+
             // Start new activity
             startActivity(intent);
         }

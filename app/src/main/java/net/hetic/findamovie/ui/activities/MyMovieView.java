@@ -100,8 +100,8 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
             finish();
         }
         if(v == mDetailsButton) {
-            MyApp.MovieToDetails = mMovie;
             Intent intent = new Intent(MyApp.getContext(), MovieDetails.class);
+            intent.putExtra(MovieDetails.MOVIE_TO_DETAILS,mMovie);
             startActivity(intent);
         }
     }

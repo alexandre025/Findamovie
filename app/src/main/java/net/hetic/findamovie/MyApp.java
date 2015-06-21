@@ -22,7 +22,7 @@ public class MyApp extends Application {
     private static MyApp sharedInstance;
     private static Context mContext;
     private static MyMoviesManager manager;
-    public static Movie MovieToDetails;
+
 
     @Override
     public void onCreate() {

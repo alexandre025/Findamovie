@@ -30,7 +30,6 @@ public class NetworkAccess {
     public static final String NEXT_PAGE = "nextPage";
     public static final String NEXT_PAGE_EXTRA = "nextPageExtra";
 
-
     public static final String TAG = NetworkAccess.class.getSimpleName();
     public static String url;
     public static String jsonData;
