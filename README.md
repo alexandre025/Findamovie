@@ -13,5 +13,5 @@ https://play.google.com/store/apps/details?id=net.hetic.findamovie
 
 Or on my private server here ( 1.0.0 ) :
 
-http://alexandre-ferraille.fr/FindAmovie.apk
+http://alexandre-ferraille.fr/Findamovie.apk
 
