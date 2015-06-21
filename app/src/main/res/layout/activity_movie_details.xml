@@ -19,13 +19,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="0dp"
-        android:background="#AF000000"></RelativeLayout>
+        android:background="#AF000000">
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:requiresFadingEdge="vertical"
-        android:fadingEdgeLength="30dp">
+        android:fadingEdgeLength="60dp"
+        android:id="@+id/scrollView">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,6 +66,36 @@
                 tools:text="Sortie le 2015-09-10"
                 android:textSize="@dimen/movieSummary"
                 android:id="@+id/movieSummary"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/movieSummary"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdgeLength="30dp"
+                android:id="@+id/imagesSlider">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="8dp"
+                    android:id="@+id/imagesList">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textColor="#FFF"
+                android:layout_below="@id/imagesSlider"
+                tools:text="Sortie le 2015-09-10"
+                android:textSize="@dimen/movieSummary"
+                android:id="@+id/movieCredits"/>
 
         </RelativeLayout>
     </ScrollView>

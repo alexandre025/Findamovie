@@ -150,7 +150,11 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private void displayMovie(Movie mMovie){
         // Set content
         mMovieCover.setImageResource(R.drawable.background);
-        mMovieSummary.setText(mMovie.getOverview());
+
+        String summary = mMovie.getOverview();
+        if(summary.length()>300)
+            summary = summary.substring(0,280)+" [...]";
+        mMovieSummary.setText(summary);
         mMovieTitle.setText(mMovie.getTitle());
 
         // Set movie cover

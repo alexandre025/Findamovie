@@ -6,8 +6,8 @@
     <dimen name="main_activity_vertical_margin">2dp</dimen>
 
     <!-- Movie / Movie Details -->
-    <dimen name="movieSummary">17sp</dimen>
-    <dimen name="movieTitle">24sp</dimen>
+    <dimen name="movieSummary">16sp</dimen>
+    <dimen name="movieTitle">22sp</dimen>
 
     <!-- ListViews -->
     <dimen name="listViewitem">19sp</dimen>

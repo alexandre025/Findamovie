@@ -88,7 +88,12 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
      */
     private void displayMovie(Movie movie){
         mMovieCover.setImageResource(R.drawable.background);
-        mMovieSummary.setText(movie.getOverview());
+
+        String summary = mMovie.getOverview();
+        if(summary.length()>300)
+            summary = summary.substring(0,280)+" [...]";
+        mMovieSummary.setText(summary);
+
         mMovieTitle.setText(movie.getTitle());
         NetworkAccess.downloadImage(UrlBuilder.baseW500(movie.getPoster_path()), mMovieCover);
     }

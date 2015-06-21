@@ -24,5 +24,6 @@
     <string name="moreDetails">+ de détails</string>
     <string name="releaseDate">Date de sortie :</string>
     <string name="undefined">non défini(e)</string>
+    <string name="casting">Casting :</string>
 
 </resources>
