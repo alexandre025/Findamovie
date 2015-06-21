@@ -34,20 +34,13 @@ public class NetworkAccess {
     public static final String TAG = NetworkAccess.class.getSimpleName();
     public static String url;
     public static String jsonData;
-    private static String apiKey = "70890ed92e2d332f35ea0cd41086c921";
 
     /**
      * Preload list of categories witch will be displayed in FindMovie activity
      */
     public static void requestGenres() {
 
-        String apiUrl = "http://api.themoviedb.org/3/genre/movie/list";
-
-        String language = MyApp.getLanguage();
-
-        url = apiUrl + "?api_key=" + apiKey + "&language=" + language;
-
-        System.out.println(url);
+        url = UrlBuilder.baseGenres();
 
         if (isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();
@@ -97,11 +90,8 @@ public class NetworkAccess {
 
         String apiUrl = "http://api.themoviedb.org/3/discover/movie";
 
-        // Get current device's language
-        String language = MyApp.getLanguage();
-
         // Build the request with parameters
-        url = apiUrl+"?api_key="+apiKey+"&"+genres+"&language="+language;
+        url = UrlBuilder.baseDiscover()+"&"+genres;
 
         if(isNetworkAvailable()) {
             OkHttpClient client = new OkHttpClient();

@@ -273,7 +273,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     class NextPageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String jsonData = (String)intent.getStringExtra(NetworkAccess.NEXT_PAGE_EXTRA);
+            String jsonData = intent.getStringExtra(NetworkAccess.NEXT_PAGE_EXTRA);
             RequestedMovies mRequestedMovies = null;
             try {
                 // Jackson mapper transform json to RequestedMovies object
