@@ -169,4 +169,14 @@ public class Movie implements Parcelable {
         vote_average = source.readDouble();
         vote_count = source.readInt();
     }
+
+    public Movie clone(){
+        Movie movie = null;
+        try {
+            movie = (Movie) super.clone();
+        } catch(CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+        return movie;
+    }
 }

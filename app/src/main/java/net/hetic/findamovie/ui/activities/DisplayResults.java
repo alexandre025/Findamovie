@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.hetic.findamovie.MyApp;
 import net.hetic.findamovie.R;
@@ -43,6 +44,9 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
     private int total_pages;
     private Boolean loadNextPage;
     private NextPageReceiver receiver;
+    private ArrayList<Movie> mRestartList;
+    private Boolean mFirstRoll;
+    private Boolean mSmthToDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +58,14 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         request = intent.getStringExtra("LAST_REQUEST");
         String jsonData = intent.getStringExtra("REQUESTED_MOVIES");
         RequestedMovies mRequestedMovies = null;
-        mRequestedMovies = Mapper.mapResult(jsonData,mRequestedMovies);
+        mRequestedMovies = Mapper.mapResult(jsonData, mRequestedMovies);
 
         page = mRequestedMovies.getPage();
         total_pages = mRequestedMovies.getTotal_pages();
         mMovieList = mRequestedMovies.getResults();
+        mRestartList = (ArrayList<Movie>)mRequestedMovies.getResults().clone();
+        mFirstRoll = true;
+        mSmthToDisplay = true;
 
         if(!mMovieList.isEmpty()) {
             setContentView(R.layout.activity_display_results);
@@ -152,8 +159,8 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
         mMovieCover.setImageResource(R.drawable.background);
 
         String summary = mMovie.getOverview();
-        if(summary.length()>300)
-            summary = summary.substring(0,280)+" [...]";
+        if(summary != null && summary.length()>300)
+            summary = summary.substring(0,270)+" [...]";
         mMovieSummary.setText(summary);
         mMovieTitle.setText(mMovie.getTitle());
 
@@ -162,6 +169,8 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
 
         // Set initial position for ScrollView
         mScrollView.scrollTo(0, 0);
+
+        mSmthToDisplay = true;
     }
 
     /**
@@ -176,16 +185,13 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             MyApp.getManager().addMovie(mMovieList.get(0));
         }
 
-        // Remove displayed movie
-        if(!mMovieList.isEmpty())
-
-
         // If there is a next movie
         if(!mMovieList.isEmpty()) {
 
             mMovieList.remove(0);
 
-            if(loadNextPage && mMovieList.size()<30 && page <= total_pages){
+            // If there's no next page loading enqueued, there are other pages of results and this pages were not previously loaded
+            if(loadNextPage && mMovieList.size()<30 && page <= total_pages && mFirstRoll){
 
                 // Next page of results
                 page++;
@@ -200,10 +206,25 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             selectNextMovie();
 
         }
-        // If we are at the end of the movie list
-        else if(mMovieList.isEmpty() && page > total_pages){
-            System.out.println("THE END");
+        // If we are at the end of the movie list we reload the list from our cache "mRestartList"
+        else if(mMovieList.isEmpty() && page >= total_pages && mSmthToDisplay){
+            mMovieList = new ArrayList<>();
+            mMovieList = (ArrayList<Movie>) mRestartList.clone();
+            System.out.println(mMovieList.size());
+            mFirstRoll = false;
+
+            // Probably nothing to show, the case where users saved the entire list
+            mSmthToDisplay = false;
+            System.out.println(mSmthToDisplay);
+
+            selectNextMovie();
         }
+        // There's nothing to display, end of the activity
+        else if(!mSmthToDisplay){
+            Toast.makeText(this, this.getString(R.string.AlreadySavedAllItems), Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
     }
 
     /**
@@ -260,6 +281,7 @@ public class DisplayResults extends ActionBarActivity implements View.OnClickLis
             while(!mRequestedMovies.getResults().isEmpty()) {
 
                 mMovieList.add(mRequestedMovies.getResults().get(0));
+                mRestartList.add(mRequestedMovies.getResults().get(0).clone());
                 mRequestedMovies.getResults().remove(0);
             }
 

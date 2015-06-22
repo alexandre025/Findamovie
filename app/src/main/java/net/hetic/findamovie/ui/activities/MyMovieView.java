@@ -90,8 +90,8 @@ public class MyMovieView extends ActionBarActivity implements View.OnClickListen
         mMovieCover.setImageResource(R.drawable.background);
 
         String summary = mMovie.getOverview();
-        if(summary.length()>300)
-            summary = summary.substring(0,280)+" [...]";
+        if(summary != null && summary.length()>300)
+            summary = summary.substring(0,270)+" [...]";
         mMovieSummary.setText(summary);
 
         mMovieTitle.setText(movie.getTitle());

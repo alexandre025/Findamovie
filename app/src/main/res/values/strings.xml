@@ -25,6 +25,7 @@
     <string name="releaseDate">Release date :</string>
     <string name="undefined">undefined</string>
     <string name="casting">Casting :</string>
+    <string name="AlreadySavedAllItems">You already have all the movies of this result in your list</string>
 
 
 </resources>
