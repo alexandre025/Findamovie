@@ -13,9 +13,10 @@ Last release ( 1.0.0 ) is available on Google Play Store here :
 
 https://play.google.com/store/apps/details?id=net.hetic.findamovie
 
-Or on my private server here ( 1.0.1 ) :
+Or on my private server here:
 
-http://alexandre-ferraille.fr/Findamovie.apk
+- 1.0.1 : http://alexandre-ferraille.fr/Findamovie-1.0.1.apk
+- 1.0.0 : http://alexandre-ferraille.fr/Findamovie-1.0.0.apk
 
 ### iOS
 
