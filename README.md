@@ -9,13 +9,14 @@ You don’t know what to watch tonight ? You would like to watch an action movie
 
 It works with android 4.2 and later, for smartphones, soon on tablets.
 
-Last release ( 1.0.0 ) is available on Google Play Store here :
+Last release ( 1.0.3 ) is available on Google Play Store here :
 
 https://play.google.com/store/apps/details?id=net.hetic.findamovie
 
-Or on my private server here ( 1.0.1 ) :
+Or on my private server here:
 
-http://alexandre-ferraille.fr/Findamovie.apk
+- 1.0.1 : http://alexandre-ferraille.fr/Findamovie-1.0.1.apk
+- 1.0.0 : http://alexandre-ferraille.fr/Findamovie-1.0.0.apk
 
 ### iOS
 
