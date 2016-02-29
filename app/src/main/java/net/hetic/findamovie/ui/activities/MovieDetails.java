@@ -50,7 +50,7 @@ public class MovieDetails extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        setContentView(R.layout.activity_movie_details); 
 
         overridePendingTransition(R.anim.transition_fadein, R.anim.transition_fadeout);
 
@@ -153,17 +153,14 @@ public class MovieDetails extends ActionBarActivity {
                     if(!cast.isEmpty()) {
                         int i = 0;
                         String castText = null;
-                        while(!cast.isEmpty() && i<5) {
+                        while(!cast.isEmpty() && i<6) {
                             if(i==0)
                                 castText = cast.get(0).getName()+", ";
-                            else if(i==4)
-                                castText = castText+cast.get(0).getName()+"...";
                             else
                                 castText = castText+cast.get(0).getName()+", ";
                             cast.remove(0);
                             i++;
                         }
-                        castText = context.getString(R.string.casting)+" "+castText;
                         mMovieCredits.setText(castText);
                     }
 
