@@ -31,4 +31,9 @@ public class MoviePagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return listStepFragment.size();
     }
+
+    public void add(List<MoviePagerStepFragment> fragments) {
+        listStepFragment.addAll(fragments);
+        this.notifyDataSetChanged();
+    }
 }
