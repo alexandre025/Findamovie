@@ -2,7 +2,6 @@ package fr.alexandre_ferraille.findamovie;
 
 import android.app.Application;
 import android.content.Context;
-import android.media.Image;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;

@@ -1,5 +1,12 @@
 package fr.alexandre_ferraille.findamovie.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -7,13 +14,33 @@ import io.realm.RealmObject;
 /**
  * Created by alexandre on 13/05/16.
  */
-public class Movie extends RealmObject {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Movie extends RealmObject implements Serializable {
 
-    private int id, voteCount;
-    private String title, overview, posterPath;
-    private Date releaseDate;
-    private float popularity, voteAverage;
+    private int id;
 
+    @JsonProperty("vote_count")
+    private int voteCount;
+
+    private String title;
+
+    private String overview;
+
+    @JsonProperty("poster_path")
+    private String posterPath;
+
+    @JsonProperty("release_date")
+    private String releaseDate;
+
+    private Double popularity;
+
+    @JsonProperty("vote_average")
+    private Double voteAverage;
+
+    private boolean viewed, saved;
+
+    public Movie() {
+    }
 
     public int getId() {
         return id;
@@ -55,27 +82,44 @@ public class Movie extends RealmObject {
         this.posterPath = posterPath;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public float getPopularity() {
+    public Double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(float popularity) {
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
 
-    public float getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(float voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
+
+    public boolean isViewed() {
+        return viewed;
+    }
+
+    public void setViewed(boolean viewed) {
+        this.viewed = viewed;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
+    }
+
 }
