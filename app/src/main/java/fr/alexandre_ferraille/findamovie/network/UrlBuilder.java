@@ -13,7 +13,7 @@ public class UrlBuilder {
 
     private static final String LANGUAGE = String.format("&language=%s",MyApp.getLanguage());
 
-    public static String getGenresUrl() {
+    public static String getCategoriesUrl() {
         return String.format("%s/genre/movie/list%s%s",BASE_URL,API_KEY,LANGUAGE);
     }
 

@@ -10,10 +10,8 @@ import com.fasterxml.jackson.databind.type.SimpleType;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
-import java.lang.reflect.Constructor;
-
 import fr.alexandre_ferraille.findamovie.MyApp;
-import fr.alexandre_ferraille.findamovie.model.Genre;
+import fr.alexandre_ferraille.findamovie.model.Category;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 
 /**
@@ -22,16 +20,16 @@ import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 public class NetworkManager {
 
     /**
-     * Return available genres
+     * Return available categories
      * @param listener
      */
-    public static void getGenres(final GenresListener listener) {
-        String url = UrlBuilder.getGenresUrl();
+    public static void getCategories(final CategoriesListener listener) {
+        String url = UrlBuilder.getCategoriesUrl();
         Log.i("GENRES URL", url);
 
-        JacksonRequest<Genre[]> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<Genre[]>() {
+        JacksonRequest<Category[]> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<Category[]>() {
             @Override
-            public void onResponse(Genre[] response, int statusCode, VolleyError error) {
+            public void onResponse(Category[] response, int statusCode, VolleyError error) {
                 if (error != null) {
                     if (listener != null) {
                         listener.onFailed();
@@ -39,7 +37,7 @@ public class NetworkManager {
                 } else {
                     if (response != null) {
                         if (listener != null) {
-                            listener.onReceiveGenres(response);
+                            listener.onReceiveCategories(response);
                         }
                     }
                 }
@@ -47,7 +45,7 @@ public class NetworkManager {
 
             @Override
             public JavaType getReturnType() {
-                return ArrayType.construct(SimpleType.construct(Genre.class), null, null);
+                return ArrayType.construct(SimpleType.construct(Category.class), null, null);
             }
         });
 
@@ -55,16 +53,16 @@ public class NetworkManager {
     }
 
     /**
-     * Listener for Genres
+     * Listener for Categories
      */
-    public interface GenresListener {
-        void onReceiveGenres(Genre[] genres);
+    public interface CategoriesListener {
+        void onReceiveCategories(Category[] categories);
 
         void onFailed();
     }
 
     /**
-     * Return movies requested by genres
+     * Return movies requested by categories
      *
      * @param page
      * @param genres
