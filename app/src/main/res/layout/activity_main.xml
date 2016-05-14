@@ -10,4 +10,5 @@
         android:name="fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </RelativeLayout>

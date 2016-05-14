@@ -4,20 +4,17 @@ package fr.alexandre_ferraille.findamovie.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.alexandre_ferraille.findamovie.R;
-import fr.alexandre_ferraille.findamovie.model.Movie;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 import fr.alexandre_ferraille.findamovie.network.NetworkManager;
+import fr.alexandre_ferraille.findamovie.ui.activity.MainActivity;
 import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
 
 /**
@@ -29,6 +26,7 @@ public class MoviePagerFragment extends Fragment {
     private View rootView;
     private ViewPager viewPager;
     private int currentPage, maxPage;
+    private int[] genres;
 
     public MoviePagerFragment() {
         // Required empty public constructor
@@ -43,16 +41,23 @@ public class MoviePagerFragment extends Fragment {
 
         viewPager = (ViewPager) rootView.findViewById(R.id.fragment_movie_viewpager);
 
+        MainActivity activity = (MainActivity) getActivity();
+        genres = activity.getSelectedGenres();
+
+        loadMovies();
+
         return rootView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+    }
 
+    private void loadMovies() {
         final List<MoviePagerStepFragment> moviePagerStepFragments = new ArrayList<>();
 
-        NetworkManager.getMoviesResult(1, new NetworkManager.MoviesResultListener() {
+        NetworkManager.getMoviesResult(1,genres, new NetworkManager.MoviesResultListener() {
             @Override
             public void onReceiveMoviesResult(MoviesResult result) {
                 moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
@@ -73,7 +78,7 @@ public class MoviePagerFragment extends Fragment {
                     public void onPageSelected(int position) {
                         if (currentPage < maxPage && position % 5 == 0) {
                             currentPage++;
-                            NetworkManager.getMoviesResult(currentPage, new NetworkManager.MoviesResultListener() {
+                            NetworkManager.getMoviesResult(currentPage,genres, new NetworkManager.MoviesResultListener() {
                                 @Override
                                 public void onReceiveMoviesResult(MoviesResult result) {
                                     moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));

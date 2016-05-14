@@ -13,13 +13,32 @@ public class UrlBuilder {
 
     private static final String LANGUAGE = String.format("&language=%s",MyApp.getLanguage());
 
+    public static String getGenresUrl() {
+        return String.format("%s/genre/movie/list%s%s",BASE_URL,API_KEY,LANGUAGE);
+    }
+
     /**
      * Discover basic url for TMDb
      * @return
      */
-    public static String baseDiscover(int page){
-        return String.format("%s/3/discover/movie%s%s&page=%d",BASE_URL,API_KEY,LANGUAGE,page);
+    public static String getDiscoverUrl(int page, int[] genres){
+
+        String listGenres = "";
+        for (int i = 0; i < genres.length; i++){
+            if(i!=(genres.length-1)) {
+                listGenres += genres[i]+",";
+            }
+            else {
+                listGenres += genres[i];
+            }
+        }
+
+        return String.format("%s/3/discover/movie%s%s&page=%d&with_genres=%s",BASE_URL,API_KEY,LANGUAGE,page,listGenres);
     }
 
+
+    public static String getImageW500Url() {
+        return "http://image.tmdb.org/t/p/w500";
+    }
 
 }

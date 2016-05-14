@@ -13,9 +13,13 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import org.w3c.dom.Text;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.Movie;
+import fr.alexandre_ferraille.findamovie.network.NetworkManager;
+import fr.alexandre_ferraille.findamovie.network.UrlBuilder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +29,15 @@ public class MoviePagerStepFragment extends Fragment {
 
     private static final String MOVIE_ARGUMENT = "movie_argument";
     private View rootView;
-    private TextView movieTitleTextview;
-    private NetworkImageView movieCoverImageview;
-    private TextView movieOverviewTextview;
+
+    @BindView(R.id.movie_title_textview)
+    TextView movieTitleTextview;
+
+    @BindView(R.id.movie_cover_imageview)
+    NetworkImageView movieCoverImageview;
+
+    @BindView(R.id.movie_overview_textview)
+    TextView movieOverviewTextview;
 
     public MoviePagerStepFragment() {
         // Required empty public constructor
@@ -37,7 +47,7 @@ public class MoviePagerStepFragment extends Fragment {
 
         Bundle args = new Bundle();
 
-        args.putSerializable(MOVIE_ARGUMENT,movie);
+        args.putSerializable(MOVIE_ARGUMENT, movie);
 
         MoviePagerStepFragment fragment = new MoviePagerStepFragment();
         fragment.setArguments(args);
@@ -52,9 +62,7 @@ public class MoviePagerStepFragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_movie_pager_step, container, false);
 
-        movieTitleTextview = (TextView)rootView.findViewById(R.id.movie_title_textview);
-        movieCoverImageview = (NetworkImageView)rootView.findViewById(R.id.movie_cover_imageview);
-        movieOverviewTextview = (TextView)rootView.findViewById(R.id.movie_overview_textview);
+        ButterKnife.bind(this, rootView);
 
         return rootView;
     }
@@ -64,11 +72,11 @@ public class MoviePagerStepFragment extends Fragment {
         super.onStart();
 
         Bundle args = getArguments();
-        if(args!=null){
-            Movie movie = (Movie)args.getSerializable(MOVIE_ARGUMENT);
+        if (args != null) {
+            Movie movie = (Movie) args.getSerializable(MOVIE_ARGUMENT);
 
             ImageLoader imageLoader = MyApp.getInstance().getImageLoader();
-            movieCoverImageview.setImageUrl("http://image.tmdb.org/t/p/w500"+movie.getPosterPath(),imageLoader);
+            movieCoverImageview.setImageUrl(UrlBuilder.getImageW500Url() + movie.getPosterPath(), imageLoader);
 
             movieTitleTextview.setText(movie.getTitle());
 
