@@ -5,6 +5,7 @@
     tools:context=".ui.fragment.CategoriesFragment">
 
     <ListView
+        android:id="@+id/categories_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

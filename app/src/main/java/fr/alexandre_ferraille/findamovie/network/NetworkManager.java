@@ -5,13 +5,12 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.SimpleType;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
 import fr.alexandre_ferraille.findamovie.MyApp;
-import fr.alexandre_ferraille.findamovie.model.Category;
+import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 
 /**
@@ -23,13 +22,13 @@ public class NetworkManager {
      * Return available categories
      * @param listener
      */
-    public static void getCategories(final CategoriesListener listener) {
+    public static void getCategoriesList(final CategoriesListListener listener) {
         String url = UrlBuilder.getCategoriesUrl();
         Log.i("GENRES URL", url);
 
-        JacksonRequest<Category[]> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<Category[]>() {
+        JacksonRequest<CategoriesList> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<CategoriesList>() {
             @Override
-            public void onResponse(Category[] response, int statusCode, VolleyError error) {
+            public void onResponse(CategoriesList response, int statusCode, VolleyError error) {
                 if (error != null) {
                     if (listener != null) {
                         listener.onFailed();
@@ -37,7 +36,7 @@ public class NetworkManager {
                 } else {
                     if (response != null) {
                         if (listener != null) {
-                            listener.onReceiveCategories(response);
+                            listener.onReceiveCategoriesList(response);
                         }
                     }
                 }
@@ -45,7 +44,7 @@ public class NetworkManager {
 
             @Override
             public JavaType getReturnType() {
-                return ArrayType.construct(SimpleType.construct(Category.class), null, null);
+                return SimpleType.construct(CategoriesList.class);
             }
         });
 
@@ -55,8 +54,8 @@ public class NetworkManager {
     /**
      * Listener for Categories
      */
-    public interface CategoriesListener {
-        void onReceiveCategories(Category[] categories);
+    public interface CategoriesListListener {
+        void onReceiveCategoriesList(CategoriesList categoriesList);
 
         void onFailed();
     }

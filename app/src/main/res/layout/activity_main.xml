@@ -6,8 +6,8 @@
     tools:context=".ui.activity.MainActivity">
 
     <fragment
-        android:id="@+id/movie_viewpager_fragment"
-        android:name="fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment"
+        android:id="@+id/categories_listview_fragment"
+        android:name="fr.alexandre_ferraille.findamovie.ui.fragment.CategoriesFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
