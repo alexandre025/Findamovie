@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.MainActivity"
+    android:id="@+id/main_container">
 
     <fragment
         android:id="@+id/categories_listview_fragment"
-        android:name="fr.alexandre_ferraille.findamovie.ui.fragment.CategoriesFragment"
+        android:name="fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

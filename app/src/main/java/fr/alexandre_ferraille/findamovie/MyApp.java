@@ -22,6 +22,8 @@ public class MyApp extends Application {
     private RequestQueue requestQueue;
     private ImageLoader imageLoader;
 
+    private static final String YOUTUBE_DEV_KEY = "AIzaSyBx72EijX5WmAV6e0yq4rNoSH71RgqCGm0";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -43,6 +45,10 @@ public class MyApp extends Application {
     public RequestQueue getRequestQueue() { return requestQueue; }
 
     public ImageLoader getImageLoader() { return imageLoader; }
+
+    public static String getYoutubeDevKey() {
+        return YOUTUBE_DEV_KEY;
+    }
 
     public static String getLanguage() {
         String language = Locale.getDefault().getLanguage();

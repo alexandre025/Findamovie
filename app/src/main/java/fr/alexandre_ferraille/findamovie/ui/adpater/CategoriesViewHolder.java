@@ -2,7 +2,6 @@ package fr.alexandre_ferraille.findamovie.ui.adpater;
 
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -27,12 +26,21 @@ public class CategoriesViewHolder {
 
     }
 
+    /**
+     * Set Category's name, id and checkbox statment
+     * @param category
+     * @param isSelected
+     */
     public void setCategory(Category category, Boolean isSelected) {
         categoryApiIdTextview.setText(String.valueOf(category.getId()));
         categoryCheckbox.setText(category.getName());
         categoryCheckbox.setChecked(isSelected);
     }
 
+    /**
+     * Return checkbox to apply the listener
+     * @return
+     */
     public CheckBox getCategoryCheckbox() {
         return categoryCheckbox;
     }

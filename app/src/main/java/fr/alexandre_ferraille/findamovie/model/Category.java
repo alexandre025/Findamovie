@@ -1,8 +1,5 @@
 package fr.alexandre_ferraille.findamovie.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 /**
  * Created by alexandre on 14/05/16.
  */
