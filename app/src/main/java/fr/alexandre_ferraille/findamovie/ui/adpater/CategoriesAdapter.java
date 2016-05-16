@@ -20,7 +20,7 @@ public class CategoriesAdapter extends BaseAdapter {
 
     private final ArrayList<Category> categories;
     private final Context mContext;
-    private ArrayList<String> checkedList;
+    private ArrayList<Category> checkedList;
 
     @Override
     public int getCount() {
@@ -50,21 +50,22 @@ public class CategoriesAdapter extends BaseAdapter {
             holder = (CategoriesViewHolder) convertView.getTag();
         }
 
+        final Category category = categories.get(position);
+
         holder.getCategoryCheckbox().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked && !checkedList.contains(String.valueOf(position))){
-                    checkedList.add(String.valueOf(position));
+
+                if(isChecked && !checkedList.contains(category)){
+                    checkedList.add(category);
                 }
-                else if(!isChecked && checkedList.contains(String.valueOf(position))){
-                    checkedList.remove(String.valueOf(position));
+                else if(!isChecked && checkedList.contains(category)){
+                    checkedList.remove(category);
                 }
             }
         });
 
-        Category category = categories.get(position);
-
-        holder.setCategory(category,checkedList.contains(String.valueOf(position)));
+        holder.setCategory(category,checkedList.contains(category));
 
         return convertView;
     }
@@ -79,5 +80,9 @@ public class CategoriesAdapter extends BaseAdapter {
         this.categories.clear();
         this.categories.addAll(categories);
         notifyDataSetChanged();
+    }
+
+    public ArrayList<Category> getCheckedList() {
+        return checkedList;
     }
 }

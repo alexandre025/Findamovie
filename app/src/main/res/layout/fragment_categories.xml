@@ -1,14 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.CategoriesFragment">
+    tools:context=".ui.fragment.CategoriesFragment"
+    android:id="@+id/fragment_categories_container">
 
     <ListView
         android:id="@+id/categories_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/categories_validate_button">
 
     </ListView>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/categories_validate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/categories_validate"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

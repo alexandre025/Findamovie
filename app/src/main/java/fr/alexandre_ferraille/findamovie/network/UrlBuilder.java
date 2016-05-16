@@ -1,5 +1,7 @@
 package fr.alexandre_ferraille.findamovie.network;
 
+import java.util.ArrayList;
+
 import fr.alexandre_ferraille.findamovie.MyApp;
 
 /**
@@ -21,19 +23,19 @@ public class UrlBuilder {
      * Discover basic url for TMDb
      * @return
      */
-    public static String getDiscoverUrl(int page, int[] genres){
+    public static String getDiscoverUrl(int page, ArrayList<String> categories){
 
-        String listGenres = "";
-        for (int i = 0; i < genres.length; i++){
-            if(i!=(genres.length-1)) {
-                listGenres += genres[i]+",";
+        String listCategories = "";
+        for (int i = 0; i < categories.size(); i++){
+            if(i!=(categories.size()-1)) {
+                listCategories += categories.get(i)+",";
             }
             else {
-                listGenres += genres[i];
+                listCategories += categories.get(i);
             }
         }
 
-        return String.format("%s/3/discover/movie%s%s&page=%d&with_genres=%s",BASE_URL,API_KEY,LANGUAGE,page,listGenres);
+        return String.format("%s/3/discover/movie%s%s&page=%d&with_genres=%s",BASE_URL,API_KEY,LANGUAGE,page,listCategories);
     }
 
 

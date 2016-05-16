@@ -3,6 +3,7 @@ package fr.alexandre_ferraille.findamovie.ui.adpater;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class MoviePagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         listStepFragment = new ArrayList<>(fragments);
+        Log.e("FRAGMENTS", listStepFragment.toString());
     }
 
     @Override

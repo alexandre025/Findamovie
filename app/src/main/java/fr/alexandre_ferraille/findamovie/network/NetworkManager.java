@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.type.SimpleType;
 import com.spothero.volley.JacksonRequest;
 import com.spothero.volley.JacksonRequestListener;
 
+import java.util.ArrayList;
+
 import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
@@ -64,11 +66,11 @@ public class NetworkManager {
      * Return movies requested by categories
      *
      * @param page
-     * @param genres
+     * @param categories
      * @param listener
      */
-    public static void getMoviesResult(int page, int[] genres, final MoviesResultListener listener) {
-        String url = UrlBuilder.getDiscoverUrl(page, genres);
+    public static void getMoviesResult(int page, ArrayList<String> categories, final MoviesResultListener listener) {
+        String url = UrlBuilder.getDiscoverUrl(page, categories);
         Log.i("MOVIE URL", url);
 
         JacksonRequest<MoviesResult> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<MoviesResult>() {

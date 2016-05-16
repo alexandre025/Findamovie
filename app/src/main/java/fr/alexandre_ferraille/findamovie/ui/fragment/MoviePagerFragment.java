@@ -4,6 +4,7 @@ package fr.alexandre_ferraille.findamovie.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 import fr.alexandre_ferraille.findamovie.network.NetworkManager;
-import fr.alexandre_ferraille.findamovie.ui.activity.MainActivity;
 import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
 
 /**
@@ -23,13 +25,28 @@ import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
 public class MoviePagerFragment extends Fragment {
 
 
+    private static final String ARGUMENT_CATEGORIES = "argument_categories";
     private View rootView;
-    private ViewPager viewPager;
+
+    @BindView((R.id.fragment_movie_viewpager))
+    ViewPager viewPager;
+
     private int currentPage, maxPage;
-    private int[] genres;
+    private ArrayList<String> categories = new ArrayList<>();
 
     public MoviePagerFragment() {
         // Required empty public constructor
+    }
+
+    public static MoviePagerFragment newInstance(ArrayList<String> categories) {
+        Bundle args = new Bundle();
+
+        args.putStringArrayList(ARGUMENT_CATEGORIES,categories);
+
+        MoviePagerFragment moviePagerFragment = new MoviePagerFragment();
+        moviePagerFragment.setArguments(args);
+
+        return moviePagerFragment;
     }
 
 
@@ -39,12 +56,11 @@ public class MoviePagerFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_movie_pager, container, false);
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.fragment_movie_viewpager);
+        ButterKnife.bind(this, rootView);
 
-        MainActivity activity = (MainActivity) getActivity();
-        genres = activity.getSelectedGenres();
+        Bundle args = getArguments();
 
-        loadMovies();
+        categories = args.getStringArrayList(ARGUMENT_CATEGORIES);
 
         return rootView;
     }
@@ -52,12 +68,15 @@ public class MoviePagerFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        loadMovies();
+
     }
 
     private void loadMovies() {
         final List<MoviePagerStepFragment> moviePagerStepFragments = new ArrayList<>();
 
-        NetworkManager.getMoviesResult(1,genres, new NetworkManager.MoviesResultListener() {
+        NetworkManager.getMoviesResult(1,categories, new NetworkManager.MoviesResultListener() {
             @Override
             public void onReceiveMoviesResult(MoviesResult result) {
                 moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
@@ -78,7 +97,7 @@ public class MoviePagerFragment extends Fragment {
                     public void onPageSelected(int position) {
                         if (currentPage < maxPage && position % 5 == 0) {
                             currentPage++;
-                            NetworkManager.getMoviesResult(currentPage,genres, new NetworkManager.MoviesResultListener() {
+                            NetworkManager.getMoviesResult(currentPage,categories, new NetworkManager.MoviesResultListener() {
                                 @Override
                                 public void onReceiveMoviesResult(MoviesResult result) {
                                     moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
