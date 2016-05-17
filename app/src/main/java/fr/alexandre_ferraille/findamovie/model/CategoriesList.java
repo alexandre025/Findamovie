@@ -2,12 +2,13 @@ package fr.alexandre_ferraille.findamovie.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by alexandre on 15/05/16.
  */
-public class CategoriesList {
+public class CategoriesList implements Serializable {
 
     @JsonProperty("genres")
     private ArrayList<Category> categories;

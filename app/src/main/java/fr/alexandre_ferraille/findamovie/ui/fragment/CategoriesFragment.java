@@ -1,11 +1,9 @@
 package fr.alexandre_ferraille.findamovie.ui.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +17,7 @@ import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.model.Category;
-import fr.alexandre_ferraille.findamovie.network.NetworkManager;
-import fr.alexandre_ferraille.findamovie.ui.activity.MoviePagerActivity;
 import fr.alexandre_ferraille.findamovie.ui.adpater.CategoriesAdapter;
-import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
 
 
 /**
@@ -30,7 +25,16 @@ import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
  */
 public class CategoriesFragment extends Fragment implements View.OnClickListener {
 
+    private CategoriesList availableCategories;
+
+    public interface OnCategoriesValidatedListener {
+        public void onCategoriesValidated(ArrayList<String> categories);
+    }
+
+    OnCategoriesValidatedListener listener;
+
     public static final String ARGUMENT_CATEGORIES = "argument_categories";
+
     private View rootView;
 
     CategoriesAdapter categoriesAdapter;
@@ -45,6 +49,28 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
         // Required empty public constructor
     }
 
+    public static  CategoriesFragment newInstance(CategoriesList categoriesList) {
+
+        Bundle args = new Bundle();
+
+        args.putSerializable(ARGUMENT_CATEGORIES,categoriesList);
+
+        CategoriesFragment fragment = new CategoriesFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle args = getArguments();
+
+        availableCategories = (CategoriesList) args.getSerializable(ARGUMENT_CATEGORIES);
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,21 +80,13 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
         ButterKnife.bind(this, rootView);
 
+        listener = (OnCategoriesValidatedListener) getActivity();
+
         categoriesAdapter = new CategoriesAdapter(getContext());
 
         categoriesListview.setAdapter(categoriesAdapter);
 
-        NetworkManager.getCategoriesList(new NetworkManager.CategoriesListListener() {
-            @Override
-            public void onReceiveCategoriesList(CategoriesList categoriesList) {
-                categoriesAdapter.refresh(categoriesList.getCategories());
-            }
-
-            @Override
-            public void onFailed() {
-
-            }
-        });
+        categoriesAdapter.refresh(availableCategories.getCategories());
 
         categoriesValidateButton.setOnClickListener(this);
 
@@ -84,13 +102,8 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
                     categories.add(String.valueOf(category.getId()));
                 }
 
-                Intent intent = new Intent(getActivity(), MoviePagerActivity.class);
-                intent.putStringArrayListExtra(ARGUMENT_CATEGORIES,categories);
-                startActivity(intent);
+                listener.onCategoriesValidated(categories);
 
-                //MoviePagerFragment moviePagerFragment = MoviePagerFragment.newInstance(categories);
-
-                //getFragmentManager().beginTransaction().replace(R.id.main_container, moviePagerFragment).addToBackStack("CategoriesFragment").commit();
                 break;
 
         }

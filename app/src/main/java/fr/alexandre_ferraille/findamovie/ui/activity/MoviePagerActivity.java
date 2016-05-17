@@ -7,10 +7,12 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import fr.alexandre_ferraille.findamovie.R;
-import fr.alexandre_ferraille.findamovie.ui.fragment.CategoriesFragment;
 import fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment;
 
 public class MoviePagerActivity extends AppCompatActivity {
+
+
+    public static String ARGUMENT_CATEGORIES = "argument_categories";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +20,7 @@ public class MoviePagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_pager);
 
         Intent intent = getIntent();
-        ArrayList<String> categories = intent.getStringArrayListExtra(CategoriesFragment.ARGUMENT_CATEGORIES);
+        ArrayList<String> categories = intent.getStringArrayListExtra(ARGUMENT_CATEGORIES);
 
         MoviePagerFragment moviePagerFragment = MoviePagerFragment.newInstance(categories);
 

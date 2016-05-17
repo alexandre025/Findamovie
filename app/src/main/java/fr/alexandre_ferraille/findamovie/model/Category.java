@@ -1,9 +1,11 @@
 package fr.alexandre_ferraille.findamovie.model;
 
+import java.io.Serializable;
+
 /**
  * Created by alexandre on 14/05/16.
  */
-public class Category {
+public class Category implements Serializable {
 
     private int id;
     private String name;

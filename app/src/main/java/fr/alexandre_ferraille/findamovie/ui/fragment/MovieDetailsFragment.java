@@ -43,6 +43,8 @@ public class MovieDetailsFragment extends Fragment {
         Bundle args = getArguments();
         Movie movie = (Movie) args.getSerializable(ARGUMENT_MOVIE);
 
+
+
         return rootView;
     }
 

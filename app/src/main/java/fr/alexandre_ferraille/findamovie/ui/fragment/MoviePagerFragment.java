@@ -2,9 +2,11 @@ package fr.alexandre_ferraille.findamovie.ui.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +34,8 @@ public class MoviePagerFragment extends Fragment {
     ViewPager viewPager;
 
     private int currentPage, maxPage;
-    private ArrayList<String> categories = new ArrayList<>();
+    private ArrayList<String> categories;
+    private boolean isRestored = false;
 
     public MoviePagerFragment() {
         // Required empty public constructor
@@ -58,22 +61,29 @@ public class MoviePagerFragment extends Fragment {
 
         ButterKnife.bind(this, rootView);
 
-        Bundle args = getArguments();
+        Log.e("RESTORED?",String.valueOf(isRestored));
 
-        categories = args.getStringArrayList(ARGUMENT_CATEGORIES);
+        if(!isRestored) {
+            loadMovies();
+        }
 
         return rootView;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        loadMovies();
+        categories = new ArrayList<>();
 
+        Bundle args = getArguments();
+
+        categories = args.getStringArrayList(ARGUMENT_CATEGORIES);
     }
 
     private void loadMovies() {
+        isRestored = true;
+
         final List<MoviePagerStepFragment> moviePagerStepFragments = new ArrayList<>();
 
         NetworkManager.getMoviesResult(1,categories, new NetworkManager.MoviesResultListener() {
