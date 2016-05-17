@@ -53,7 +53,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
         Bundle args = new Bundle();
 
-        args.putSerializable(ARGUMENT_CATEGORIES,categoriesList);
+        args.putParcelable(ARGUMENT_CATEGORIES,categoriesList);
 
         CategoriesFragment fragment = new CategoriesFragment();
         fragment.setArguments(args);
@@ -67,7 +67,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
         Bundle args = getArguments();
 
-        availableCategories = (CategoriesList) args.getSerializable(ARGUMENT_CATEGORIES);
+        availableCategories = args.getParcelable(ARGUMENT_CATEGORIES);
 
     }
 

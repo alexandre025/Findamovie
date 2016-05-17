@@ -25,7 +25,7 @@ public class MovieDetailsFragment extends Fragment {
 
     public static MovieDetailsFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
-        args.putSerializable(ARGUMENT_MOVIE, movie);
+        args.putParcelable(ARGUMENT_MOVIE, movie);
 
         MovieDetailsFragment movieDetailsFragment = new MovieDetailsFragment();
         movieDetailsFragment.setArguments(args);
@@ -41,7 +41,7 @@ public class MovieDetailsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_movie_details, container, false);
 
         Bundle args = getArguments();
-        Movie movie = (Movie) args.getSerializable(ARGUMENT_MOVIE);
+        Movie movie = args.getParcelable(ARGUMENT_MOVIE);
 
 
 

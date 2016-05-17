@@ -49,7 +49,7 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
 
         Bundle args = new Bundle();
 
-        args.putSerializable(MOVIE_ARGUMENT, movie);
+        args.putParcelable(MOVIE_ARGUMENT, movie);
 
         MoviePagerStepFragment fragment = new MoviePagerStepFragment();
         fragment.setArguments(args);
@@ -74,7 +74,7 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
 
         Bundle args = getArguments();
         if (args != null) {
-            movie = (Movie) args.getSerializable(MOVIE_ARGUMENT);
+            movie = args.getParcelable(MOVIE_ARGUMENT);
 
             ImageLoader imageLoader = MyApp.getInstance().getImageLoader();
             movieCoverImageview.setImageUrl(UrlBuilder.getImageW500Url() + movie.getPosterPath(), imageLoader);

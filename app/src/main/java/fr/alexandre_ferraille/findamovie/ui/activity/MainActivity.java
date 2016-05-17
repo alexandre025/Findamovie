@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
     @Override
     public void onCategoriesValidated(ArrayList<String> categories) {
         Intent intent = new Intent(MyApp.getContext(),MoviePagerActivity.class);
-        intent.putStringArrayListExtra(MoviePagerActivity.ARGUMENT_CATEGORIES,categories);
+        intent.putExtra(MoviePagerActivity.ARGUMENT_CATEGORIES,categories);
         startActivity(intent);
     }
 }

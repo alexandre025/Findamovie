@@ -15,7 +15,7 @@ import io.realm.RealmObject;
  * Created by alexandre on 13/05/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Movie extends RealmObject implements Serializable {
+public class Movie extends RealmObject implements Parcelable {
 
     private int id;
 
@@ -41,6 +41,29 @@ public class Movie extends RealmObject implements Serializable {
 
     public Movie() {
     }
+
+    protected Movie(Parcel in) {
+        id = in.readInt();
+        voteCount = in.readInt();
+        title = in.readString();
+        overview = in.readString();
+        posterPath = in.readString();
+        releaseDate = in.readString();
+        viewed = in.readByte() != 0;
+        saved = in.readByte() != 0;
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -122,4 +145,20 @@ public class Movie extends RealmObject implements Serializable {
         this.saved = saved;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(voteCount);
+        dest.writeString(title);
+        dest.writeString(overview);
+        dest.writeString(posterPath);
+        dest.writeString(releaseDate);
+        dest.writeByte((byte) (viewed ? 1 : 0));
+        dest.writeByte((byte) (saved ? 1 : 0));
+    }
 }
