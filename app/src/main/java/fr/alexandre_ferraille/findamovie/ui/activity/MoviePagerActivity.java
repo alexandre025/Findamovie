@@ -20,7 +20,7 @@ public class MoviePagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_pager);
 
         Intent intent = getIntent();
-        ArrayList<String> categories = intent.getParcelableExtra(ARGUMENT_CATEGORIES);
+        ArrayList<String> categories = intent.getStringArrayListExtra(ARGUMENT_CATEGORIES);
 
         MoviePagerFragment moviePagerFragment = MoviePagerFragment.newInstance(categories);
 
