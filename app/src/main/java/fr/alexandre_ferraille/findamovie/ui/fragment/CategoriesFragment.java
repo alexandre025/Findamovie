@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.model.Category;
@@ -27,11 +28,11 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
     private CategoriesList availableCategories;
 
-    public interface OnCategoriesValidatedListener {
+    public interface CategoriesFragmentListener {
         public void onCategoriesValidated(ArrayList<String> categories);
     }
 
-    OnCategoriesValidatedListener listener;
+    CategoriesFragmentListener listener;
 
     public static final String ARGUMENT_CATEGORIES = "argument_categories";
 
@@ -80,7 +81,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
 
         ButterKnife.bind(this, rootView);
 
-        listener = (OnCategoriesValidatedListener) getActivity();
+        listener = (CategoriesFragmentListener) getActivity();
 
         categoriesAdapter = new CategoriesAdapter(getContext());
 

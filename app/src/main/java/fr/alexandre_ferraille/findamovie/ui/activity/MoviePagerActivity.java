@@ -6,10 +6,13 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
+import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
+import fr.alexandre_ferraille.findamovie.model.Movie;
 import fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment;
+import fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerStepFragment;
 
-public class MoviePagerActivity extends AppCompatActivity {
+public class MoviePagerActivity extends AppCompatActivity implements MoviePagerStepFragment.MoviePagerStepListener {
 
 
     public static String ARGUMENT_CATEGORIES = "argument_categories";
@@ -28,5 +31,12 @@ public class MoviePagerActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.main_container, moviePagerFragment)
                 .commit();
+    }
+
+    @Override
+    public void onMovieDetailsRequired(Movie movie) {
+        Intent intent = new Intent(MyApp.getContext(), MovieDetailsActivity.class);
+        intent.putExtra(MovieDetailsActivity.ARGUMENT_MOVIE,movie);
+        startActivity(intent);
     }
 }

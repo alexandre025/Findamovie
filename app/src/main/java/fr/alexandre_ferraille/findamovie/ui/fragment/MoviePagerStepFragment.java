@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.MyApp;
@@ -39,7 +41,14 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
 
     @BindView(R.id.movie_details_button)
     Button movieDetailsButton;
+
     private Movie movie;
+
+    public interface MoviePagerStepListener {
+        public void onMovieDetailsRequired(Movie movie);
+    }
+
+    MoviePagerStepListener listener;
 
     public MoviePagerStepFragment() {
         // Required empty public constructor
@@ -64,6 +73,8 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
         rootView = inflater.inflate(R.layout.fragment_movie_pager_step, container, false);
 
         ButterKnife.bind(this, rootView);
+
+        listener = (MoviePagerStepListener) getActivity();
 
         return rootView;
     }
@@ -91,12 +102,7 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.movie_details_button:
-                MovieDetailsFragment movieDetailsFragment = MovieDetailsFragment.newInstance(movie);
-                this.getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.main_container, movieDetailsFragment)
-                        .addToBackStack(null)
-                        .commit();
+                listener.onMovieDetailsRequired(movie);
                 break;
         }
     }

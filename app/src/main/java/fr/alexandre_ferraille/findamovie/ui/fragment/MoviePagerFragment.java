@@ -44,7 +44,7 @@ public class MoviePagerFragment extends Fragment {
     public static MoviePagerFragment newInstance(ArrayList<String> categories) {
         Bundle args = new Bundle();
 
-        args.putStringArrayList(ARGUMENT_CATEGORIES,categories);
+        args.putStringArrayList(ARGUMENT_CATEGORIES, categories);
 
         MoviePagerFragment moviePagerFragment = new MoviePagerFragment();
         moviePagerFragment.setArguments(args);
@@ -61,9 +61,9 @@ public class MoviePagerFragment extends Fragment {
 
         ButterKnife.bind(this, rootView);
 
-        Log.e("RESTORED?",String.valueOf(isRestored));
+        Log.e("RESTORED?", String.valueOf(isRestored));
 
-        if(!isRestored) {
+        if (!isRestored) {
             loadMovies();
         }
 
@@ -86,7 +86,7 @@ public class MoviePagerFragment extends Fragment {
 
         final List<MoviePagerStepFragment> moviePagerStepFragments = new ArrayList<>();
 
-        NetworkManager.getMoviesResult(1,categories, new NetworkManager.MoviesResultListener() {
+        NetworkManager.getMoviesResult(1, categories, new NetworkManager.MoviesResultListener() {
             @Override
             public void onReceiveMoviesResult(MoviesResult result) {
                 moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
@@ -107,7 +107,7 @@ public class MoviePagerFragment extends Fragment {
                     public void onPageSelected(int position) {
                         if (currentPage < maxPage && position % 5 == 0) {
                             currentPage++;
-                            NetworkManager.getMoviesResult(currentPage,categories, new NetworkManager.MoviesResultListener() {
+                            NetworkManager.getMoviesResult(currentPage, categories, new NetworkManager.MoviesResultListener() {
                                 @Override
                                 public void onReceiveMoviesResult(MoviesResult result) {
                                     moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
@@ -144,4 +144,5 @@ public class MoviePagerFragment extends Fragment {
         }
         return moviePagerStepFragments;
     }
+
 }

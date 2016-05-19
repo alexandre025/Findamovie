@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import fr.alexandre_ferraille.findamovie.MyApp;
@@ -14,7 +13,7 @@ import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.network.NetworkManager;
 import fr.alexandre_ferraille.findamovie.ui.fragment.CategoriesFragment;
 
-public class MainActivity extends AppCompatActivity implements CategoriesFragment.OnCategoriesValidatedListener{
+public class MainActivity extends AppCompatActivity implements CategoriesFragment.CategoriesFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
