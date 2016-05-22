@@ -29,7 +29,7 @@ public class CategoriesFragment extends Fragment implements View.OnClickListener
     private CategoriesList availableCategories;
 
     public interface CategoriesFragmentListener {
-        public void onCategoriesValidated(ArrayList<String> categories);
+        void onCategoriesValidated(ArrayList<String> categories);
     }
 
     CategoriesFragmentListener listener;

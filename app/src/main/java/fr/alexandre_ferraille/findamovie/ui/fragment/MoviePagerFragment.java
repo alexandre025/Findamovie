@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
-import fr.alexandre_ferraille.findamovie.network.NetworkManager;
+import fr.alexandre_ferraille.findamovie.network.MovieNetworkManager;
 import fr.alexandre_ferraille.findamovie.ui.adpater.MoviePagerAdapter;
 
 /**
@@ -86,7 +86,7 @@ public class MoviePagerFragment extends Fragment {
 
         final List<MoviePagerStepFragment> moviePagerStepFragments = new ArrayList<>();
 
-        NetworkManager.getMoviesResult(1, categories, new NetworkManager.MoviesResultListener() {
+        MovieNetworkManager.getMoviesResult(1, categories, new MovieNetworkManager.MoviesResultListener() {
             @Override
             public void onReceiveMoviesResult(MoviesResult result) {
                 moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
@@ -107,7 +107,7 @@ public class MoviePagerFragment extends Fragment {
                     public void onPageSelected(int position) {
                         if (currentPage < maxPage && position % 5 == 0) {
                             currentPage++;
-                            NetworkManager.getMoviesResult(currentPage, categories, new NetworkManager.MoviesResultListener() {
+                            MovieNetworkManager.getMoviesResult(currentPage, categories, new MovieNetworkManager.MoviesResultListener() {
                                 @Override
                                 public void onReceiveMoviesResult(MoviesResult result) {
                                     moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));

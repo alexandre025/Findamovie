@@ -4,7 +4,6 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "fr.alexandre_ferraille.findamovie"
         minSdkVersion 19
@@ -16,6 +15,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        production {
+            minSdkVersion 19
+            applicationId 'net.hetic.findamovie'
+            targetSdkVersion 23
+            versionCode 4
+            versionName '2.0.0'
         }
     }
 }

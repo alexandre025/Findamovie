@@ -45,7 +45,7 @@ public class MoviePagerStepFragment extends Fragment implements View.OnClickList
     private Movie movie;
 
     public interface MoviePagerStepListener {
-        public void onMovieDetailsRequired(Movie movie);
+        void onMovieDetailsRequired(Movie movie);
     }
 
     MoviePagerStepListener listener;
