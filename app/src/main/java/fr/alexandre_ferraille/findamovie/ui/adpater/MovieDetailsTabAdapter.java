@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import fr.alexandre_ferraille.findamovie.model.Movie;
+import fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabCastingFragment;
 import fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabOverviewFragment;
 
 
@@ -24,21 +25,20 @@ public class MovieDetailsTabAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        Fragment fragment;
+
         switch (position){
             case 0:
-                break;
+                return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
             case 1:
-
-                break;
+                return MovieDetailsTabCastingFragment.newInstance(selectedMovie);
             case 2:
-
-                break;
+                return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
             case 3:
-
-                break;
+                return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
+            default:
+                return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
         }
-
-        return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
     }
 
     @Override

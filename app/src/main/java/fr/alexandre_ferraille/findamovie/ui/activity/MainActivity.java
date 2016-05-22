@@ -12,6 +12,7 @@ import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.network.CategoryNetworkManager;
 import fr.alexandre_ferraille.findamovie.network.MovieNetworkManager;
+import fr.alexandre_ferraille.findamovie.network.NetworkManager;
 import fr.alexandre_ferraille.findamovie.ui.fragment.CategoriesFragment;
 
 public class MainActivity extends AppCompatActivity implements CategoriesFragment.CategoriesFragmentListener {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements CategoriesFragmen
 
             @Override
             public void onFailed() {
-
+                //NetworkManager.networkUnavailableAlertDialog();
             }
         });
 

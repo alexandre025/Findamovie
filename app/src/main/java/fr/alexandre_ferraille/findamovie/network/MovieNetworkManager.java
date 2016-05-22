@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
+import fr.alexandre_ferraille.findamovie.model.MovieCredits;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 
 /**
@@ -64,5 +65,41 @@ public class MovieNetworkManager {
 
         void onFailed();
     }
+
+    public static void getMovieCredits(int movieId, final MovieCreditsListener listener) {
+        String url = UrlBuilder.getMovieCreditsUrl(movieId);
+        Log.i("MOVIE URL", url);
+
+        JacksonRequest<MovieCredits> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<MovieCredits>() {
+            @Override
+            public void onResponse(MovieCredits response, int statusCode, VolleyError error) {
+                if (error != null) {
+                    if (listener != null) {
+                        listener.onFailed();
+                    }
+                } else {
+                    if (response != null) {
+                        if (listener != null) {
+                            listener.onReceivedMovieCredits(response);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public JavaType getReturnType() {
+                return SimpleType.construct(MovieCredits.class);
+            }
+        });
+
+        MyApp.getInstance().getRequestQueue().add(request);
+    }
+
+    public interface MovieCreditsListener {
+        void onReceivedMovieCredits(MovieCredits movieCredits);
+
+        void onFailed();
+    }
+
 
 }
