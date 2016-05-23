@@ -39,12 +39,21 @@ public class UrlBuilder {
     }
 
     /**
-     * Return credits of a selected movie
+     * Return GET URL for credits of a selected movie
      * @param movieId
      * @return
      */
     public static String getMovieCreditsUrl(int movieId) {
         return String.format("%s/3/movie/%d/credits%s%s", BASE_URL, movieId, API_KEY, LANGUAGE);
+    }
+
+    /**
+     * Return GET URL for videos of a selected movie
+     * @param movieId
+     * @return
+     */
+    public static String getMovieVideosUrl(int movieId) {
+        return String.format("%s/3/movie/%d/videos%s%s", BASE_URL, movieId, API_KEY, LANGUAGE);
     }
 
 
