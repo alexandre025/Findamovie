@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
@@ -9,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "2.0.0"
     }
     buildTypes {
         release {
@@ -19,11 +21,11 @@ android {
     }
     productFlavors {
         production {
+            versionCode 5
             minSdkVersion 19
             applicationId 'net.hetic.findamovie'
             targetSdkVersion 23
-            versionCode 4
-            versionName '2.0.0'
+            versionName '2.0.0-build5'
         }
     }
 }
