@@ -8,12 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.Movie;
 import fr.alexandre_ferraille.findamovie.model.MovieCredits;
 import fr.alexandre_ferraille.findamovie.network.MovieNetworkManager;
+import fr.alexandre_ferraille.findamovie.ui.adpater.CastingAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,8 +25,14 @@ public class MovieDetailsTabCastingFragment extends Fragment {
 
 
     private static String ARGUMENT_MOVIE = "argument_movie";
+
     private View rootView;
+
+    @BindView(R.id.casting_listview)
+    ListView listview;
+
     private Movie movie;
+    private CastingAdapter castingAdapter;
 
     public MovieDetailsTabCastingFragment() {
         // Required empty public constructor
@@ -61,7 +70,9 @@ public class MovieDetailsTabCastingFragment extends Fragment {
         MovieNetworkManager.getMovieCredits(movie.getId(), new MovieNetworkManager.MovieCreditsListener() {
             @Override
             public void onReceivedMovieCredits(MovieCredits movieCredits) {
-                Log.e("RESULT","Received");
+                castingAdapter = new CastingAdapter(getContext());
+                listview.setAdapter(castingAdapter);
+                castingAdapter.refresh(movieCredits.getCast());
             }
 
             @Override
