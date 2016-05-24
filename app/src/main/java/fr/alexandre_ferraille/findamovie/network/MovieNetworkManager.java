@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.model.CategoriesList;
 import fr.alexandre_ferraille.findamovie.model.MovieCredits;
+import fr.alexandre_ferraille.findamovie.model.MovieVideosResult;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 
 /**
@@ -101,5 +102,36 @@ public class MovieNetworkManager {
         void onFailed();
     }
 
+    public static void getMovieVideos(int movieId, final MovieVideosListener listener) {
+        String url = UrlBuilder.getMovieVideosUrl(movieId);
+
+        JacksonRequest<MovieVideosResult> request = new JacksonRequest<MovieVideosResult>(Request.Method.GET, url, new JacksonRequestListener<MovieVideosResult>() {
+            @Override
+            public void onResponse(MovieVideosResult response, int statusCode, VolleyError error) {
+                if (error != null) {
+                    if (listener != null) {
+                        listener.onFailed();
+                    }
+                } else {
+                    if (listener != null) {
+                        listener.onReceivedMovieVideos(response);
+                    }
+                }
+            }
+
+            @Override
+            public JavaType getReturnType() {
+                return SimpleType.construct(MovieVideosResult.class);
+            }
+        });
+
+        MyApp.getInstance().getRequestQueue().add(request);
+    }
+
+    public interface MovieVideosListener {
+        void onReceivedMovieVideos(MovieVideosResult movieVideosResult);
+
+        void onFailed();
+    }
 
 }

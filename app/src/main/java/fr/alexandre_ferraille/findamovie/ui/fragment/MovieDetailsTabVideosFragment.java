@@ -51,6 +51,7 @@ public class MovieDetailsTabVideosFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_movie_details_tab_videos, container, false);
 
 
+
         return rootView;
     }
 
