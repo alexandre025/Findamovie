@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import fr.alexandre_ferraille.findamovie.model.Movie;
 import fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabCastingFragment;
 import fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabOverviewFragment;
+import fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabVideosFragment;
 
 
 /**
@@ -33,7 +34,7 @@ public class MovieDetailsTabAdapter extends FragmentPagerAdapter {
             case 1:
                 return MovieDetailsTabCastingFragment.newInstance(selectedMovie);
             case 2:
-                return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
+                return MovieDetailsTabVideosFragment.newInstance(selectedMovie);
             case 3:
                 return MovieDetailsTabOverviewFragment.newInstance(selectedMovie);
             default:

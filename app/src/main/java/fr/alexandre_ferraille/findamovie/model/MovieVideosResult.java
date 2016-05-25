@@ -1,6 +1,7 @@
 package fr.alexandre_ferraille.findamovie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 public class MovieVideosResult {
 
     private int id;
+
+    @JsonProperty("results")
     private ArrayList<Video> videos;
 
     public MovieVideosResult() {

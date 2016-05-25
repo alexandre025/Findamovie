@@ -23,7 +23,8 @@
         <activity
             android:name=".ui.activity.MovieDetailsActivity"
             android:label="@string/title_activity_movie_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>

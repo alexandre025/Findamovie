@@ -16,22 +16,22 @@ import fr.alexandre_ferraille.findamovie.model.Video;
  */
 public class VideosAdapter extends BaseAdapter {
 
-    private ArrayList<Video> videos;
-    private Context context;
+    private ArrayList<Video> mVideos;
+    private Context mContext;
 
     public VideosAdapter(Context context) {
-        this.videos = new ArrayList<>();
-        this.context = context;
+        mVideos = new ArrayList<>();
+        mContext = context;
     }
 
     @Override
     public int getCount() {
-        return videos.size();
+        return mVideos.size();
     }
 
     @Override
     public Video getItem(int position) {
-        return videos.get(position);
+        return mVideos.get(position);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class VideosAdapter extends BaseAdapter {
         VideosViewHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.casting_list_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.video_list_item, null);
             holder = new VideosViewHolder(convertView);
             convertView.setTag(holder);
         } else {
@@ -54,5 +54,11 @@ public class VideosAdapter extends BaseAdapter {
         holder.setVideo(getItem(position));
 
         return convertView;
+    }
+
+    public void refresh(ArrayList<Video> videos){
+        mVideos.clear();
+        mVideos.addAll(videos);
+        notifyDataSetChanged();
     }
 }

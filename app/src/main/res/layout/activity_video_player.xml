@@ -1,12 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.YoutubeTrailerFragment">
-
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+    tools:context="fr.alexandre_ferraille.findamovie.ui.activity.VideoPlayerActivity"
+    android:id="@+id/main_container">
 
 </FrameLayout>

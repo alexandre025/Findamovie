@@ -69,7 +69,7 @@ public class MovieNetworkManager {
 
     public static void getMovieCredits(int movieId, final MovieCreditsListener listener) {
         String url = UrlBuilder.getMovieCreditsUrl(movieId);
-        Log.i("MOVIE URL", url);
+        Log.i("URL", url);
 
         JacksonRequest<MovieCredits> request = new JacksonRequest<>(Request.Method.GET, url, new JacksonRequestListener<MovieCredits>() {
             @Override
@@ -96,6 +96,9 @@ public class MovieNetworkManager {
         MyApp.getInstance().getRequestQueue().add(request);
     }
 
+    /**
+     * Listener for MovieCredits
+     */
     public interface MovieCreditsListener {
         void onReceivedMovieCredits(MovieCredits movieCredits);
 
@@ -104,6 +107,7 @@ public class MovieNetworkManager {
 
     public static void getMovieVideos(int movieId, final MovieVideosListener listener) {
         String url = UrlBuilder.getMovieVideosUrl(movieId);
+        Log.i("MOVIE URL", url);
 
         JacksonRequest<MovieVideosResult> request = new JacksonRequest<MovieVideosResult>(Request.Method.GET, url, new JacksonRequestListener<MovieVideosResult>() {
             @Override
@@ -128,6 +132,9 @@ public class MovieNetworkManager {
         MyApp.getInstance().getRequestQueue().add(request);
     }
 
+    /**
+     * Listener for MovieVideosResult
+     */
     public interface MovieVideosListener {
         void onReceivedMovieVideos(MovieVideosResult movieVideosResult);
 
