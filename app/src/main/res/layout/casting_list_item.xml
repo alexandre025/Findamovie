@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:padding="@dimen/listview_padding">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/cast_image_imageview"

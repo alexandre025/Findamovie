@@ -21,11 +21,11 @@ android {
     }
     productFlavors {
         production {
-            versionCode 5
+            versionCode 6
             minSdkVersion 19
             applicationId 'net.hetic.findamovie'
             targetSdkVersion 23
-            versionName '2.0.0-build5'
+            versionName '2.0.0-build6'
         }
     }
 }
