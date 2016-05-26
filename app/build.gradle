@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+    signingConfigs {
+    }
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+    defaultConfig {
+        applicationId "fr.alexandre_ferraille.findamovie"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "2.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        production {
+            versionCode 7
+            minSdkVersion 19
+            applicationId 'net.hetic.findamovie'
+            targetSdkVersion 23
+            versionName '2.0.0-build7'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.spothero.volley:volley-jackson-extension:1.0.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.2.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.3'
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.android.support:percent:23.3.0'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    compile 'com.android.support:design:23.3.0'
+}

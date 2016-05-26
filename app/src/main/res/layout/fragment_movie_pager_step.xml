@@ -1,0 +1,66 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerStepFragment">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/movie_cover_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+
+    <ScrollView
+        android:id="@+id/movie_overview_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/movie_action_bar"
+        android:background="#AF000000"
+        android:fadingEdgeLength="30dp"
+        android:requiresFadingEdge="vertical"
+        app:layout_heightPercent="40%">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/movie_title_textview"
+                style="@style/MovieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/movie_overview_textview"
+                style="@style/MovieOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movie_title_textview" />
+
+        </android.support.percent.PercentRelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/movie_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#AF000000">
+
+        <Button
+            android:id="@+id/movie_details_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/movie_details_button" />
+
+    </RelativeLayout>
+
+
+</android.support.percent.PercentRelativeLayout>
