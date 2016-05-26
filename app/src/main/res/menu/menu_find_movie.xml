@@ -1,8 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="net.hetic.findamovie.ui.activities.SelectGenres">
-    <item android:id="@+id/action_FindMovie" android:title="@string/title_activity_select_genres"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_MyMovies" android:title="@string/title_activity_my_movies"
-        android:orderInCategory="100" app:showAsAction="never" />
-</menu>
