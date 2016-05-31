@@ -2,6 +2,8 @@ package fr.alexandre_ferraille.findamovie;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.view.MenuItem;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -10,6 +12,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.Locale;
 
 import fr.alexandre_ferraille.findamovie.network.LruBitmapCache;
+import fr.alexandre_ferraille.findamovie.ui.activity.HomeActivity;
+import fr.alexandre_ferraille.findamovie.ui.activity.SelectCategoriesActivity;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
