@@ -35,14 +35,9 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        SearchView searchView = (SearchView) findViewById(R.id.search);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (!searchView.isIconified()) {
-            searchView.setIconified(true);
-        } else
-
-        {
+        } else {
             super.onBackPressed();
         }
 
