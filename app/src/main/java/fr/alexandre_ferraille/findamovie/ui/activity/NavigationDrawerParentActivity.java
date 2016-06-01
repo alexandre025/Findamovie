@@ -1,11 +1,8 @@
 package fr.alexandre_ferraille.findamovie.ui.activity;
 
 import android.app.SearchManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,8 +10,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import butterknife.BindView;
 import fr.alexandre_ferraille.findamovie.R;
@@ -32,8 +31,6 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
-
-    private SearchView searchView;
 
     @Override
     public void onBackPressed() {
@@ -56,10 +53,6 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.global_menu_items, menu);
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
-
         return true;
     }
 
@@ -68,19 +61,24 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        if (id == R.id.search) {
-            onSearchRequested();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.search:
+                Intent intent = new Intent(this, SearchResultsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        Log.i("DRAWER BUTTON", item.toString());
+
         Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_findamovie:
@@ -103,11 +101,6 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        searchView.setIconified(true);
     }
 }
