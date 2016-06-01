@@ -2,6 +2,8 @@ package fr.alexandre_ferraille.findamovie;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.view.MenuItem;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -10,6 +12,10 @@ import com.android.volley.toolbox.Volley;
 import java.util.Locale;
 
 import fr.alexandre_ferraille.findamovie.network.LruBitmapCache;
+import fr.alexandre_ferraille.findamovie.ui.activity.HomeActivity;
+import fr.alexandre_ferraille.findamovie.ui.activity.SelectCategoriesActivity;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by alexandre on 11/05/16.
@@ -36,6 +42,9 @@ public class MyApp extends Application {
 
         LruBitmapCache cache = new LruBitmapCache(8 * 1024 * 1024);
         imageLoader = new ImageLoader(requestQueue, cache);
+
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder(context).build();
+        Realm.setDefaultConfiguration(realmConfig);
     }
 
     public static MyApp getInstance() { return instance; }

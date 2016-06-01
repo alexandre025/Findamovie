@@ -58,7 +58,6 @@ public class CastingAdapter extends BaseAdapter {
 
     public void refresh(ArrayList<Cast> casting){
         this.casting.clear();
-        casting.add(new Cast()); // Add an empty cast to tmp fix scrolling issue
         this.casting.addAll(casting);
         notifyDataSetChanged();
     }

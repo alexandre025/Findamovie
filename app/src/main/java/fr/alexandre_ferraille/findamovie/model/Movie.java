@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 
+import fr.alexandre_ferraille.findamovie.realm.MovieRealmManager;
 import io.realm.RealmObject;
 
 /**

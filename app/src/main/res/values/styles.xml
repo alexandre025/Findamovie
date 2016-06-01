@@ -24,7 +24,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AlertDialog" parent="Theme.AppCompat.Light"/>
+    <style name="AlertDialog" parent="Theme.AppCompat.Light" />
 
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/colorPrimaryWhite</item>
