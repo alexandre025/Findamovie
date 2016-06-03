@@ -1,5 +1,9 @@
 package fr.alexandre_ferraille.findamovie.network;
 
+import android.util.Log;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import fr.alexandre_ferraille.findamovie.MyApp;
@@ -20,7 +24,7 @@ public class UrlBuilder {
     }
 
     /**
-     * Discover basic url for TMDb
+     * Return GET URL for discover movies
      *
      * @return
      */
@@ -40,6 +44,7 @@ public class UrlBuilder {
 
     /**
      * Return GET URL for credits of a selected movie
+     *
      * @param movieId
      * @return
      */
@@ -49,6 +54,7 @@ public class UrlBuilder {
 
     /**
      * Return GET URL for videos of a selected movie
+     *
      * @param movieId
      * @return
      */
@@ -59,6 +65,38 @@ public class UrlBuilder {
 
     public static String getImageW500Url() {
         return "http://image.tmdb.org/t/p/w500";
+    }
+
+    /**
+     * Return GET URL for videos searching
+     *
+     * @param page
+     * @param query
+     * @return
+     */
+    public static String getSearchMoviesUrl(int page, String query) {
+        try {
+            query = URLEncoder.encode(query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return String.format("%s/3/search/movie%s%s&query=%s&page=%d", BASE_URL, API_KEY, LANGUAGE, query, page);
+    }
+
+    /**
+     * Return GET URL for persons searching
+     *
+     * @param page
+     * @param query
+     * @return
+     */
+    public static String getSearchPersonUrl(int page, String query) {
+        try {
+            query = URLEncoder.encode(query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return String.format("%s/3/search/person%s%s&query=%s&page=%d", BASE_URL, API_KEY, LANGUAGE, query, page);
     }
 
 }

@@ -1,6 +1,5 @@
 package fr.alexandre_ferraille.findamovie.ui.activity;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,18 +10,23 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.widget.ListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
+import fr.alexandre_ferraille.findamovie.model.MoviesResult;
+import fr.alexandre_ferraille.findamovie.network.SearchNetworkManager;
+import fr.alexandre_ferraille.findamovie.ui.adpater.SearchMoviesAdapter;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.search_movies_listview)
+    ListView searchMoviesListview;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +61,20 @@ public class SearchResultsActivity extends AppCompatActivity {
     }
 
     private void showResults(String query) {
-        // Query your data set and show results
-        // ...
+        SearchNetworkManager.searchMovies(1, query, new SearchNetworkManager.searchMoviesListener() {
+            @Override
+            public void onSearchedMoviesResult(MoviesResult moviesResult) {
+                SearchMoviesAdapter searchMoviesAdapter = new SearchMoviesAdapter(MyApp.getContext());
+                searchMoviesListview.setAdapter(searchMoviesAdapter);
+                Log.e("MOVIES",moviesResult.getMovies().toString());
+                searchMoviesAdapter.refresh(moviesResult.getMovies());
+            }
+
+            @Override
+            public void onFailed() {
+
+            }
+        });
     }
 
     @Override
