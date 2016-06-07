@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.Movie;
@@ -21,6 +24,12 @@ public class MovieDetailsTabOverviewFragment extends Fragment {
     private static String ARGUMENT_MOVIE = "argument_movie";
     private View rootView;
     private Movie movie;
+
+    @BindView(R.id.movie_overview_textview)
+    TextView movieOverviewTextview;
+
+    @BindView(R.id.loader_view)
+    RelativeLayout loaderView;
 
     public MovieDetailsTabOverviewFragment() {
         // Required empty public constructor
@@ -54,6 +63,10 @@ public class MovieDetailsTabOverviewFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_movie_details_tab_overview, container, false);
 
         ButterKnife.bind(this, rootView);
+
+        loaderView.setVisibility(View.GONE);
+
+        movieOverviewTextview.setText(movie.getOverview());
 
         return rootView;
     }

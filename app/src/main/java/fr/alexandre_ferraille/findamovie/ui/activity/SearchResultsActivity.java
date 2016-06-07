@@ -10,23 +10,28 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
+import fr.alexandre_ferraille.findamovie.model.Movie;
 import fr.alexandre_ferraille.findamovie.model.MoviesResult;
 import fr.alexandre_ferraille.findamovie.network.SearchNetworkManager;
 import fr.alexandre_ferraille.findamovie.ui.adpater.SearchMoviesAdapter;
 
-public class SearchResultsActivity extends AppCompatActivity {
+public class SearchResultsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @BindView(R.id.search_movies_listview)
     ListView searchMoviesListview;
+
+    private SearchMoviesAdapter searchMoviesAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        searchMoviesListview.setOnItemClickListener(this);
 
         handleIntent(getIntent());
     }
@@ -64,7 +71,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         SearchNetworkManager.searchMovies(1, query, new SearchNetworkManager.searchMoviesListener() {
             @Override
             public void onSearchedMoviesResult(MoviesResult moviesResult) {
-                SearchMoviesAdapter searchMoviesAdapter = new SearchMoviesAdapter(MyApp.getContext());
+                searchMoviesAdapter = new SearchMoviesAdapter(MyApp.getContext());
                 searchMoviesListview.setAdapter(searchMoviesAdapter);
                 Log.e("MOVIES",moviesResult.getMovies().toString());
                 searchMoviesAdapter.refresh(moviesResult.getMovies());
@@ -104,4 +111,12 @@ public class SearchResultsActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Movie movie = searchMoviesAdapter.getItem(position);
+
+        Intent intent = new Intent(this, MovieDetailsActivity.class);
+        intent.putExtra(MovieDetailsActivity.ARGUMENT_MOVIE,movie);
+        startActivity(intent);
+    }
 }

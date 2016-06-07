@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     tools:context="fr.alexandre_ferraille.findamovie.ui.fragment.MoviePagerFragment">
 
+    <include layout="@layout/global_loader_view" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/fragment_movie_viewpager"
         android:layout_width="match_parent"

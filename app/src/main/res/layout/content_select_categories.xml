@@ -9,4 +9,6 @@
     tools:context=".ui.activity.SelectCategoriesActivity"
     tools:showIn="@layout/select_categories_app_bar">
 
+    <include layout="@layout/global_loader_view" />
+
 </RelativeLayout>

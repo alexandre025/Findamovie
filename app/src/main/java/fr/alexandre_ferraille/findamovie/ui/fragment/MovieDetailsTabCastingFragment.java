@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +31,9 @@ public class MovieDetailsTabCastingFragment extends Fragment {
 
     @BindView(R.id.casting_listview)
     ListView listview;
+
+    @BindView(R.id.loader_view)
+    RelativeLayout loaderView;
 
     private Movie movie;
     private CastingAdapter castingAdapter;
@@ -70,6 +74,9 @@ public class MovieDetailsTabCastingFragment extends Fragment {
         MovieNetworkManager.getMovieCredits(movie.getId(), new MovieNetworkManager.MovieCreditsListener() {
             @Override
             public void onReceivedMovieCredits(MovieCredits movieCredits) {
+
+                loaderView.setVisibility(View.GONE);
+
                 castingAdapter = new CastingAdapter(getContext());
                 listview.setAdapter(castingAdapter);
                 castingAdapter.refresh(movieCredits.getCast());

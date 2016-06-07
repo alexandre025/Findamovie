@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     tools:context="fr.alexandre_ferraille.findamovie.ui.fragment.MovieDetailsTabCastingFragment">
 
+    <include layout="@layout/global_loader_view" />
+
     <ListView
         android:id="@+id/casting_listview"
         android:layout_width="match_parent"

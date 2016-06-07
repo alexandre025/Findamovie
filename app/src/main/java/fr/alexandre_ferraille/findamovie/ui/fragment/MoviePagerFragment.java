@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,9 @@ public class MoviePagerFragment extends Fragment {
 
     @BindView((R.id.fragment_movie_viewpager))
     ViewPager viewPager;
+
+    @BindView(R.id.loader_view)
+    RelativeLayout loaderView;
 
     private int currentPage, maxPage;
     private ArrayList<String> categories;
@@ -89,6 +93,9 @@ public class MoviePagerFragment extends Fragment {
         MovieNetworkManager.getMoviesResult(1, categories, new MovieNetworkManager.MoviesResultListener() {
             @Override
             public void onReceiveMoviesResult(MoviesResult result) {
+
+                loaderView.setVisibility(View.GONE);
+
                 moviePagerStepFragments.addAll(getMoviePagerStepFragments(result));
                 final MoviePagerAdapter moviePagerAdapter = new MoviePagerAdapter(getFragmentManager(), moviePagerStepFragments);
                 viewPager.setAdapter(moviePagerAdapter);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +33,9 @@ public class MovieDetailsTabVideosFragment extends Fragment {
 
     @BindView(R.id.videos_listview)
     ListView listView;
+
+    @BindView(R.id.loader_view)
+    RelativeLayout loaderView;
 
     private View rootView;
 
@@ -70,7 +74,10 @@ public class MovieDetailsTabVideosFragment extends Fragment {
         MovieNetworkManager.getMovieVideos(movie.getId(), new MovieNetworkManager.MovieVideosListener() {
             @Override
             public void onReceivedMovieVideos(MovieVideosResult movieVideosResult) {
+                loaderView.setVisibility(View.GONE);
+
                 final VideosAdapter videosAdapter = new VideosAdapter(getContext());
+
                 listView.setAdapter(videosAdapter);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

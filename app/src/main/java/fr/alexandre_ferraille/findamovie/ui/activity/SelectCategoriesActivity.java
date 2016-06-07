@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,9 @@ public class SelectCategoriesActivity extends NavigationDrawerParentActivity imp
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+    @BindView(R.id.loader_view)
+    RelativeLayout loaderView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,8 @@ public class SelectCategoriesActivity extends NavigationDrawerParentActivity imp
             @Override
             public void onReceiveCategoriesList(CategoriesList categoriesList) {
                 CategoriesFragment categoriesFragment = CategoriesFragment.newInstance(categoriesList);
+
+                loaderView.setVisibility(View.GONE);
 
                 getSupportFragmentManager()
                         .beginTransaction()

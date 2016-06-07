@@ -75,6 +75,9 @@ public class NavigationDrawerParentActivity extends AppCompatActivity implements
             case R.id.nav_findamovie:
                 intent = new Intent(this, SelectCategoriesActivity.class);
                 break;
+            case R.id.nav_home:
+                intent = new Intent(this, HomeActivity.class);
+                break;
             default:
                 intent = new Intent(this, HomeActivity.class);
         }

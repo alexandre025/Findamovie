@@ -17,4 +17,6 @@
     <string name="drawer_settings">Paramètres</string>
     <string name="search_title_appbar">Recherche</string>
     <string name="search_hint">Titre</string>
+    <string name="drawer_home">Accueil</string>
+    <string name="loader_message">Chargement en cours, veuillez patienter...</string>
 </resources>

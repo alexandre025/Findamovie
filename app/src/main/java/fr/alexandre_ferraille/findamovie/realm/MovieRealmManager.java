@@ -30,10 +30,7 @@ public class MovieRealmManager {
 
         RealmResults<Movie> result = query.findAll();
 
-        if(result.size() == 1){
-            return true;
-        }
-        return false;
+        return result.size() == 1;
     }
 
     public static boolean isViewed(Movie movie){
