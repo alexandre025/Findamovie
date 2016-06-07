@@ -10,10 +10,17 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
+import org.w3c.dom.Text;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.alexandre_ferraille.findamovie.MyApp;
 import fr.alexandre_ferraille.findamovie.R;
 import fr.alexandre_ferraille.findamovie.model.Movie;
+import fr.alexandre_ferraille.findamovie.network.UrlBuilder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +34,12 @@ public class MovieDetailsTabOverviewFragment extends Fragment {
 
     @BindView(R.id.movie_overview_textview)
     TextView movieOverviewTextview;
+
+    @BindView(R.id.movie_backdrop_imageview)
+    NetworkImageView movieBackdropImageview;
+
+    @BindView(R.id.movie_title_textview)
+    TextView movieTitleTextview;
 
     @BindView(R.id.loader_view)
     RelativeLayout loaderView;
@@ -67,6 +80,11 @@ public class MovieDetailsTabOverviewFragment extends Fragment {
         loaderView.setVisibility(View.GONE);
 
         movieOverviewTextview.setText(movie.getOverview());
+
+        movieTitleTextview.setText(movie.getTitle());
+
+        ImageLoader imageLoader = MyApp.getInstance().getImageLoader();
+        movieBackdropImageview.setImageUrl(UrlBuilder.getImageW500Url() + movie.getPosterPath(), imageLoader);
 
         return rootView;
     }
