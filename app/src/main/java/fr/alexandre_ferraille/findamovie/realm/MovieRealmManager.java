@@ -16,9 +16,20 @@ public class MovieRealmManager {
         RealmQuery<Movie> query = realm.where(Movie.class);
         query.equalTo("viewed", true);
 
-        RealmResults<Movie> result = query.findAll();
+        RealmResults<Movie> results = query.findAll();
 
-        return result;
+        return results;
+    }
+
+    public static RealmResults<Movie> getSavedMovies(){
+        Realm realm = Realm.getDefaultInstance();
+
+        RealmQuery<Movie> query = realm.where(Movie.class);
+        query.equalTo("viewed", true);
+
+        RealmResults<Movie> results = query.findAll();
+
+        return results;
     }
 
     public static boolean isSaved(Movie movie){
@@ -28,9 +39,12 @@ public class MovieRealmManager {
         query.equalTo("saved", true);
         query.equalTo("id", movie.getId());
 
-        RealmResults<Movie> result = query.findAll();
+        Movie result = query.findFirst();
 
-        return result.size() == 1;
+        if(result != null){
+            return true;
+        }
+        return false;
     }
 
     public static boolean isViewed(Movie movie){
@@ -46,6 +60,21 @@ public class MovieRealmManager {
             return true;
         }
         return false;
+    }
+
+    public static boolean setSaved(Movie movie) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        if(!isSaved(movie)){
+            movie.setSaved(true);
+            realm.copyToRealm(movie);
+
+        } else {
+            Movie savedMovie = realm.where(Movie.class).equalTo("id",movie.getId()).findFirst();
+            savedMovie.setSaved(true);
+        }
+        realm.commitTransaction();
+        return true;
     }
 
 }
